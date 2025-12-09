@@ -50,30 +50,32 @@
     <div class="relative flex min-h-screen w-full flex-col">
         
         <!-- Header -->
-        <header class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80">
-            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-1 items-center justify-start gap-4 py-4">
-                    <svg class="h-8 w-8 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.5 17.5 3 12l11.5-5.5L21 12l-6.5 5.5z"></path>
-                        <path d="m3 12 6 6"></path>
-                        <path d="m21 12-6-6"></path>
-                    </svg>
-                    <h2 class="text-lg font-bold text-gray-900 dark:text-white">
-                        <a href="index.html">Tiket Wisata Surabaya</a>
-                    </h2>
-                </div>
-                
-                <nav class="hidden flex-1 items-center justify-center gap-9 md:flex">
-                    <a class="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="destinasi.html">Destinasi</a>
-                    <a class="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Promosi</a>
-                    <a class="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Tiket Saya</a>
-                </nav>
-                
-                <div class="flex flex-1 items-center justify-end">
-                    <a class="text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Bantuan</a>
-                </div>
-            </div>
-        </header>
+       <header class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 text-gray-900 dark:text-white">
+            <span class="material-symbols-outlined text-primary text-3xl">local_activity</span>
+            <h2 class="text-lg font-bold tracking-tight">Tiket Wisata Surabaya</h2>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
+            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Promosi</a>
+            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Tiket Saya</a>
+        </nav>
+
+        <!-- Right section -->
+        <div class="flex items-center gap-4">
+            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Bantuan</a>
+            <button class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 md:hidden">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+        </div>
+    </div>
+</header>
+
 
         <!-- Main Content -->
         <main>

@@ -1,301 +1,373 @@
 <!DOCTYPE html>
-<html class="light" lang="id"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Halaman Hasil Pencarian (diperbarui tanpa login, tema hijau, navigasi baru)</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#10b981",
-            "background-light": "#f6f7f8",
-            "background-dark": "#101a22",
-          },
-          fontFamily: {
-            "display": ["Plus Jakarta Sans", "sans-serif"]
-          },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-        },
-      },
-    }
-  </script>
-<style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
-  </style>
+<html class="light" lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tiket Wisata Surabaya - Hasil Pencarian</title>
+    
+    <!-- External Resources -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#10b981",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101a22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        };
+    </script>
+    
+    <!-- Styles -->
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-<div class="relative flex h-auto min-h-screen w-full flex-col">
-<header class="sticky top-0 z-50 w-full border-b border-gray-200/50 dark:border-gray-700/50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="container mx-auto flex items-center justify-between whitespace-nowrap px-4 py-3">
-<div class="flex items-center gap-3 text-gray-900 dark:text-white">
-<span class="material-symbols-outlined text-primary text-3xl">local_activity</span>
-<h2 class="text-lg font-bold tracking-tight">Tiket Wisata Surabaya</h2>
-</div>
-<nav class="hidden items-center gap-9 md:flex flex-1 justify-center">
-<a class="text-sm font-medium text-primary dark:text-primary" href="#">Destinasi</a>
-<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Promosi</a>
-<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Tiket Saya</a>
-</nav>
-<div class="flex flex-none items-center justify-end gap-4">
-<div class="relative hidden lg:block w-full max-w-[200px]">
-<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400">search</span>
-</div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg border-none bg-gray-200/50 dark:bg-gray-800/60 py-2 pl-10 pr-4 text-sm font-normal text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Cari destinasi..." value="Surabaya"/>
-</div>
-<nav class="hidden items-center gap-9 md:flex">
-<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Bantuan</a>
-</nav>
-<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white lg:hidden">
-<span class="material-symbols-outlined">search</span>
-</button>
-</div>
-</div>
-</header>
-<main class="container mx-auto flex-1 px-4 py-8">
-<div class="flex flex-col gap-8 lg:flex-row">
-<aside class="w-full lg:w-1/4 lg:max-w-xs xl:max-w-sm">
-<div class="sticky top-24 flex h-full flex-col justify-between rounded-xl bg-white dark:bg-gray-900/50 p-6 shadow-sm">
-<div class="flex flex-col gap-6">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-2xl text-primary">filter_alt</span>
-<div class="flex flex-col">
-<h1 class="text-lg font-bold text-gray-900 dark:text-white">Filter Hasil</h1>
-<p class="text-sm text-gray-500 dark:text-gray-400">Sesuaikan pencarian Anda</p>
-</div>
-</div>
-<div class="space-y-6">
-<div class="flex flex-col gap-3">
-<label class="text-sm font-semibold text-gray-900 dark:text-white">Harga</label>
-<input class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" style="--tw-accent-color: #10b981;" type="range"/>
-<div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
-<span>Rp 0</span>
-<span>Rp 1.000.000+</span>
-</div>
-</div>
-<div class="flex flex-col gap-3">
-<label class="text-sm font-semibold text-gray-900 dark:text-white" for="date-filter">Tanggal</label>
-<div class="relative">
-<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-<span class="material-symbols-outlined text-gray-500 dark:text-gray-400">calendar_today</span>
-</div>
-<input class="form-input w-full rounded-lg border-gray-200 dark:border-gray-700 bg-transparent py-2 pl-10 pr-4 text-sm focus:border-primary focus:ring-primary" id="date-filter" placeholder="Pilih tanggal" type="text"/>
-</div>
-</div>
-<div class="flex flex-col gap-3">
-<label class="text-sm font-semibold text-gray-900 dark:text-white">Jenis Wisata</label>
-<div class="space-y-2">
-<div class="flex items-center">
-<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-800 dark:border-gray-600" id="wisata-alam" type="checkbox"/>
-<label class="ml-2 text-sm text-gray-600 dark:text-gray-300" for="wisata-alam">Alam</label>
-</div>
-<div class="flex items-center">
-<input checked="" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-800 dark:border-gray-600" id="wisata-sejarah" type="checkbox"/>
-<label class="ml-2 text-sm text-gray-600 dark:text-gray-300" for="wisata-sejarah">Sejarah</label>
-</div>
-<div class="flex items-center">
-<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-800 dark:border-gray-600" id="wisata-kuliner" type="checkbox"/>
-<label class="ml-2 text-sm text-gray-600 dark:text-gray-300" for="wisata-kuliner">Kuliner</label>
-</div>
-<div class="flex items-center">
-<input checked="" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-800 dark:border-gray-600" id="wisata-keluarga" type="checkbox"/>
-<label class="ml-2 text-sm text-gray-600 dark:text-gray-300" for="wisata-keluarga">Keluarga</label>
-</div>
-</div>
-</div>
-<div class="flex flex-col gap-3">
-<label class="text-sm font-semibold text-gray-900 dark:text-white">Rating Pengguna</label>
-<div class="flex items-center gap-1">
-<button class="p-1 rounded-md hover:bg-primary/10 text-yellow-500"><span class="material-symbols-outlined !text-2xl" style="font-variation-settings: 'FILL' 1;">star</span></button>
-<button class="p-1 rounded-md hover:bg-primary/10 text-yellow-500"><span class="material-symbols-outlined !text-2xl" style="font-variation-settings: 'FILL' 1;">star</span></button>
-<button class="p-1 rounded-md hover:bg-primary/10 text-yellow-500"><span class="material-symbols-outlined !text-2xl" style="font-variation-settings: 'FILL' 1;">star</span></button>
-<button class="p-1 rounded-md hover:bg-primary/10 text-yellow-500"><span class="material-symbols-outlined !text-2xl" style="font-variation-settings: 'FILL' 1;">star</span></button>
-<button class="p-1 rounded-md hover:bg-primary/10 text-gray-300 dark:text-gray-600"><span class="material-symbols-outlined !text-2xl">star</span></button>
-<span class="ml-2 text-sm text-gray-600 dark:text-gray-400">4+</span>
-</div>
-</div>
-</div>
-</div>
-<div class="mt-8 flex flex-col gap-2 border-t border-gray-200 dark:border-gray-700 pt-6">
-<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-colors">
-<span>Terapkan Filter</span>
-</button>
-<button class="flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 text-gray-600 dark:text-gray-300 text-sm font-bold tracking-wide hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-<span class="material-symbols-outlined text-base">restart_alt</span>
-<span>Reset</span>
-</button>
-</div>
-</div>
-</aside>
-<div class="w-full lg:w-3/4">
-<div class="flex flex-col gap-4 mb-6">
-<div class="flex flex-wrap items-center gap-2">
-<a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary" href="#">Home</a>
-<span class="material-symbols-outlined !text-base text-gray-400">chevron_right</span>
-<a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary" href="#">Jawa Timur</a>
-<span class="material-symbols-outlined !text-base text-gray-400">chevron_right</span>
-<span class="text-sm font-medium text-gray-900 dark:text-white">Surabaya</span>
-</div>
-<h1 class="text-4xl font-black tracking-tighter text-gray-900 dark:text-white">Menampilkan 25 hasil untuk 'Surabaya'</h1>
-</div>
-<div class="flex flex-wrap gap-3 mb-6">
-<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 dark:bg-primary/30 px-4">
-<p class="text-sm font-semibold text-primary dark:text-white">Harga Terendah</p>
-<span class="material-symbols-outlined text-primary dark:text-white !text-xl">arrow_downward</span>
-</button>
-<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800/50 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-<p class="text-sm font-medium text-gray-700 dark:text-gray-300">Popularitas</p>
-</button>
-<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800/50 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-<p class="text-sm font-medium text-gray-700 dark:text-gray-300">Rating Tertinggi</p>
-</button>
-</div>
-<div class="grid grid-cols-1 gap-6 @container md:grid-cols-2 xl:grid-cols-3">
-<div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg">
-<div class="aspect-video w-full bg-cover bg-center" data-alt="Surabaya Zoo entrance with lush greenery" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3zkQGLn9srlxmv8G0coAoT8tTLGzaamsPwkQtBjaAECpbCrMgUd9JNyXOB5M3w4Ar9ATJSWQxDGQEzivah7fermR4vb20k7WUcwhz-fvr96dkTihU3PyWxC-e5BoW9O26P348Br0SCFq6WVRvTOMKpkjuFFGGZtZ3q_1sb31JPcvFCE7sijkith2rumH5e6woi8PzFELMWUZnAd-WZebzkPxflYUZCWvZpvJ4qzETPlDemehu_CqgRGbO37NwyqwyVHswSjMh5Bw')"></div>
-<div class="flex flex-1 flex-col p-4">
-<div class="flex-1">
-<h3 class="text-lg font-bold text-gray-900 dark:text-white">Tiket Masuk Kebun Binatang Surabaya</h3>
-<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Wonokromo, Surabaya</p>
-<div class="mt-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.5</span>
-<span class="text-sm text-gray-500 dark:text-gray-400">(1,234 ulasan)</span>
-</div>
-</div>
-<div class="mt-4 flex items-end justify-between">
-<div>
-<p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
-<p class="text-lg font-bold text-primary">Rp 50.000</p>
-</div>
-<button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30">Lihat Detail</button>
-</div>
-</div>
-</div>
-<div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg">
-<div class="aspect-video w-full bg-cover bg-center" data-alt="Monumen Kapal Selam (Submarine Monument) at dusk in Surabaya" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFx9cTqTsn2Xt3nRCv6mdTXoHmwJOuj3f9ELT0guXsu3RWF64hXRbJKPlprWro5TkRyBI4MdPg_RGNjEstdntRIOmdaGwo3T6wHJjqDtmjZB9myC4qIPbA198AkzlPoKXyLHFNABexODgSsUZ2-OfJNkH-3_guSDmfqmfh3BpxhZANd57sxzdqQlLENoFRZc8SEksgusdN395FrEO01HRLKqOqe1938qTnrfpIg4ytGAJuJQNuYlukFuhtK0bESCjHpaMlAYVHYG8')"></div>
-<div class="flex flex-1 flex-col p-4">
-<div class="flex-1">
-<h3 class="text-lg font-bold text-gray-900 dark:text-white">Monumen Kapal Selam</h3>
-<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Genteng, Surabaya</p>
-<div class="mt-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.7</span>
-<span class="text-sm text-gray-500 dark:text-gray-400">(2,450 ulasan)</span>
-</div>
-</div>
-<div class="mt-4 flex items-end justify-between">
-<div>
-<p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
-<p class="text-lg font-bold text-primary">Rp 15.000</p>
-</div>
-<button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30">Lihat Detail</button>
-</div>
-</div>
-</div>
-<div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg">
-<div class="aspect-video w-full bg-cover bg-center" data-alt="Tugu Pahlawan (Heroes Monument) against a blue sky" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAItuJJf2qxlAdEloNfQfSb7QByiRBBmzslVEheSPnwRbSj0aWIr43BzvKeOvNRRt1k3r3RAYtPfMiApGBTYflljRC9HdcvdpoPdMl9OKReSnoe_J3spfhjp5mWp0aftUPyb3yWZP-GDyrFt4U4XNs_ciwadvhjn0eEiCnRmfKNdHSWlixcmb6a-p6b0n_GbFPaxFSVwT1f0tFUROV9zvyUBeshj0snJynjLkfPKGfFe80yx2R9alDZSO84MJW-9-LobfGkXvoVlnQ')"></div>
-<div class="flex flex-1 flex-col p-4">
-<div class="flex-1">
-<h3 class="text-lg font-bold text-gray-900 dark:text-white">Tugu Pahlawan &amp; Museum 10 November</h3>
-<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Pahlawan, Surabaya</p>
-<div class="mt-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.8</span>
-<span class="text-sm text-gray-500 dark:text-gray-400">(3,112 ulasan)</span>
-</div>
-</div>
-<div class="mt-4 flex items-end justify-between">
-<div>
-<p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
-<p class="text-lg font-bold text-primary">Rp 5.000</p>
-</div>
-<button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30">Lihat Detail</button>
-</div>
-</div>
-</div>
-<div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg">
-<div class="aspect-video w-full bg-cover bg-center" data-alt="A tranquil scene at Kenjeran Park with a large Buddha statue" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAC31kPZb9wcqb48VyoaiyOwd1PNTNiN5X5zwGJ2KPa0l8hKg8yFGkEpnbnDxSUX_yFAIF1lg4ZTWdBIRPbAkOO4A4cd6txtpXq-OsbjOGC8lN6jxC5D_bPBLk472wLDrFkenm5XkK3I2lO_-zu2PG90zSTvtik02dWKTAxfrY6RiQjVl7RMIiNbtNTT-r357BZ9Z9yUxnYce81pUUrx4S8BBL9TU5hbAzgIdZZeP_VCxtkJqj1SKuxe9srhZ02MAzkUgutdWvH4Us')"></div>
-<div class="flex flex-1 flex-col p-4">
-<div class="flex-1">
-<h3 class="text-lg font-bold text-gray-900 dark:text-white">Kenjeran Park (Kenpark)</h3>
-<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Sukolilo, Surabaya</p>
-<div class="mt-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.3</span>
-<span class="text-sm text-gray-500 dark:text-gray-400">(987 ulasan)</span>
-</div>
-</div>
-<div class="mt-4 flex items-end justify-between">
-<div>
-<p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
-<p class="text-lg font-bold text-primary">Rp 25.000</p>
-</div>
-<button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30">Lihat Detail</button>
-</div>
-</div>
-</div>
-<div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg">
-<div class="aspect-video w-full bg-cover bg-center" data-alt="The grand interior of the Sampoerna Museum" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBxF_svqRmwRzzH6-tgZvlnyAW3io5QWhrSNVA2YsUojfsMUF0Fyl8rfC7XA36BGzoRCnv7oMCjv8D2b_qElYxJ6T-HDtn12P_Z52Izvj7eBrAp_qYloqoP7M2NiW-9h87MRB6Fpa9mlPNndyKjskl7jEDdeClaaX20MBXgccM3LAPSE8tMvt1VoHO7_-CZMcOS-J2ZAVLxxE-4xL3rPsl8gUu98xNKwR-CT-PjTzUgr4yI0U7BmnUyu0qZM7Jp6qaVra6xuiipz4A')"></div>
-<div class="flex flex-1 flex-col p-4">
-<div class="flex-1">
-<h3 class="text-lg font-bold text-gray-900 dark:text-white">House of Sampoerna</h3>
-<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Pabean Cantian, Surabaya</p>
-<div class="mt-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.9</span>
-<span class="text-sm text-gray-500 dark:text-gray-400">(4,582 ulasan)</span>
-</div>
-</div>
-<div class="mt-4 flex items-end justify-between">
-<div>
-<p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
-<p class="text-lg font-bold text-primary">Gratis</p>
-</div>
-<button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30">Lihat Detail</button>
-</div>
-</div>
-</div>
-<div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg">
-<div class="aspect-video w-full bg-cover bg-center" data-alt="Colorful rides and attractions at Ciputra Waterpark Surabaya" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5jHn_q-7Lv46krO7h9DZKxz8rog-JG5H0x837SX8qgO4Z7skXT7x1hM_RlrH_pLlsnYF0LprzrsisBChvpput0QQufVheAMvynNiBKk1O0z9q8nXxWxntMsiYjiztdqhbxXcdCy0DgOHqfZflWco-ZFhQKJMgxJ37Dqrs5Gy_zJi26Jtukq0BtCtoA-KrYxaLlq1F_-gH3fb2ZZSSobKmtjJAlXFZcF9sO463NkvQX36PmhwAzLskFJhMdNrFUN4nqmGHcY_QXto')"></div>
-<div class="flex flex-1 flex-col p-4">
-<div class="flex-1">
-<h3 class="text-lg font-bold text-gray-900 dark:text-white">Ciputra Waterpark</h3>
-<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Sambikerep, Surabaya</p>
-<div class="mt-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.4</span>
-<span class="text-sm text-gray-500 dark:text-gray-400">(890 ulasan)</span>
-</div>
-</div>
-<div class="mt-4 flex items-end justify-between">
-<div>
-<p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
-<p class="text-lg font-bold text-primary">Rp 95.000</p>
-</div>
-<button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30">Lihat Detail</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
-
-</body></html>
+    <div class="relative flex min-h-screen w-full flex-col">
+        <!-- Header -->
+        <header class="sticky top-0 z-50 w-full border-b border-gray-200/50 dark:border-gray-700/50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+            <div class="container mx-auto flex items-center justify-between px-4 py-3">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 text-gray-900 dark:text-white">
+                    <span class="material-symbols-outlined text-primary text-3xl">local_activity</span>
+                    <h2 class="text-lg font-bold tracking-tight">Tiket Wisata Surabaya</h2>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden items-center gap-9 md:flex flex-1 justify-center">
+                    <a class="text-sm font-medium text-primary dark:text-primary hover:opacity-80" href="destinasi.html">Destinasi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Promosi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Tiket Saya</a>
+                </nav>
+                
+                <!-- Search & User Actions -->
+                <div class="flex items-center justify-end gap-4">
+                    <!-- Desktop Search -->
+                    <div class="relative hidden lg:block w-full max-w-[200px]">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span class="material-symbols-outlined text-gray-500 dark:text-gray-400">search</span>
+                        </div>
+                        <input 
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg border-none bg-gray-200/50 dark:bg-gray-800/60 py-2 pl-10 pr-4 text-sm font-normal text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50" 
+                            placeholder="Cari destinasi..." 
+                            value="Surabaya"
+                        />
+                    </div>
+                    
+                    <!-- Help Link -->
+                    <nav class="hidden items-center gap-9 md:flex">
+                        <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="#">Bantuan</a>
+                    </nav>
+                    
+                    <!-- Mobile Search Button -->
+                    <button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 transition-colors lg:hidden">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="container mx-auto flex-1 px-4 py-8">
+            <div class="flex flex-col gap-8 lg:flex-row">
+                <!-- Sidebar Filters -->
+                <aside class="w-full lg:w-1/4 lg:max-w-xs xl:max-w-sm">
+                    <div class="sticky top-24 flex h-full flex-col justify-between rounded-xl bg-white dark:bg-gray-900/50 p-6 shadow-sm">
+                        <!-- Filter Header -->
+                        <div class="flex flex-col gap-6">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-2xl text-primary">filter_alt</span>
+                                <div class="flex flex-col">
+                                    <h1 class="text-lg font-bold text-gray-900 dark:text-white">Filter Hasil</h1>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Sesuaikan pencarian Anda</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Filter Options -->
+                            <div class="space-y-6">
+                                <!-- Price Filter -->
+                                <div class="flex flex-col gap-3">
+                                    <label class="text-sm font-semibold text-gray-900 dark:text-white">Harga</label>
+                                    <input 
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-primary" 
+                                        type="range" 
+                                    />
+                                    <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
+                                        <span>Rp 0</span>
+                                        <span>Rp 1.000.000+</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Date Filter -->
+                                <div class="flex flex-col gap-3">
+                                    <label class="text-sm font-semibold text-gray-900 dark:text-white" for="date-filter">Tanggal</label>
+                                    <div class="relative">
+                                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                            <span class="material-symbols-outlined text-gray-500 dark:text-gray-400">calendar_today</span>
+                                        </div>
+                                        <input 
+                                            class="form-input w-full rounded-lg border-gray-200 dark:border-gray-700 bg-transparent py-2 pl-10 pr-4 text-sm focus:border-primary focus:ring-primary" 
+                                            id="date-filter" 
+                                            placeholder="Pilih tanggal" 
+                                            type="text"
+                                        />
+                                    </div>
+                                </div>
+                                
+                                <!-- Category Filter -->
+                                <div class="flex flex-col gap-3">
+                                    <label class="text-sm font-semibold text-gray-900 dark:text-white">Jenis Wisata</label>
+                                    <div class="space-y-2">
+                                        <div class="flex items-center">
+                                            <input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-800 dark:border-gray-600" id="wisata-alam" type="checkbox"/>
+                                            <label class="ml-2 text-sm text-gray-600 dark:text-gray-300" for="wisata-alam">Alam</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input checked class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-800 dark:border-gray-600" id="wisata-sejarah" type="checkbox"/>
+                                            <label class="ml-2 text-sm text-gray-600 dark:text-gray-300" for="wisata-sejarah">Sejarah</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-800 dark:border-gray-600" id="wisata-kuliner" type="checkbox"/>
+                                            <label class="ml-2 text-sm text-gray-600 dark:text-gray-300" for="wisata-kuliner">Kuliner</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input checked class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-800 dark:border-gray-600" id="wisata-keluarga" type="checkbox"/>
+                                            <label class="ml-2 text-sm text-gray-600 dark:text-gray-300" for="wisata-keluarga">Keluarga</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Rating Filter -->
+                                <div class="flex flex-col gap-3">
+                                    <label class="text-sm font-semibold text-gray-900 dark:text-white">Rating Pengguna</label>
+                                    <div class="flex items-center gap-1">
+                                        <button class="p-1 rounded-md hover:bg-primary/10 text-yellow-500">
+                                            <span class="material-symbols-outlined !text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        </button>
+                                        <button class="p-1 rounded-md hover:bg-primary/10 text-yellow-500">
+                                            <span class="material-symbols-outlined !text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        </button>
+                                        <button class="p-1 rounded-md hover:bg-primary/10 text-yellow-500">
+                                            <span class="material-symbols-outlined !text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        </button>
+                                        <button class="p-1 rounded-md hover:bg-primary/10 text-yellow-500">
+                                            <span class="material-symbols-outlined !text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        </button>
+                                        <button class="p-1 rounded-md hover:bg-primary/10 text-gray-300 dark:text-gray-600">
+                                            <span class="material-symbols-outlined !text-2xl">star</span>
+                                        </button>
+                                        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">4+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Filter Buttons -->
+                        <div class="mt-8 flex flex-col gap-2 border-t border-gray-200 dark:border-gray-700 pt-6">
+                            <button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-colors">
+                                <span>Terapkan Filter</span>
+                            </button>
+                            <button class="flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 text-gray-600 dark:text-gray-300 text-sm font-bold tracking-wide hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                <span class="material-symbols-outlined text-base">restart_alt</span>
+                                <span>Reset</span>
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+                
+                <!-- Search Results -->
+                <div class="w-full lg:w-3/4">
+                    <!-- Breadcrumb & Title -->
+                    <div class="flex flex-col gap-4 mb-6">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary transition-colors" href="#">Home</a>
+                            <span class="material-symbols-outlined !text-base text-gray-400">chevron_right</span>
+                            <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary transition-colors" href="#">Jawa Timur</a>
+                            <span class="material-symbols-outlined !text-base text-gray-400">chevron_right</span>
+                            <span class="text-sm font-medium text-gray-900 dark:text-white">Surabaya</span>
+                        </div>
+                        <h1 class="text-4xl font-black tracking-tighter text-gray-900 dark:text-white">Menampilkan 25 hasil untuk 'Surabaya'</h1>
+                    </div>
+                    
+                    <!-- Sort Options -->
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 dark:bg-primary/30 px-4 hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">
+                            <p class="text-sm font-semibold text-primary dark:text-white">Harga Terendah</p>
+                            <span class="material-symbols-outlined text-primary dark:text-white !text-xl">arrow_downward</span>
+                        </button>
+                        <button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800/50 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Popularitas</p>
+                        </button>
+                        <button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800/50 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Rating Tertinggi</p>
+                        </button>
+                    </div>
+                    
+                    <!-- Attraction Cards Grid -->
+                    <div class="grid grid-cols-1 gap-6 @container md:grid-cols-2 xl:grid-cols-3">
+                        <!-- Card Template -->
+                        <div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1">
+                            <div class="aspect-video w-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3zkQGLn9srlxmv8G0coAoT8tTLGzaamsPwkQtBjaAECpbCrMgUd9JNyXOB5M3w4Ar9ATJSWQxDGQEzivah7fermR4vb20k7WUcwhz-fvr96dkTihU3PyWxC-e5BoW9O26P348Br0SCFq6WVRvTOMKpkjuFFGGZtZ3q_1sb31JPcvFCE7sijkith2rumH5e6woi8PzFELMWUZnAd-WZebzkPxflYUZCWvZpvJ4qzETPlDemehu_CqgRGbO37NwyqwyVHswSjMh5Bw')"></div>
+                            <div class="flex flex-1 flex-col p-4">
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Kebun Binatang Surabaya</h3>
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Jl. Setail No.1, Darmo, Kec. Wonokromo, Surabaya</p>
+                                    <div class="mt-2 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.5</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">(1,234 ulasan)</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-end justify-between">
+                                    <div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
+                                        <p class="text-lg font-bold text-primary">Rp 15.000</p>
+                                    </div>
+                                    <button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"><a href="pesanTiket.html" a>Lihat Detail</a></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1">
+                            <div class="aspect-video w-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFx9cTqTsn2Xt3nRCv6mdTXoHmwJOuj3f9ELT0guXsu3RWF64hXRbJKPlprWro5TkRyBI4MdPg_RGNjEstdntRIOmdaGwo3T6wHJjqDtmjZB9myC4qIPbA198AkzlPoKXyLHFNABexODgSsUZ2-OfJNkH-3_guSDmfqmfh3BpxhZANd57sxzdqQlLENoFRZc8SEksgusdN395FrEO01HRLKqOqe1938qTnrfpIg4ytGAJuJQNuYlukFuhtK0bESCjHpaMlAYVHYG8')"></div>
+                            <div class="flex flex-1 flex-col p-4">
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Monumen Kapal Selam</h3>
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Jl. Pemuda No.39, Embong Kaliasin, Kec. Genteng, Surabaya</p>
+                                    <div class="mt-2 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.7</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">(2,450 ulasan)</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-end justify-between">
+                                    <div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
+                                        <p class="text-lg font-bold text-primary">Rp 15.000</p>
+                                    </div>
+                                    <button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 3 -->
+                        <div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1">
+                            <div class="aspect-video w-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAItuJJf2qxlAdEloNfQfSb7QByiRBBmzslVEheSPnwRbSj0aWIr43BzvKeOvNRRt1k3r3RAYtPfMiApGBTYflljRC9HdcvdpoPdMl9OKReSnoe_J3spfhjp5mWp0aftUPyb3yWZP-GDyrFt4U4XNs_ciwadvhjn0eEiCnRmfKNdHSWlixcmb6a-p6b0n_GbFPaxFSVwT1f0tFUROV9zvyUBeshj0snJynjLkfPKGfFe80yx2R9alDZSO84MJW-9-LobfGkXvoVlnQ')"></div>
+                            <div class="flex flex-1 flex-col p-4">
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Museum 10 November</h3>
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Jl. Pahlawan, Surabaya</p>
+                                    <div class="mt-2 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.8</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">(3,112 ulasan)</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-end justify-between">
+                                    <div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
+                                        <p class="text-lg font-bold text-primary">Rp 5.000</p>
+                                    </div>
+                                    <button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 4 -->
+                        <div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1">
+                            <div class="aspect-video w-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAC31kPZb9wcqb48VyoaiyOwd1PNTNiN5X5zwGJ2KPa0l8hKg8yFGkEpnbnDxSUX_yFAIF1lg4ZTWdBIRPbAkOO4A4cd6txtpXq-OsbjOGC8lN6jxC5D_bPBLk472wLDrFkenm5XkK3I2lO_-zu2PG90zSTvtik02dWKTAxfrY6RiQjVl7RMIiNbtNTT-r357BZ9Z9yUxnYce81pUUrx4S8BBL9TU5hbAzgIdZZeP_VCxtkJqj1SKuxe9srhZ02MAzkUgutdWvH4Us')"></div>
+                            <div class="flex flex-1 flex-col p-4">
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Taman Hiburan Pantai Kenjeran (QRIS)</h3>
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Jl. Pantai Lama Kenjeran No.1, Kec. Bulak, Surabaya</p>
+                                    <div class="mt-2 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.3</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">(987 ulasan)</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-end justify-between">
+                                    <div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
+                                        <p class="text-lg font-bold text-primary">Rp 15.000</p>
+                                    </div>
+                                    <button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 5 -->
+                        <div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1">
+                            <div class="aspect-video w-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBxF_svqRmwRzzH6-tgZvlnyAW3io5QWhrSNVA2YsUojfsMUF0Fyl8rfC7XA36BGzoRCnv7oMCjv8D2b_qElYxJ6T-HDtn12P_Z52Izvj7eBrAp_qYloqoP7M2NiW-9h87MRB6Fpa9mlPNndyKjskl7jEDdeClaaX20MBXgccM3LAPSE8tMvt1VoHO7_-CZMcOS-J2ZAVLxxE-4xL3rPsl8gUu98xNKwR-CT-PjTzUgr4yI0U7BmnUyu0qZM7Jp6qaVra6xuiipz4A')"></div>
+                            <div class="flex flex-1 flex-col p-4">
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Museum Pendidikan</h3>
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Jl. Genteng Kali No.19, Kec. Genteng, Surabaya</p>
+                                    <div class="mt-2 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.9</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">(4,582 ulasan)</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-end justify-between">
+                                    <div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
+                                        <p class="text-lg font-bold text-primary">Rp 10.000</p>
+                                    </div>
+                                    <button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 6 -->
+                        <div class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-900/50 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1">
+                            <div class="aspect-video w-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5jHn_q-7Lv46krO7h9DZKxz8rog-JG5H0x837SX8qgO4Z7skXT7x1hM_RlrH_pLlsnYF0LprzrsisBChvpput0QQufVheAMvynNiBKk1O0z9q8nXxWxntMsiYjiztdqhbxXcdCy0DgOHqfZflWco-ZFhQKJMgxJ37Dqrs5Gy_zJi26Jtukq0BtCtoA-KrYxaLlq1F_-gH3fb2ZZSSobKmtjJAlXFZcF9sO463NkvQX36PmhwAzLskFJhMdNrFUN4nqmGHcY_QXto')"></div>
+                            <div class="flex flex-1 flex-col p-4">
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Wisata Perahu Kalimas (Rute Taman Prestasi - Museum Pendidikan)</h3>
+                                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Jl. Ketabang Kali No.6, Surabaya</p>
+                                    <div class="mt-2 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-yellow-500 !text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        <span class="text-sm font-bold text-gray-800 dark:text-gray-200">4.4</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">(890 ulasan)</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-end justify-between">
+                                    <div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Mulai dari</p>
+                                        <p class="text-lg font-bold text-primary">Rp 7.000</p>
+                                    </div>
+                                    <button class="rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-bold text-primary dark:text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Lihat Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

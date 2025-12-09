@@ -6,4 +6,4 @@
 
 Web ini didesain untuk memenuhi tugas IMK
 
-#terimakasih
+# terimakasih

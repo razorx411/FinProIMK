@@ -1,6 +1,4 @@
-# [Redesign Danantara]
-
-Intinya mau desain ulang web dari danantara yang mungkin bisa jadi lebih informatif masalah transparansi anggaran
+# [Redesign Tiket Wisata Surabaya]
 
 ## 🛠️ Teknologi yang Digunakan
 * Bahasa: HTML / CSS / JS?

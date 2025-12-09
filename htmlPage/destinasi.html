@@ -42,7 +42,19 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+           .fade-out {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: all 0.25s ease;
+    }
+
+    .fade-in {
+        opacity: 1;
+        transform: scale(1);
+        transition: all 0.25s ease;
+    }
     </style>
+
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
     <div class="relative flex min-h-screen w-full flex-col">
@@ -152,22 +164,15 @@
                     
                     
                     <!-- Sort Options -->
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 dark:bg-primary/30 px-4 hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">
-                            <p class="text-sm font-semibold text-primary dark:text-white">Harga Terendah</p>
-                            <span class="material-symbols-outlined text-primary dark:text-white !text-xl">arrow_downward</span>
-                        </button>
-                        <button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800/50 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Popularitas</p>
-                        </button>
-                        <button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800/50 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Rating Tertinggi</p>
-                        </button>
-                    </div>
+<div class="flex flex-wrap gap-3 mb-6">
+    <button id="sortByPrice" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Harga Terendah</button>
+    <button id="sortByUlasan" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Popularitas</button>
+    <button id="sortByRating" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Rating Tertinggi</button>
+</div>
+
                     
                    <!-- Attraction Cards Grid -->
-<div id="cardContainer" class="grid grid-cols-1 gap-6 @container md:grid-cols-2 xl:grid-cols-3">
-</div>
+<div id="results" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full"></div>
 <script> </script>
                         
 
@@ -282,6 +287,65 @@ document.getElementById("ratingFilter").addEventListener("change", filterCards);
 document.getElementById("priceFilter").addEventListener("input", () => {
     document.getElementById("priceValue").innerText = document.getElementById("priceFilter").value;
     filterCards();
+});
+
+function renderCards(data) {
+    const container = document.getElementById("results");
+
+    // Fade out
+    container.classList.add("fade-out");
+
+    setTimeout(() => {
+        container.innerHTML = ""; // Kosongkan kartu
+
+        data.forEach(item => {
+            const card = document.createElement("div");
+            card.className =
+                "bg-white shadow-md rounded-lg overflow-hidden p-4 fade-in";
+
+            card.style.opacity = "0";
+            card.style.transform = "scale(0.9)";
+
+            card.innerHTML = `
+                <img src="${item.img}" class="w-full h-40 object-cover rounded-md" />
+                <h3 class="text-lg font-bold mt-3">${item.name}</h3>
+                <p class="text-gray-500 text-sm mb-2">${item.lokasi}</p>
+                <p class="text-green-600 font-bold">Rp ${item.price.toLocaleString()}</p>
+                <p class="text-yellow-500">⭐ ${item.rating}</p>
+            `;
+
+            container.appendChild(card);
+
+            // animasi fade-in tiap kartu
+            setTimeout(() => {
+                card.style.opacity = "1";
+                card.style.transform = "scale(1)";
+            }, 20);
+        });
+
+        // Setelah kartu diganti → fade-in container lagi
+        setTimeout(() => {
+            container.classList.remove("fade-out");
+            container.classList.add("fade-in");
+        }, 50);
+
+    }, 200);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderCards(wisataData);
+
+    document.getElementById("sortByPrice").onclick = () => {
+        renderCards([...wisataData].sort((a, b) => a.price - b.price));
+    };
+
+    document.getElementById("sortByUlasan").onclick = () => {
+        renderCards([...wisataData].sort((a, b) => b.ulasan - a.ulasan));
+    };
+
+    document.getElementById("sortByRating").onclick = () => {
+        renderCards([...wisataData].sort((a, b) => b.rating - a.rating));
+    };
 });
 
 renderCards(wisataData);

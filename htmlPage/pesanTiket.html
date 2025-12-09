@@ -40,31 +40,31 @@
 <body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200">
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
-<header class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800">
-<div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-16">
-<div class="flex items-center gap-4 text-slate-900 dark:text-slate-50">
-<div class="w-8 h-8 text-primary">
-<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path clip-rule="evenodd" d="M24 0L48 24L24 48L0 24L24 0Z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M12 21H36L24 9L12 21Z" fill="#F7FAFC"></path>
-</svg>
-</div>
-<h2 class="text-lg font-bold tracking-[-0.015em]">Wisata Surabaya</h2>
-</div>
-<nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
-<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
-<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary" href="#">Promosi</a>
-<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary" href="#">Tiket Saya</a>
-</nav>
-<div class="flex items-center">
-<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-sm font-bold leading-normal tracking-[0.015em] text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
-<span class="truncate">Bantuan</span>
-</a>
-</div>
-</div>
-</div>
+<header class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+
+        <!-- Logo -->
+        <a href="index.html" >
+            <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
+        </a>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
+            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Promosi</a>
+            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Tiket Saya</a>
+        </nav>
+
+        <!-- Right section -->
+        <div class="flex items-center gap-4">
+            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Bantuan</a>
+            <button class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 md:hidden">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+        </div>
+    </div>
 </header>
+
 <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 <div class="flex flex-wrap gap-2 pb-6">
 <a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary" href="index.html">Beranda</a>
@@ -126,9 +126,11 @@
 </div>
 </div>
 <div class="flex flex-col gap-3 pt-2">
-<button class="w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-white text-base font-bold tracking-[0.015em] hover:bg-primary/90 transition-colors">
-<span class="truncate">Pesan Sekarang</span>
-</button>
+<a href="konfirWisata.html"
+   class="w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-white text-base font-bold tracking-[0.015em] hover:bg-primary/90 transition-colors text-center">
+    Pesan Sekarang
+</a>
+
 <button class="w-full flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-4 bg-primary/10 text-primary text-base font-bold tracking-[0.015em] hover:bg-primary/20 transition-colors">
 <span class="material-symbols-outlined text-xl">favorite</span>
 <span class="truncate">Tambah ke Wishlist</span>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manajemen Promosi - Tiket Wisata Surabaya</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10b981",
+                        "primary-foreground": "#ffffff",
+                        "background-light": "#f6fbf9",
+                        "background-dark": "#0d1a14",
+                        "foreground-light": "#050f0a",
+                        "foreground-dark": "#e6f3ec",
+                        "card-light": "#ffffff",
+                        "card-dark": "#12241b",
+                        "subtle-light": "#e6f3ec",
+                        "subtle-dark": "#1a3528",
+                        "muted-light": "#548c71",
+                        "muted-dark": "#a3d3ba"
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        lg: "0.75rem",
+                        xl: "1rem",
+                        full: "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark">
+<div class="flex h-screen w-full">
+<aside class="sticky top-0 h-screen w-64 shrink-0 flex-col border-r border-subtle-light dark:border-subtle-dark/50 bg-card-light dark:bg-card-dark hidden lg:flex">
+<div class="flex items-center gap-3 h-[68px] border-b border-subtle-light dark:border-subtle-dark/50 px-6">
+<div class="text-primary size-7 flex items-center justify-center">
+<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.78 14.15V5.85C19.78 6.78 17.89 7.6 15.39 8.09C13.89 8.39 11.87 8.56 10 8.56C8.13 8.56 6.11 8.39 4.61 8.09C2.11 7.6 0.22 6.78 0.22 5.85V14.15C0.22 15.08 2.11 15.9 4.61 16.39C6.11 16.69 8.13 16.86 10 16.86C11.87 16.86 13.89 16.69 15.39 16.39C17.89 15.9 19.78 15.08 19.78 14.15Z" stroke="currentColor" stroke-width="1.5"></path>
+<path d="M15.39 8.09C17.89 7.6 19.78 6.78 19.78 5.85C19.78 4.92 17.89 4.1 15.39 3.61C13.89 3.31 11.87 3.14 10 3.14C8.13 3.14 6.11 3.31 4.61 3.61C2.11 4.1 0.22 4.92 0.22 5.85C0.22 6.78 2.11 7.6 4.61 8.09" stroke="currentColor" stroke-width="1.5"></path>
+<path d="M0.22 9.81V18.11C0.22 19.04 2.11 19.86 4.61 20.35C6.11 20.65 8.13 20.82 10 20.82C11.87 20.82 13.89 20.65 15.39 20.35C17.89 19.86 19.78 19.04 19.78 18.11V9.81" stroke="currentColor" stroke-width="1.5"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight whitespace-nowrap">Tiket Wisata</h2>
+</div>
+<nav class="flex flex-col gap-2 p-4">
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-subtle-light dark:hover:bg-subtle-dark" href="#"><span class="material-symbols-outlined !text-xl !font-normal">dashboard</span><span class="text-sm font-medium">Dashboard</span></a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-subtle-light dark:hover:bg-subtle-dark" href="#"><span class="material-symbols-outlined !text-xl !font-normal">confirmation_number</span><span class="text-sm font-medium">Manage Ticket</span></a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-subtle-light dark:hover:bg-subtle-dark" href="#"><span class="material-symbols-outlined !text-xl !font-normal">pin_drop</span><span class="text-sm font-medium">Destinasi</span></a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 bg-primary/10 dark:bg-primary/20 text-primary font-semibold" href="#"><span class="material-symbols-outlined !text-xl !font-normal">sell</span><span class="text-sm">Promosi</span></a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-subtle-light dark:hover:bg-subtle-dark" href="#"><span class="material-symbols-outlined !text-xl !font-normal">bar_chart</span><span class="text-sm font-medium">Reports</span></a>
+</nav>
+</aside>
+<div class="flex flex-1 flex-col">
+<header class="sticky top-0 z-10 flex h-[69px] w-full items-center justify-between border-b border-subtle-light dark:border-subtle-dark/50 bg-background-light/80 dark:bg-background-dark/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
+<div class="flex items-center gap-4">
+<button class="lg:hidden -ml-2 flex items-center justify-center size-10 rounded-full hover:bg-subtle-light dark:hover:bg-subtle-dark">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-xl font-bold">Manajemen Promosi</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Admin user avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBhJKv1zRPb-lahvF_WM90o1koCG558GSugMJJVHIYoxe8Zgjf0Cwg5PbidfDdd4nVbhAXEOrxAx4XeXv53FmITYzmo8ANyATIzaLkTgaDAVMF-5Ht-9656vBI1_L5O2DippxqYrm1h9l-GJpd7BffnsGQM1oHSYikFapFBR1_TH4XMN74lCe4pr7SHxH513IJHtwF24yNDm_lxmK0S8ih5M1ujPlmE9l0rxybimb0zy4ITUwgk5rNzfcE1KkAGmUMzIDv-cxF8uYs");'></div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+<div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-1 flex flex-col gap-6">
+<div class="p-6 bg-card-light dark:bg-card-dark border border-subtle-light dark:border-subtle-dark/50 rounded-xl shadow-sm">
+<div class="flex flex-col gap-2 mb-6">
+<h2 class="text-xl font-bold tracking-tight">Buat Promosi Baru</h2>
+<p class="text-sm text-muted-light dark:text-muted-dark">Isi detail di bawah ini untuk membuat promosi baru.</p>
+</div>
+<form class="flex flex-col gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="font-medium text-sm" for="promo-name">Nama Promosi</label>
+<input class="form-input w-full rounded-lg border-subtle-light dark:border-subtle-dark bg-background-light dark:bg-subtle-dark focus:ring-2 focus:ring-primary/50 focus:border-primary" id="promo-name" placeholder="cth. Diskon Akhir Pekan" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-medium text-sm" for="promo-code">Kode Promo</label>
+<input class="form-input w-full rounded-lg border-subtle-light dark:border-subtle-dark bg-background-light dark:bg-subtle-dark focus:ring-2 focus:ring-primary/50 focus:border-primary" id="promo-code" placeholder="cth. WEEKEND20" type="text"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="font-medium text-sm" for="start-date">Tanggal Mulai</label>
+<input class="form-input w-full rounded-lg border-subtle-light dark:border-subtle-dark bg-background-light dark:bg-subtle-dark focus:ring-2 focus:ring-primary/50 focus:border-primary" id="start-date" type="date"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-medium text-sm" for="end-date">Tanggal Berakhir</label>
+<input class="form-input w-full rounded-lg border-subtle-light dark:border-subtle-dark bg-background-light dark:bg-subtle-dark focus:ring-2 focus:ring-primary/50 focus:border-primary" id="end-date" type="date"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-medium text-sm" for="discount-type">Tipe Diskon</label>
+<select class="form-select w-full rounded-lg border-subtle-light dark:border-subtle-dark bg-background-light dark:bg-subtle-dark focus:ring-2 focus:ring-primary/50 focus:border-primary" id="discount-type">
+<option>Persentase</option>
+<option>Potongan Tetap</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-medium text-sm" for="discount-value">Nilai Diskon</label>
+<input class="form-input w-full rounded-lg border-subtle-light dark:border-subtle-dark bg-background-light dark:bg-subtle-dark focus:ring-2 focus:ring-primary/50 focus:border-primary" id="discount-value" placeholder="cth. 20 atau 50000" type="number"/>
+</div>
+<div class="flex items-start gap-3 pt-2">
+<input class="form-checkbox mt-1 size-5 rounded text-primary bg-subtle-light dark:bg-subtle-dark border-subtle-light dark:border-subtle-dark focus:ring-primary/50" id="status" type="checkbox"/>
+<div class="flex flex-col">
+<label class="font-medium" for="status">Aktifkan Promosi</label>
+<p class="text-sm text-muted-light dark:text-muted-dark">Jadikan promosi ini aktif dan dapat digunakan.</p>
+</div>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-4 bg-primary text-primary-foreground text-sm font-bold leading-normal tracking-wide gap-2 mt-2" type="submit">
+<span class="material-symbols-outlined !text-xl">add_circle</span>
+<span class="truncate">Simpan Promosi</span>
+</button>
+</form>
+</div>
+</div>
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<h2 class="text-xl font-bold tracking-tight">Daftar Promosi</h2>
+<p class="text-sm text-muted-light dark:text-muted-dark">Kelola semua promosi yang ada di sistem.</p>
+</div>
+<div class="w-full bg-card-light dark:bg-card-dark border border-subtle-light dark:border-subtle-dark/50 rounded-xl shadow-sm overflow-hidden">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 border-b border-subtle-light dark:border-subtle-dark/50">
+<div class="w-full sm:max-w-xs">
+<label class="flex flex-col h-11 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-muted-light dark:text-muted-dark flex bg-subtle-light dark:bg-subtle-dark items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-foreground-light dark:text-foreground-dark focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-subtle-light dark:bg-subtle-dark h-full placeholder:text-muted-light dark:placeholder:text-muted-dark px-4 rounded-l-none pl-2 text-sm" placeholder="Cari berdasarkan nama atau kode" value=""/>
+</div>
+</label>
+</div>
+<div class="flex gap-2 overflow-x-auto">
+<div class="flex h-9 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg bg-primary/20 dark:bg-primary/30 text-primary font-bold px-4">
+<p class="text-sm leading-normal">Semua</p>
+</div>
+<div class="flex h-9 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg bg-subtle-light dark:bg-subtle-dark hover:bg-subtle-light/80 dark:hover:bg-subtle-dark/80 px-4">
+<p class="text-sm font-medium leading-normal">Aktif</p>
+</div>
+<div class="flex h-9 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg bg-subtle-light dark:bg-subtle-dark hover:bg-subtle-light/80 dark:hover:bg-subtle-dark/80 px-4">
+<p class="text-sm font-medium leading-normal">Tidak Aktif</p>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left">
+<thead class="bg-background-light dark:bg-background-dark/50">
+<tr>
+<th class="px-6 py-3 font-semibold" scope="col">Nama Promosi</th>
+<th class="px-6 py-3 font-semibold" scope="col">Kode Promo</th>
+<th class="px-6 py-3 font-semibold" scope="col">Periode Berlaku</th>
+<th class="px-6 py-3 font-semibold" scope="col">Status</th>
+<th class="px-6 py-3 font-semibold text-right" scope="col">Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-subtle-light dark:border-subtle-dark/50">
+<td class="px-6 py-4 font-medium whitespace-nowrap">Diskon Akhir Pekan</td>
+<td class="px-6 py-4">WEEKEND20</td>
+<td class="px-6 py-4">1 Jan 2024 - 31 Des 2024</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-green-600 dark:text-green-400">
+<div class="size-2 rounded-full bg-current"></div>
+<span>Aktif</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right flex justify-end gap-2">
+<button class="flex items-center justify-center size-8 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark text-muted-light dark:text-muted-dark"><span class="material-symbols-outlined !text-xl">edit</span></button>
+<button class="flex items-center justify-center size-8 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark text-muted-light dark:text-muted-dark"><span class="material-symbols-outlined !text-xl">delete</span></button>
+</td>
+</tr>
+<tr class="border-b border-subtle-light dark:border-subtle-dark/50">
+<td class="px-6 py-4 font-medium whitespace-nowrap">Promo Libur Sekolah</td>
+<td class="px-6 py-4">HOLIDAY50</td>
+<td class="px-6 py-4">15 Jun 2024 - 15 Jul 2024</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-green-600 dark:text-green-400">
+<div class="size-2 rounded-full bg-current"></div>
+<span>Aktif</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right flex justify-end gap-2">
+<button class="flex items-center justify-center size-8 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark text-muted-light dark:text-muted-dark"><span class="material-symbols-outlined !text-xl">edit</span></button>
+<button class="flex items-center justify-center size-8 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark text-muted-light dark:text-muted-dark"><span class="material-symbols-outlined !text-xl">delete</span></button>
+</td>
+</tr>
+<tr class="border-b border-subtle-light dark:border-subtle-dark/50">
+<td class="px-6 py-4 font-medium whitespace-nowrap">Diskon Pelajar</td>
+<td class="px-6 py-4">PELAJARHEMAT</td>
+<td class="px-6 py-4">1 Sep 2023 - 31 Mei 2024</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-muted-light dark:text-muted-dark">
+<div class="size-2 rounded-full bg-current"></div>
+<span>Tidak Aktif</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right flex justify-end gap-2">
+<button class="flex items-center justify-center size-8 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark text-muted-light dark:text-muted-dark"><span class="material-symbols-outlined !text-xl">edit</span></button>
+<button class="flex items-center justify-center size-8 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark text-muted-light dark:text-muted-dark"><span class="material-symbols-outlined !text-xl">delete</span></button>
+</td>
+</tr>
+<tr class="border-b border-subtle-light dark:border-subtle-dark/50">
+<td class="px-6 py-4 font-medium whitespace-nowrap">Promo Tahun Baru</td>
+<td class="px-6 py-4">NEWYEAR2024</td>
+<td class="px-6 py-4">25 Des 2023 - 5 Jan 2024</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-muted-light dark:text-muted-dark">
+<div class="size-2 rounded-full bg-current"></div>
+<span>Tidak Aktif</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right flex justify-end gap-2">
+<button class="flex items-center justify-center size-8 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark text-muted-light dark:text-muted-dark"><span class="material-symbols-outlined !text-xl">edit</span></button>
+<button class="flex items-center justify-center size-8 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark text-muted-light dark:text-muted-dark"><span class="material-symbols-outlined !text-xl">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manajemen Destinasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec80",
+                        "primary-foreground": "#052A18",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102219",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#182c22",
+                        "text-light-primary": "#0d1b14",
+                        "text-dark-primary": "#e1f5ec",
+                        "text-light-secondary": "#4c9a73",
+                        "text-dark-secondary": "#7bbf9e",
+                        "border-light": "#cfe7db",
+                        "border-dark": "#2c4a38",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+            line-height: 1;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light-primary dark:text-dark-primary">
+<div class="relative flex min-h-screen w-full">
+<aside class="flex w-64 flex-col bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark p-4 sticky top-0 h-screen">
+<div class="flex flex-col gap-4 flex-grow">
+<div class="flex items-center gap-3 px-3 py-2">
+<div class="flex items-center justify-center size-10 rounded-lg bg-primary">
+<span class="material-symbols-outlined text-primary-foreground text-2xl">local_activity</span>
+</div>
+<div class="flex flex-col">
+<h1 class="font-bold text-base">Tiket Wisata SBY</h1>
+<p class="text-text-light-secondary dark:text-dark-secondary text-sm">Admin Panel</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<p class="text-sm font-medium">Manage Ticket</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-primary-foreground" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">landscape</span>
+<p class="text-sm font-bold">Destinasi</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined">sell</span>
+<p class="text-sm font-medium">Promosi</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<p class="text-sm font-medium">Reports</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<p class="text-sm font-medium">Logout</p>
+</a>
+</div>
+</aside>
+<main class="flex-1 p-8">
+<div class="w-full max-w-7xl mx-auto flex flex-col gap-6">
+<div class="flex flex-wrap justify-between items-center gap-4">
+<h1 class="text-4xl font-black tracking-tighter">Manajemen Destinasi</h1>
+<button class="flex items-center justify-center gap-2 min-w-[84px] cursor-pointer rounded-lg h-10 px-4 bg-primary text-primary-foreground text-sm font-bold hover:bg-opacity-90 transition-colors" type="submit">
+<span class="material-symbols-outlined text-base">add_circle</span>
+<span class="truncate">Tambah Destinasi</span>
+</button>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+<h2 class="text-2xl font-bold tracking-tight mb-6">Edit Destinasi: Taman Bungkul</h2>
+<form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-1">
+<label class="block text-sm font-medium text-text-light-primary dark:text-dark-primary mb-2" for="destination-name">Nama Destinasi</label>
+<input class="form-input w-full rounded-lg bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary/50 focus:border-primary" id="destination-name" placeholder="Contoh: Taman Bungkul" type="text" value="Taman Bungkul"/>
+</div>
+<div class="lg:col-span-1">
+<label class="block text-sm font-medium text-text-light-primary dark:text-dark-primary mb-2" for="category">Kategori</label>
+<select class="form-select w-full rounded-lg bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary/50 focus:border-primary" id="category">
+<option>Pilih Kategori</option>
+<option>Wisata Alam</option>
+<option>Wisata Sejarah</option>
+<option>Wisata Religi</option>
+<option selected="">Taman Kota</option>
+</select>
+</div>
+<div class="lg:col-span-1">
+<label class="block text-sm font-medium text-text-light-primary dark:text-dark-primary mb-2" for="location">Lokasi</label>
+<input class="form-input w-full rounded-lg bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary/50 focus:border-primary" id="location" placeholder="Contoh: Surabaya" type="text" value="Surabaya"/>
+</div>
+<div class="lg:col-span-3">
+<label class="block text-sm font-medium text-text-light-primary dark:text-dark-primary mb-2" for="description">Deskripsi</label>
+<textarea class="form-textarea w-full rounded-lg bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary/50 focus:border-primary" id="description" placeholder="Jelaskan tentang destinasi ini..." rows="4">Taman Bungkul adalah salah satu taman kota paling populer di Surabaya, menawarkan area hijau yang luas, fasilitas bermain anak, dan berbagai pilihan kuliner.</textarea>
+</div>
+<div class="lg:col-span-3">
+<label class="block text-sm font-medium text-text-light-primary dark:text-dark-primary mb-2">Gambar Destinasi</label>
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-video bg-cover rounded-lg w-40" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9Az3-QrkAErhs5oRrAwdx17vI0__iIL_PpYtt7eLD6r9e9hU3M6D3emLWyvq5C9yzJQuO_qsNcXbzbkc4DeCWz0QSqeAEEkw4Fbb9gOqDDrrYEYql3hLTP8YX4vWlmf5onNJsQUmPWV9r8m11ngD-nS8TgeG1-QGZF1jPQNYe-P6VwSR7aUAOvPl1UA0yqKs2qcYSA8VRVDr36Glz1_-znhy-sTL8fYw-DNiA_bKyezL8PHH1Df77pDmLoAdrCfuJzwRD1F1HJ4U");'></div>
+<div class="flex items-center justify-center w-full">
+<label class="flex flex-col items-center justify-center w-full h-24 border-2 border-border-light dark:border-border-dark border-dashed rounded-lg cursor-pointer bg-background-light dark:bg-background-dark hover:bg-primary/10" for="dropzone-file">
+<div class="flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-text-light-secondary dark:text-dark-secondary">cloud_upload</span>
+<p class="text-xs text-text-light-secondary dark:text-dark-secondary"><span class="font-semibold">Ganti gambar</span> atau seret dan lepas</p>
+</div>
+<input class="hidden" id="dropzone-file" type="file"/>
+</label>
+</div>
+</div>
+</div>
+<div class="lg:col-span-3 flex justify-end gap-3 mt-2">
+<button class="flex items-center justify-center gap-2 min-w-[84px] cursor-pointer rounded-lg h-10 px-4 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-light-primary dark:text-dark-primary text-sm font-bold hover:bg-primary/10 transition-colors" type="button">
+<span class="truncate">Batal</span>
+</button>
+<button class="flex items-center justify-center gap-2 min-w-[84px] cursor-pointer rounded-lg h-10 px-4 bg-primary text-primary-foreground text-sm font-bold hover:bg-opacity-90 transition-colors" type="submit">
+<span class="material-symbols-outlined text-base">save</span>
+<span class="truncate">Simpan Perubahan</span>
+</button>
+</div>
+</form>
+</div>
+<div class="flex flex-wrap items-center gap-4">
+<div class="flex-grow min-w-[280px]">
+<label class="flex flex-col h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark focus-within:ring-2 focus-within:ring-primary/50">
+<div class="text-text-light-secondary dark:text-dark-secondary flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-light-primary dark:text-dark-primary focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-text-light-secondary dark:placeholder:text-dark-secondary px-2 text-base" placeholder="Cari destinasi..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/30 px-4">
+<p class="text-text-light-primary dark:text-dark-primary text-sm font-medium">Semua</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark px-4">
+<p class="text-text-light-secondary dark:text-dark-secondary text-sm font-medium">Wisata Alam</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark px-4">
+<p class="text-text-light-secondary dark:text-dark-secondary text-sm font-medium">Wisata Sejarah</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark px-4">
+<p class="text-text-light-secondary dark:text-dark-secondary text-sm font-medium">Wisata Religi</p>
+</button>
+</div>
+</div>
+<div class="overflow-hidden rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-background-light dark:bg-background-dark">
+<th class="px-6 py-4 text-sm font-medium">Gambar</th>
+<th class="px-6 py-4 text-sm font-medium">Nama Destinasi</th>
+<th class="px-6 py-4 text-sm font-medium">Kategori</th>
+<th class="px-6 py-4 text-sm font-medium">Tanggal Update</th>
+<th class="px-6 py-4 text-sm font-medium text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-primary/10 transition-colors">
+<td class="px-6 py-4 align-middle">
+<div class="bg-center bg-no-repeat aspect-video bg-cover rounded-lg w-24" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9Az3-QrkAErhs5oRrAwdx17vI0__iIL_PpYtt7eLD6r9e9hU3M6D3emLWyvq5C9yzJQuO_qsNcXbzbkc4DeCWz0QSqeAEEkw4Fbb9gOqDDrrYEYql3hLTP8YX4vWlmf5onNJsQUmPWV9r8m11ngD-nS8TgeG1-QGZF1jPQNYe-P6VwSR7aUAOvPl1UA0yqKs2qcYSA8VRVDr36Glz1_-znhy-sTL8fYw-DNiA_bKyezL8PHH1Df77pDmLoAdrCfuJzwRD1F1HJ4U");'></div>
+</td>
+<td class="px-6 py-4 align-middle text-sm font-semibold">Taman Bungkul</td>
+<td class="px-6 py-4 align-middle text-sm text-text-light-secondary dark:text-dark-secondary">Taman Kota</td>
+<td class="px-6 py-4 align-middle text-sm text-text-light-secondary dark:text-dark-secondary">2024-05-20</td>
+<td class="px-6 py-4 align-middle">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg hover:bg-primary/20"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="p-2 rounded-lg hover:bg-primary/20"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-primary/10 transition-colors">
+<td class="px-6 py-4 align-middle">
+<div class="bg-center bg-no-repeat aspect-video bg-cover rounded-lg w-24" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCaXeWsPGA5sbnADN9Mu9-KOe93gaEUgdUpryRAwM1ZHE-FL05b4TL3-W98DlfgDANykYR3zPURoKXqxMyBrwdkbfJiuAHlFBbPL476tbwChgJfsMNtbEs0Ae2TSetxN1KsNgB7yZDdB3_AX_-ZGAbJ0JzfPspj-JhVFmYQJ6rB3JbYsufzOrSmeSCDvXIOdpv3hDPNO6ExspNVRECdQh_6PHQlHXDzvbQZASl5U6d-eLn9SzJAGmKh-194JXNiT1SutrRGYyP5hmY");'></div>
+</td>
+<td class="px-6 py-4 align-middle text-sm font-semibold">Museum Sepuluh Nopember</td>
+<td class="px-6 py-4 align-middle text-sm text-text-light-secondary dark:text-dark-secondary">Wisata Sejarah</td>
+<td class="px-6 py-4 align-middle text-sm text-text-light-secondary dark:text-dark-secondary">2024-05-18</td>
+<td class="px-6 py-4 align-middle">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg hover:bg-primary/20"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="p-2 rounded-lg hover:bg-primary/20"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-primary/10 transition-colors">
+<td class="px-6 py-4 align-middle">
+<div class="bg-center bg-no-repeat aspect-video bg-cover rounded-lg w-24" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6lmj3arCqSv4iObz0xi3f8t6RQ1QkzXzd25hS1I_s9rrQFLGER6Lb3GwRCWVSIds8wSiIZ16rC4lFlzzXCnr9etA1gWacT_KhwUUIcZ-TUS67WG0_kTh9VaIDZ4Tn786uZXVgZ0nGkcsx7-pgqrRFuq2RJ4Cs_fsNbtAGF9fxfuleVQy-HcAKwXkMm8iEwZSRVvunY5OVnnWATl6TW_8xOtsL9tk_EePi05S2jD5zTSohYNf7eSM91x1rMxfUJxo0UyIs5DbThc8");'></div>
+</td>
+<td class="px-6 py-4 align-middle text-sm font-semibold">Hutan Bambu Keputih</td>
+<td class="px-6 py-4 align-middle text-sm text-text-light-secondary dark:text-dark-secondary">Wisata Alam</td>
+<td class="px-6 py-4 align-middle text-sm text-text-light-secondary dark:text-dark-secondary">2024-05-15</td>
+<td class="px-6 py-4 align-middle">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg hover:bg-primary/20"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="p-2 rounded-lg hover:bg-primary/20"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-primary/10 transition-colors">
+<td class="px-6 py-4 align-middle">
+<div class="bg-center bg-no-repeat aspect-video bg-cover rounded-lg w-24" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAlWdEeKySUTIKuWz73NDtfDO76LmRTwV25SXTrhS76EEhYGY5bm2wQm5zUdtfC7KkY0NqHt2SHEZHiBB-oRqIbOroB270-QWyMwPzCfXwMvQdHwgWK-Gg_KWLJZz15PBFj-DSjOQNUEKs3b7ETMdYrP4zFPABwu76UGxluk_NFuJodK7CFG-mI1B8qaUMGrANfrhd4zMH-lsLJhLtzLQjHiIz229H5aN3_nxja4d16Evn-tP3RggC6quGEijw5f8DsNqhdws2yEQc");'></div>
+</td>
+<td class="px-6 py-4 align-middle text-sm font-semibold">Klenteng Sanggar Agung</td>
+<td class="px-6 py-4 align-middle text-sm text-text-light-secondary dark:text-dark-secondary">Wisata Religi</td>
+<td class="px-6 py-4 align-middle text-sm text-text-light-secondary dark:text-dark-secondary">2024-05-12</td>
+<td class="px-6 py-4 align-middle">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg hover:bg-primary/20"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="p-2 rounded-lg hover:bg-primary/20"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-primary/10 transition-colors">
+<td class="px-6 py-4 align-middle">
+<div class="bg-center bg-no-repeat aspect-video bg-cover rounded-lg w-24" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCOmf1KgxpB9P8Zuy5t9LqoODT4VbQyc-EskJj5OW99GAi1qmcMDTlVmXTFxN51v7nW6QvK02vEwvdSewOpzfRvnXxbQBSTG_vHK8Nv_vpQdw85E87ZWAYVi8ulWYsO3WOcQGFs21pRG2v4xJFvxiekAAAuOq0cwjjUgNolo5_XK6xBuBLsDHJAD4ig7ZcuHIfQjVp6Vy5QZMHyeRGx4Wgr-xy3re-RZCGLalPeeKX7qM54XD8i9bC0EZ6ivVXnL_r-XA5SKXq9Fio");'></div>
+</td>
+<td class="px-6 py-4 align-middle text-sm font-semibold">Monumen Kapal Selam</td>
+<td class="px-6 py-4 align-middle text-sm text-text-light-secondary dark:text-dark-secondary">Wisata Sejarah</td>
+<td class="px-6 py-4 align-middle text-sm text-text-light-secondary dark:text-dark-secondary">2024-05-10</td>
+<td class="px-6 py-4 align-middle">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg hover:bg-primary/20"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="p-2 rounded-lg hover:bg-primary/20"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

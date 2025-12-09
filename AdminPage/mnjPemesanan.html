@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manage Ticket - Tiket Wisata Surabaya</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13ec13",
+            "background-light": "#f6f8f6",
+            "background-dark": "#102210",
+            "light-green": "#e7f3e7",
+            "dark-green": "#0d1b0d",
+            "medium-green": "#4c9a4c",
+            "border-green": "#cfe7cf",
+            "brand-green": "#28a745"
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-dark-green dark:text-background-light">
+<div class="relative flex min-h-screen w-full">
+<aside class="flex-shrink-0 w-64 bg-background-light dark:bg-background-dark border-r border-border-green dark:border-dark-green p-4 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-3 px-3 mb-8">
+<span class="material-symbols-outlined text-brand-green text-3xl">local_activity</span>
+<h1 class="text-dark-green dark:text-background-light text-lg font-bold leading-normal">Tiket Wisata SBY</h1>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-light-green dark:hover:bg-dark-green/50" href="#">
+<span class="material-symbols-outlined text-medium-green">dashboard</span>
+<p class="text-dark-green dark:text-background-light text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-brand-green" href="#">
+<span class="material-symbols-outlined text-white fill-1">confirmation_number</span>
+<p class="text-white text-sm font-medium leading-normal">Manage Ticket</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-light-green dark:hover:bg-dark-green/50" href="#">
+<span class="material-symbols-outlined text-medium-green">beach_access</span>
+<p class="text-dark-green dark:text-background-light text-sm font-medium leading-normal">Destinasi</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-light-green dark:hover:bg-dark-green/50" href="#">
+<span class="material-symbols-outlined text-medium-green">sell</span>
+<p class="text-dark-green dark:text-background-light text-sm font-medium leading-normal">Promosi</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-light-green dark:hover:bg-dark-green/50" href="#">
+<span class="material-symbols-outlined text-medium-green">analytics</span>
+<p class="text-dark-green dark:text-background-light text-sm font-medium leading-normal">Reports</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4 border-t border-border-green dark:border-dark-green pt-4">
+<div class="flex gap-3 px-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Admin profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTYM_T7OsOquLDwY3GqRHaicxDGe6-M1fY4OY_nEDwRXVRJzgCYobZ-k1EznOV8ni2mGbW2bQjcUSQNz5SJbfsSdVHe8ue4TUTgW6B5xhQE4Jx0wOYqrKW-V-TkI4jA2mrkpK3VopbZObUvZf1yjihjd4qdFPlp31_Cfxxv7lCDaZRuj8LJhQq9Mw8FRz7ZiylxhxAyu64NOEhGozEn534D_0vENXxXRAPFVgXvSm8QS5MkeG1W5w7dU7_DqJDHYvsqYS-G7sLmK0");'></div>
+<div class="flex flex-col">
+<h1 class="text-dark-green dark:text-background-light text-sm font-semibold leading-normal">Admin Wisata</h1>
+<p class="text-medium-green text-xs font-normal leading-normal">admin@tiketwisata.com</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-light-green dark:hover:bg-dark-green/50" href="#">
+<span class="material-symbols-outlined text-medium-green">logout</span>
+<p class="text-dark-green dark:text-background-light text-sm font-medium leading-normal">Logout</p>
+</a>
+</div>
+</div>
+</aside>
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+<div class="flex flex-col gap-1">
+<h2 class="text-dark-green dark:text-background-light text-2xl font-bold leading-tight tracking-tight">Manage Ticket</h2>
+<p class="text-medium-green text-base font-normal leading-normal">Kelola semua pemesanan yang masuk dengan mudah.</p>
+</div>
+<button class="flex items-center justify-center gap-2 h-10 px-4 rounded-lg bg-brand-green text-white font-medium text-sm hover:bg-opacity-90">
+<span class="material-symbols-outlined">add</span>
+<span>Tambah Pesanan</span>
+</button>
+</div>
+<div class="flex flex-col md:flex-row gap-4 mb-6">
+<div class="flex-grow">
+<label class="relative flex items-center h-12 w-full">
+<span class="material-symbols-outlined absolute left-4 text-medium-green">search</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-dark-green dark:text-background-light focus:outline-none focus:ring-2 focus:ring-brand-green border-border-green dark:border-dark-green bg-light-green dark:bg-dark-green/50 h-full placeholder:text-medium-green pl-12 text-sm font-normal leading-normal" placeholder="Cari pesanan berdasarkan ID atau nama" value=""/>
+</label>
+</div>
+<div class="flex items-center gap-3 overflow-x-auto">
+<button class="flex h-12 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-light-green dark:bg-dark-green/50 text-brand-green px-4 font-semibold border-2 border-brand-green">
+<p class="text-sm font-medium leading-normal">Semua</p>
+</button>
+<button class="flex h-12 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-background-light dark:bg-background-dark border border-border-green dark:border-dark-green px-4 text-medium-green hover:bg-light-green dark:hover:bg-dark-green/50">
+<p class="text-sm font-medium leading-normal">Menunggu Pembayaran</p>
+</button>
+<button class="flex h-12 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-background-light dark:bg-background-dark border border-border-green dark:border-dark-green px-4 text-medium-green hover:bg-light-green dark:hover:bg-dark-green/50">
+<p class="text-sm font-medium leading-normal">Terbayar</p>
+</button>
+<button class="flex h-12 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-background-light dark:bg-background-dark border border-border-green dark:border-dark-green px-4 text-medium-green hover:bg-light-green dark:hover:bg-dark-green/50">
+<p class="text-sm font-medium leading-normal">Dibatalkan</p>
+</button>
+</div>
+</div>
+<div class="w-full @container">
+<div class="flex overflow-hidden rounded-xl border border-border-green dark:border-dark-green bg-background-light dark:bg-dark-green/20">
+<table class="flex-1 table-auto">
+<thead>
+<tr class="bg-light-green dark:bg-dark-green/30">
+<th class="px-6 py-4 text-left text-dark-green dark:text-background-light w-1/6 text-xs font-medium uppercase tracking-wider">ID Pesanan</th>
+<th class="px-6 py-4 text-left text-dark-green dark:text-background-light w-1/4 text-xs font-medium uppercase tracking-wider">Nama Pemesan</th>
+<th class="px-6 py-4 text-left text-dark-green dark:text-background-light w-1/6 text-xs font-medium uppercase tracking-wider">Tanggal Pesan</th>
+<th class="px-6 py-4 text-left text-dark-green dark:text-background-light w-1/12 text-xs font-medium uppercase tracking-wider">Tiket</th>
+<th class="px-6 py-4 text-left text-dark-green dark:text-background-light w-1/6 text-xs font-medium uppercase tracking-wider">Total Harga</th>
+<th class="px-6 py-4 text-left text-dark-green dark:text-background-light w-1/6 text-xs font-medium uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-left text-dark-green dark:text-background-light w-auto text-xs font-medium uppercase tracking-wider">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-green dark:divide-dark-green">
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">#TWS1001</td>
+<td class="px-6 py-4 whitespace-nowrap text-dark-green dark:text-background-light text-sm font-medium">Budi Santoso</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">12 Nov 2023</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">2</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">Rp 300.000</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Terbayar</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<div class="flex items-center gap-2">
+<button class="p-2 text-medium-green hover:text-dark-green dark:hover:text-primary"><span class="material-symbols-outlined text-xl">visibility</span></button>
+<button class="p-2 text-medium-green hover:text-dark-green dark:hover:text-primary"><span class="material-symbols-outlined text-xl">edit</span></button>
+</div>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">#TWS1002</td>
+<td class="px-6 py-4 whitespace-nowrap text-dark-green dark:text-background-light text-sm font-medium">Citra Lestari</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">11 Nov 2023</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">1</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">Rp 150.000</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Menunggu Pembayaran</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<div class="flex items-center gap-2">
+<button class="p-2 text-medium-green hover:text-dark-green dark:hover:text-primary"><span class="material-symbols-outlined text-xl">visibility</span></button>
+<button class="p-2 text-medium-green hover:text-dark-green dark:hover:text-primary"><span class="material-symbols-outlined text-xl">edit</span></button>
+</div>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">#TWS1003</td>
+<td class="px-6 py-4 whitespace-nowrap text-dark-green dark:text-background-light text-sm font-medium">Ahmad Yani</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">10 Nov 2023</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">4</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">Rp 600.000</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Dibatalkan</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<div class="flex items-center gap-2">
+<button class="p-2 text-medium-green hover:text-dark-green dark:hover:text-primary"><span class="material-symbols-outlined text-xl">visibility</span></button>
+<button class="p-2 text-medium-green hover:text-dark-green dark:hover:text-primary"><span class="material-symbols-outlined text-xl">edit</span></button>
+</div>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">#TWS1004</td>
+<td class="px-6 py-4 whitespace-nowrap text-dark-green dark:text-background-light text-sm font-medium">Dewi Anggraini</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">09 Nov 2023</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">2</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">Rp 300.000</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Terbayar</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<div class="flex items-center gap-2">
+<button class="p-2 text-medium-green hover:text-dark-green dark:hover:text-primary"><span class="material-symbols-outlined text-xl">visibility</span></button>
+<button class="p-2 text-medium-green hover:text-dark-green dark:hover:text-primary"><span class="material-symbols-outlined text-xl">edit</span></button>
+</div>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">#TWS1005</td>
+<td class="px-6 py-4 whitespace-nowrap text-dark-green dark:text-background-light text-sm font-medium">Eko Prasetyo</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">08 Nov 2023</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">3</td>
+<td class="px-6 py-4 whitespace-nowrap text-medium-green text-sm">Rp 450.000</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Terbayar</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<div class="flex items-center gap-2">
+<button class="p-2 text-medium-green hover:text-dark-green dark:hover:text-primary"><span class="material-symbols-outlined text-xl">visibility</span></button>
+<button class="p-2 text-medium-green hover:text-dark-green dark:hover:text-primary"><span class="material-symbols-outlined text-xl">edit</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="flex items-center justify-between mt-6">
+<p class="text-sm text-medium-green">Menampilkan 1-5 dari 50 pesanan</p>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center h-10 w-10 rounded-lg border border-border-green dark:border-dark-green text-dark-green dark:text-background-light hover:bg-light-green dark:hover:bg-dark-green/50">
+<span class="material-symbols-outlined text-base">chevron_left</span>
+</button>
+<button class="flex items-center justify-center h-10 w-10 rounded-lg bg-brand-green text-white font-semibold text-sm">1</button>
+<button class="flex items-center justify-center h-10 w-10 rounded-lg border border-border-green dark:border-dark-green text-dark-green dark:text-background-light hover:bg-light-green dark:hover:bg-dark-green/50 text-sm">2</button>
+<button class="flex items-center justify-center h-10 w-10 rounded-lg border border-border-green dark:border-dark-green text-dark-green dark:text-background-light hover:bg-light-green dark:hover:bg-dark-green/50 text-sm">3</button>
+<button class="flex items-center justify-center h-10 w-10 rounded-lg border border-border-green dark:border-dark-green text-dark-green dark:text-background-light hover:bg-light-green dark:hover:bg-dark-green/50">
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

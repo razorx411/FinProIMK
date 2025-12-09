@@ -1,1 +1,209 @@
 
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard Admin - Tiket Wisata Surabaya</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec25",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102212",
+              "surface-light": "#ffffff",
+              "surface-dark": "#182c1a",
+              "text-light": "#0d1b0f",
+              "text-dark": "#e0f0e2",
+              "subtle-light": "#4c9a52",
+              "subtle-dark": "#a0d9a3",
+              "border-light": "#cfe7d1",
+              "border-dark": "#2a4d2d",
+              "primary-hover-light": "#10d321",
+              "primary-hover-dark": "#16ff29"
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {
+              "DEFAULT": "0.5rem",
+              "lg": "0.75rem",
+              "xl": "1rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+      .material-symbols-outlined.fill {
+        font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="flex min-h-screen w-full">
+<aside class="sticky top-0 h-screen w-64 flex-shrink-0 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark flex flex-col p-4">
+<div class="flex items-center gap-3 p-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Tiket Wisata company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeCZv_9nc8v7PA_cLLTamA0wP9mcFJM8gUVyKj7ndo2VRU-SiWcSluBHqOjRvWpVXeSrMLDBexZlu1iV22CzD9ctrDYY-vzO4fZzV1xJKd5kSA0OPzRjFg82f6_Of1F2sF3ihSmBF1iuCr-V3aaLaSX6Cm2NbvgS4xXQG4_k81_mjpSdumK9u49QseF9JpcsEPuAYdo3tnwGLgqPMSl6fFqU1wNupiNbDcBsVtYZGfl5Z4wCrCKq1V3nGTSj6G6ZpY_r20Bbp6i4s");'></div>
+<div class="flex flex-col">
+<h1 class="text-text-light dark:text-text-dark text-base font-bold leading-normal">Tiket Wisata</h1>
+<p class="text-subtle-light dark:text-subtle-dark text-sm font-normal leading-normal">Surabaya</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-6 flex-grow">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 dark:bg-primary/30" href="#">
+<span class="material-symbols-outlined fill text-text-light dark:text-text-dark">dashboard</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">confirmation_number</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Manage Ticket</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">pin_drop</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Destinasi</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">campaign</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Promosi</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">bar_chart</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Reports</p>
+</a>
+</nav>
+<div class="flex flex-col gap-1 border-t border-border-light dark:border-border-dark pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">account_circle</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Admin Profile</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">logout</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Logout</p>
+</a>
+</div>
+</aside>
+<main class="flex-1 p-8">
+<div class="w-full max-w-7xl mx-auto">
+<header class="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+<h1 class="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-tight">Dashboard</h1>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<div class="flex-1 md:w-72">
+<label class="relative flex items-center h-12 w-full">
+<span class="material-symbols-outlined text-subtle-light dark:text-subtle-dark absolute left-4">search</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark h-full placeholder:text-subtle-light dark:placeholder:text-subtle-dark pl-12 pr-4 text-base font-normal leading-normal rounded-xl" placeholder="Search..." value=""/>
+</label>
+</div>
+<button class="relative p-3 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-text-light dark:text-text-dark">notifications</span>
+<span class="absolute top-2 right-2 block h-2 w-2 rounded-full bg-red-500"></span>
+</button>
+</div>
+</header>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Total Tickets Sold</p>
+<p class="text-text-light dark:text-text-dark tracking-tight text-3xl font-bold leading-tight">1,280</p>
+<p class="text-green-600 dark:text-green-400 text-sm font-medium leading-normal">+5% from yesterday</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Total Revenue</p>
+<p class="text-text-light dark:text-text-dark tracking-tight text-3xl font-bold leading-tight">Rp 89.2M</p>
+<p class="text-green-600 dark:text-green-400 text-sm font-medium leading-normal">+2.1% from yesterday</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">Website Visitors</p>
+<p class="text-text-light dark:text-text-dark tracking-tight text-3xl font-bold leading-tight">3,450</p>
+<p class="text-red-600 dark:text-red-400 text-sm font-medium leading-normal">-1.5% from yesterday</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+<p class="text-text-light dark:text-text-dark text-base font-medium leading-normal">New Users</p>
+<p class="text-text-light dark:text-text-dark tracking-tight text-3xl font-bold leading-tight">72</p>
+<p class="text-green-600 dark:text-green-400 text-sm font-medium leading-normal">+10% from yesterday</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 flex flex-col gap-2 rounded-xl border border-border-light dark:border-border-dark p-6 bg-surface-light dark:bg-surface-dark">
+<p class="text-text-light dark:text-text-dark text-lg font-semibold leading-normal">Revenue Over Last 30 Days</p>
+<div class="flex items-baseline gap-2">
+<p class="text-text-light dark:text-text-dark tracking-tight text-4xl font-bold leading-tight truncate">Rp 89.2M</p>
+<p class="text-green-600 dark:text-green-400 text-base font-medium leading-normal">+2.1%</p>
+</div>
+<div class="flex min-h-[250px] flex-1 flex-col gap-8 py-4">
+<svg fill="none" height="100%" preserveAspectRatio="none" viewBox="-3 0 478 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H0V109Z" fill="url(#paint0_linear_chart)"></path>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#13ec25" stroke-linecap="round" stroke-width="3"></path>
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_chart" x1="236" x2="236" y1="1" y2="149">
+<stop stop-color="#13ec25" stop-opacity="0.2"></stop>
+<stop offset="1" stop-color="#13ec25" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+</svg>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-border-light dark:border-border-dark p-6 bg-surface-light dark:bg-surface-dark">
+<h3 class="text-text-light dark:text-text-dark text-lg font-semibold leading-normal">Recent Notifications</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-4">
+<div class="bg-blue-100 dark:bg-blue-900/50 rounded-full p-2">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-300">shopping_cart</span>
+</div>
+<div class="flex flex-col">
+<p class="text-text-light dark:text-text-dark text-sm font-medium">New bulk booking from PT Sejahtera.</p>
+<p class="text-subtle-light dark:text-subtle-dark text-xs">5 minutes ago</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-yellow-100 dark:bg-yellow-900/50 rounded-full p-2">
+<span class="material-symbols-outlined text-yellow-600 dark:text-yellow-300">warning</span>
+</div>
+<div class="flex flex-col">
+<p class="text-text-light dark:text-text-dark text-sm font-medium">Low ticket warning for Kenjeran Park.</p>
+<p class="text-subtle-light dark:text-subtle-dark text-xs">1 hour ago</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-purple-100 dark:bg-purple-900/50 rounded-full p-2">
+<span class="material-symbols-outlined text-purple-600 dark:text-purple-300">update</span>
+</div>
+<div class="flex flex-col">
+<p class="text-text-light dark:text-text-dark text-sm font-medium">System update scheduled for 2 AM.</p>
+<p class="text-subtle-light dark:text-subtle-dark text-xs">8 hours ago</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-red-100 dark:bg-red-900/50 rounded-full p-2">
+<span class="material-symbols-outlined text-red-600 dark:text-red-300">error</span>
+</div>
+<div class="flex flex-col">
+<p class="text-text-light dark:text-text-dark text-sm font-medium">Payment gateway issue reported.</p>
+<p class="text-subtle-light dark:text-subtle-dark text-xs">1 day ago</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-auto text-sm font-semibold py-2.5 rounded-lg bg-primary/20 dark:bg-primary/30 hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors text-text-light dark:text-text-dark">View All</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

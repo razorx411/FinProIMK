@@ -3,61 +3,21 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Konfirmasi Pemesanan - Tiket Wisata Surabaya</title>
+    <title>Detail Tiket - Kebun Binatang Surabaya</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-        }
-        
-        /* Animasi untuk status pembayaran */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Animasi untuk error */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-        
-        .shake {
-            animation: shake 0.5s ease-in-out;
-        }
-        
-        /* Animasi hamburger menu - TAMBAHAN */
-        .mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        
-        .mobile-menu.open {
-            max-height: 500px;
-            transition: max-height 0.3s ease-in;
-        }
-    </style>
-    
     <script>
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        primary: "#10B981",
-                        "background-light": "#F9FAFB",
-                        "background-dark": "#111827",
+                        primary: "#16a34a",
+                        "background-light": "#f7fafc",
+                        "background-dark": "#1a202c",
                     },
                     fontFamily: {
                         display: ["Plus Jakarta Sans", "sans-serif"],
@@ -72,11 +32,128 @@
             },
         };
     </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+        
+        .star-filled {
+            font-variation-settings: 'FILL' 1 !important;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .map-container {
+            height: 250px;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .map-container {
+                height: 400px;
+            }
+        }
+        
+        .tab-active {
+            border-bottom: 2px solid #16a34a;
+            color: #16a34a;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Fix untuk sticky navbar */
+        .sticky-navbar {
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        
+        /* Pastikan body tidak punya overflow hidden */
+        body {
+            overflow-x: hidden;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Animasi hamburger menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+            transition: max-height 0.3s ease-in;
+        }
+        
+        /* Better touch targets for mobile */
+        button, a {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Improve readability on mobile */
+        @media (max-width: 640px) {
+            h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            .prose p {
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+            }
+        }
+    </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200">
     <div class="relative flex min-h-screen w-full flex-col">
-        <!-- Header dengan Hamburger Menu -->
-        <header class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/95 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/95">
+        <!-- FIXED NAVBAR DENGAN BURGER MENU -->
+        <header id="navbar" class="sticky-navbar w-full border-b border-gray-200/50 bg-background-light/95 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/95">
             <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
                 <!-- Logo -->
                 <a href="index.html"> 
@@ -84,25 +161,24 @@
                 </a>
 
                 <!-- Desktop Navigation -->
-                <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+                <nav class="hidden md:flex flex-1 justify-center items-center gap-10">
                     <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="destinasi.html">Destinasi</a>
                     <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="promosi.html">Promosi</a>
                     <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="tiket-saya.html">Tiket Saya</a>
                 </nav>
 
-                <!-- Right section - MODIFIKASI -->
+                <!-- Right section -->
                 <div class="flex items-center gap-4">
-                    <!-- Link Bantuan hanya di Desktop -->
-                    <a class="hidden md:block text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="bantuan.html">Bantuan</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors hidden md:block" href="bantuan.html">Bantuan</a>
                     
-                    <!-- Hamburger Menu Button (Mobile) -->
+                    <!-- HAMBURGER MENU BUTTON -->
                     <button id="mobile-menu-button" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 transition-colors">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                 </div>
             </div>
             
-            <!-- Mobile Menu Dropdown (TAMBAHAN BARU) -->
+            <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu" class="mobile-menu md:hidden bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-800/50">
                 <div class="px-4 py-3 space-y-1">
                     <a href="destinasi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
@@ -128,288 +204,411 @@
             </div>
         </header>
 
-        <main class="flex flex-1 justify-center py-5 sm:py-10 px-4">
-            <div class="layout-content-container flex flex-col w-full max-w-4xl flex-1 gap-6">
-                <!-- Breadcrumb -->
-                <div class="flex flex-col gap-4">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <a class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium leading-normal hover:text-primary transition-colors flex items-center gap-1" href="index.html">
-                            <span class="material-symbols-outlined text-base">home</span>
-                            Beranda
-                        </a>
-                        <span class="text-slate-500 dark:text-slate-400 text-sm sm:text-base">/</span>
-                        <a class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium leading-normal hover:text-primary transition-colors" href="destinasi.html">Destinasi</a>
-                        <span class="text-slate-500 dark:text-slate-400 text-sm sm:text-base">/</span>
-                        <span class="text-slate-900 dark:text-white text-sm sm:text-base font-medium leading-normal">Konfirmasi</span>
-                    </div>
-                    
-                    <!-- Progress Steps -->
+        <!-- Main Content with improved mobile padding -->
+        <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12 flex-grow">
+            <!-- Breadcrumb dengan overflow handling untuk mobile -->
+            <div class="flex flex-wrap items-center gap-2 pb-4 md:pb-6 overflow-x-auto whitespace-nowrap">
+                <a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary transition-colors flex items-center gap-1" href="index.html">
+                    <span class="material-symbols-outlined text-base">home</span>
+                    Beranda
+                </a>
+                <span class="text-slate-500 dark:text-slate-400 text-sm">/</span>
+                <a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="destinasi.html">Destinasi</a>
+                <span class="text-slate-500 dark:text-slate-400 text-sm">/</span>
+                <span class="text-slate-900 dark:text-slate-50 text-sm font-medium leading-normal">Kebun Binatang Surabaya</span>
+            </div>
+
+            <!-- Main Content dengan layout yang lebih responsif -->
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 xl:gap-12">
+                <!-- Image Gallery -->
+                <div class="lg:col-span-3">
                     <div class="flex flex-col gap-4">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">1</div>
-                                <span class="text-sm font-medium text-primary">Pilih Tiket</span>
-                            </div>
-                            <div class="flex-1 h-1 mx-4 bg-slate-300 dark:bg-slate-700"></div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">2</div>
-                                <span class="text-sm font-medium text-primary">Isi Data</span>
-                            </div>
-                            <div class="flex-1 h-1 mx-4 bg-slate-300 dark:bg-slate-700"></div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold pulse-animation">3</div>
-                                <span class="text-sm font-bold text-primary">Bayar</span>
+                        <!-- Main Image dengan aspect ratio yang lebih mobile-friendly -->
+                        <div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl aspect-[3/2] md:aspect-[16/9] shadow-lg" style='background-image: url("https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80");'>
+                            <div class="bg-gradient-to-t from-black/60 to-transparent p-4 text-white">
+                                <h2 class="text-xl md:text-2xl font-bold">Kebun Binatang Surabaya</h2>
+                                <p class="text-sm md:text-base opacity-90">Salah satu kebun binatang terbesar di Indonesia</p>
                             </div>
                         </div>
                         
-                        <div class="flex flex-wrap justify-between gap-3">
-                            <p class="text-slate-900 dark:text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Konfirmasi Pemesanan</p>
-                            <div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                                <span class="material-symbols-outlined text-primary">schedule</span>
-                                <span>Waktu tersisa: <span class="font-bold text-red-500" id="countdown">59:59</span></span>
+                        <!-- Thumbnail Gallery dengan touch-friendly sizing -->
+                        <div class="gallery-grid">
+                            <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow cursor-pointer hover:opacity-90 transition-opacity active:scale-95" style='background-image: url("https://images.unsplash.com/photo-1575408264798-b50b252663e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
+                            <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow cursor-pointer hover:opacity-90 transition-opacity active:scale-95" style='background-image: url("https://images.unsplash.com/photo-1550358864-518f202c02ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
+                            <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow cursor-pointer hover:opacity-90 transition-opacity active:scale-95" style='background-image: url("https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
+                            <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow cursor-pointer hover:opacity-90 transition-opacity active:scale-95" style='background-image: url("https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Form dengan sticky behavior yang lebih baik -->
+                <div class="lg:col-span-2">
+                    <div class="sticky top-24 md:top-28">
+                        <div class="flex min-w-72 flex-col gap-5 bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-lg">
+                            <div class="flex flex-col gap-2">
+                                <p class="text-slate-900 dark:text-slate-50 text-2xl md:text-3xl font-bold leading-tight tracking-tight">Kebun Binatang Surabaya</p>
+                                <div class="flex items-center gap-2">
+                                    <div class="flex items-center text-yellow-500">
+                                        <span class="material-symbols-outlined text-base star-filled">star</span>
+                                        <span class="material-symbols-outlined text-base star-filled">star</span>
+                                        <span class="material-symbols-outlined text-base star-filled">star</span>
+                                        <span class="material-symbols-outlined text-base star-filled">star</span>
+                                        <span class="material-symbols-outlined text-base">star</span>
+                                    </div>
+                                    <p class="text-slate-500 dark:text-slate-400 text-sm font-normal">(1,234 Ulasan)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="w-full h-px bg-slate-200 dark:border-slate-800"></div>
+                            
+                            <div class="flex flex-col gap-4">
+                                <div class="flex flex-col">
+                                    <span class="text-sm text-slate-500 dark:text-slate-400">Mulai dari</span>
+                                    <div class="flex items-baseline gap-2 flex-wrap">
+                                        <span id="price-display" class="text-3xl font-extrabold text-primary">Rp 30.000</span>
+                                        <span class="text-base font-medium text-slate-500 dark:text-slate-400" id="per-person-text"> / 2 orang</span>
+                                    </div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Harga per orang: Rp 15.000</p>
+                                </div>
+                                
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="date-picker">Pilih Tanggal</label>
+                                    <input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-3 md:p-2.5" 
+                                           id="date-picker" 
+                                           type="date" 
+                                           min="2024-01-01" 
+                                           max="2024-12-31"
+                                           value="2024-10-26"/>
+                                </div>
+                                
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="pax-selector">Jumlah Orang</label>
+                                    <div class="flex items-center gap-4">
+                                        <button id="decrease-pax" class="flex h-12 w-12 md:h-10 md:w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors active:scale-95">
+                                            <span class="material-symbols-outlined">remove</span>
+                                        </button>
+                                        <input type="number" 
+                                               id="pax-selector" 
+                                               min="1" 
+                                               max="10" 
+                                               value="2" 
+                                               class="w-20 text-center rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-3 md:p-2.5" />
+                                        <button id="increase-pax" class="flex h-12 w-12 md:h-10 md:w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors active:scale-95">
+                                            <span class="material-symbols-outlined">add</span>
+                                        </button>
+                                        <span class="text-sm text-slate-600 dark:text-slate-400 ml-2">Orang</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col gap-3 pt-2">
+                                <a href="konfirWisata.html"
+                                   class="w-full flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-14 md:h-12 px-4 bg-primary text-white text-base font-bold tracking-[0.015em] hover:bg-primary/90 transition-colors active:scale-[0.98] text-center">
+                                    <span class="material-symbols-outlined">confirmation_number</span>
+                                    Pesan Tiket Sekarang
+                                </a>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
+                                <div class="flex items-center gap-1 text-sm text-slate-600 dark:text-slate-400">
+                                    <span class="material-symbols-outlined text-base">schedule</span>
+                                    <span>Buka: 08.00 - 17.00</span>
+                                </div>
+                                <div class="hidden sm:block h-4 w-px bg-slate-300 dark:bg-slate-700"></div>
+                                <div class="flex items-center gap-1 text-sm text-slate-600 dark:text-slate-400">
+                                    <span class="material-symbols-outlined text-base">location_on</span>
+                                    <span>Surabaya</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                    <!-- Left Column -->
-                    <div class="lg:col-span-2 flex flex-col gap-8">
-                        <!-- Ringkasan Pesanan -->
-                        <div class="flex flex-col gap-5">
-                            <h2 class="text-slate-900 dark:text-white text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em]">Ringkasan Pesanan Anda</h2>
-                            <div class="p-0">
-                                <div class="flex flex-col md:flex-row items-stretch justify-start rounded-xl shadow-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden">
-                                    <img class="w-full md:w-48 h-48 md:h-auto object-cover" src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kebun Binatang Surabaya"/>
-                                    <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-3 p-5">
-                                        <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Tiket Masuk</p>
-                                        <p class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Kebun Binatang Surabaya</p>
-                                        
-                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-                                            <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm">
-                                                <span class="material-symbols-outlined text-base text-primary">calendar_today</span>
-                                                <div>
-                                                    <p class="font-medium">Tanggal Kunjungan</p>
-                                                    <p class="font-bold">Sab, 28 Okt 2024</p>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm">
-                                                <span class="material-symbols-outlined text-base text-primary">schedule</span>
-                                                <div>
-                                                    <p class="font-medium">Waktu Masuk</p>
-                                                    <p class="font-bold">08.00 - 17.00 WIB</p>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm">
-                                                <span class="material-symbols-outlined text-base text-primary">group</span>
-                                                <div>
-                                                    <p class="font-medium">Jumlah Pengunjung</p>
-                                                    <p class="font-bold">2 Orang</p>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm">
-                                                <span class="material-symbols-outlined text-base text-primary">confirmation_number</span>
-                                                <div>
-                                                    <p class="font-medium">Tiket</p>
-                                                    <p class="font-bold">#KBZ20241028001</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+            </div>
+
+            <!-- Tabs Content dengan scrollable tabs untuk mobile -->
+            <div class="mt-8 lg:mt-16">
+                <!-- Tabs Navigation dengan overflow scroll untuk mobile -->
+                <div class="border-b border-slate-200 dark:border-slate-800">
+                    <nav aria-label="Tabs" class="-mb-px flex space-x-4 md:space-x-8 overflow-x-auto pb-1">
+                        <button class="tab-active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors" data-tab="deskripsi">Deskripsi</button>
+                        <button class="border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 dark:text-slate-400 dark:hover:text-slate-300 dark:hover:border-slate-700 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors" data-tab="ulasan">Ulasan Pelanggan</button>
+                        <button class="border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 dark:text-slate-400 dark:hover:text-slate-300 dark:hover:border-slate-700 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors" data-tab="lokasi">Lokasi</button>
+                    </nav>
+                </div>
+
+                <!-- Deskripsi Tab -->
+                <div id="deskripsi" class="py-6 md:py-10">
+                    <div class="prose prose-slate max-w-none dark:prose-invert prose-p:text-slate-600 dark:prose-p:text-slate-400 prose-h3:text-slate-800 dark:prose-h3:text-slate-200 prose-li:text-slate-600 dark:prose-li:text-slate-400 prose-sm md:prose-base">
+                        <h3 class="text-xl md:text-2xl font-bold">Tentang Kebun Binatang Surabaya</h3>
+                        <p class="mt-2">Kebun Binatang Surabaya (KBS) atau Surabaya Zoo adalah salah satu kebun binatang yang populer di Indonesia dan terletak di Surabaya. KBS merupakan kebun binatang yang pernah terlengkap se-Asia Tenggara, Termasuk di dalamnya satwa langka Indonesia maupun dunia terdiri dari Mamalia, Aves, Reptilia, dan Pisces.</p>
+                        
+                        <h4 class="mt-6 text-lg md:text-xl font-bold">Fasilitas yang Tersedia</h4>
+                        <ul class="mt-2">
+                            <li>Area parkir yang luas</li>
+                            <li>Toilet umum yang bersih</li>
+                            <li>Tempat makan dan minum</li>
+                            <li>Area bermain anak</li>
+                            <li>Kereta keliling kebun binatang</li>
+                            <li>Pusat informasi dan pemandu</li>
+                        </ul>
+                        
+                        <h4 class="mt-6 text-lg md:text-xl font-bold">Jam Operasional</h4>
+                        <p class="mt-2">Kebun Binatang Surabaya buka setiap hari dari pukul 08.00 hingga 17.00 WIB.</p>
+                        
+                        <h4 class="mt-6 text-lg md:text-xl font-bold">Harga Tiket</h4>
+                        <p class="mt-2">Harga tiket masuk Kebun Binatang Surabaya adalah Rp 15.000 per orang. Harga khusus untuk anak-anak (di bawah 3 tahun) gratis, sedangkan untuk anak usia 3-12 tahun mendapatkan harga diskon 50%.</p>
+                    </div>
+                </div>
+
+                <!-- Ulasan Tab -->
+                <div id="ulasan" class="py-6 md:py-10 hidden">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8">
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-slate-800 dark:text-slate-100">Ulasan Pelanggan</h3>
+                            <div class="flex items-center gap-2 mt-2">
+                                <div class="flex items-center text-yellow-500">
+                                    <span class="material-symbols-outlined text-base md:text-xl star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base md:text-xl star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base md:text-xl star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base md:text-xl star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base md:text-xl">star</span>
                                 </div>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">4.2 dari 1,234 ulasan</p>
                             </div>
                         </div>
-
-                        <!-- Data Pemesan -->
-                        <div class="flex flex-col gap-5">
-                            <div class="flex justify-between items-center">
-                                <h2 class="text-slate-900 dark:text-white text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em]">Data Pemesan</h2>
-                                <div id="data-error" class="hidden items-center gap-2 text-red-600 dark:text-red-400">
-                                    <span class="material-symbols-outlined text-base">error</span>
-                                    <span class="text-sm font-medium">Harap isi data pemesan</span>
+                        <button id="tulis-ulasan" class="mt-4 md:mt-0 flex items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-6 bg-primary text-white font-bold tracking-[0.015em] hover:bg-primary/90 transition-colors active:scale-[0.98] w-full md:w-auto">
+                            <span class="material-symbols-outlined">edit</span>
+                            Tulis Ulasan
+                        </button>
+                    </div>
+                    
+                    <!-- Review List -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6" id="review-container">
+                        <!-- Review 1 -->
+                        <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800 fade-in">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100">HugoCintaDia</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">25 Oktober 2024</p>
+                                </div>
+                                <div class="flex items-center text-yellow-500">
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
                                 </div>
                             </div>
-                            <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 p-5 sm:p-6">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                    <div>
-                                        <label class="text-sm text-slate-500 dark:text-slate-400 mb-1 block" for="nama">Nama Lengkap *</label>
-                                        <input type="text" id="nama" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Masukkan nama lengkap">
-                                    </div>
-                                    <div>
-                                        <label class="text-sm text-slate-500 dark:text-slate-400 mb-1 block" for="email">Email *</label>
-                                        <input type="email" id="email" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="nama@email.com">
-                                    </div>
-                                    <div>
-                                        <label class="text-sm text-slate-500 dark:text-slate-400 mb-1 block" for="telepon">No. Telepon *</label>
-                                        <input type="tel" id="telepon" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="0812-3456-7890">
-                                    </div>
-                                    <div class="flex items-end">
-                                        <button class="w-full flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors" onclick="simpanDataPemesan()">
-                                            <span class="material-symbols-outlined text-base">save</span>
-                                            Simpan Data
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                <div id="data-tersimpan" class="hidden">
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                        <div>
-                                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Nama Lengkap</p>
-                                            <p id="display-nama" class="font-medium text-slate-800 dark:text-slate-200">-</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Email</p>
-                                            <p id="display-email" class="font-medium text-slate-800 dark:text-slate-200">-</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">No. Telepon</p>
-                                            <p id="display-telepon" class="font-medium text-slate-800 dark:text-slate-200">-</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Status</p>
-                                            <span id="status-verifikasi" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                                                <span class="material-symbols-outlined text-xs mr-1">hourglass_empty</span>
-                                                Belum Disimpan
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <button class="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium" onclick="ubahDataPemesan()">
-                                        <span class="material-symbols-outlined text-base">edit</span>
-                                        Ubah Data Pemesan
-                                    </button>
-                                </div>
-                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Pengalaman yang sangat menyenangkan! Kebun binatangnya luas dan bersih. Anak-anak sangat senang melihat berbagai satwa dari dekat. Fasilitasnya juga lengkap. Pasti akan kembali lagi!</p>
                         </div>
-
-                        <!-- Metode Pembayaran -->
-                        <div class="flex flex-col gap-5">
-                            <h2 class="text-slate-900 dark:text-white text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em]">Pilih Metode Pembayaran</h2>
-                            <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 p-5 sm:p-6">
-                                <div class="flex flex-col gap-4">
-                                    <!-- Virtual Account -->
-                                    <div class="border-2 border-primary/70 bg-primary/10 dark:bg-primary/20 rounded-xl p-4 transition-all duration-200" id="payment-va-option">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex items-center">
-                                                <input checked class="h-5 w-5 text-primary border-slate-400 focus:ring-primary" id="payment-va" name="payment-method" type="radio" onclick="selectPayment('va')"/>
-                                                <label class="ml-3 block text-sm font-bold text-slate-800 dark:text-slate-100" for="payment-va">Virtual Account</label>
-                                            </div>
-                                            <span class="material-symbols-outlined text-primary text-xl">account_balance</span>
-                                        </div>
-                                        <div class="mt-3 pl-8 grid grid-cols-1 sm:grid-cols-3 gap-3" id="va-banks">
-                                            <button class="payment-bank-btn" data-bank="bca" onclick="selectBank('bca')">
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" class="h-6" alt="BCA">
-                                            </button>
-                                            <button class="payment-bank-btn" data-bank="mandiri" onclick="selectBank('mandiri')">
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/2560px-Bank_Mandiri_logo_2016.svg.png" class="h-6" alt="Mandiri">
-                                            </button>
-                                            <button class="payment-bank-btn" data-bank="bri" onclick="selectBank('bri')">
-                                                <img src="gambar/BRI_2020.svg.png" class="h-6" alt="BRI">
-                                            </button>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- E-Wallet -->
-                                    <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 transition-all duration-200 hover:border-primary/50" id="payment-ewallet-option">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex items-center">
-                                                <input class="h-5 w-5 text-primary border-slate-400 focus:ring-primary" id="payment-ewallet" name="payment-method" type="radio" onclick="selectPayment('ewallet')"/>
-                                                <label class="ml-3 block text-sm font-bold text-slate-800 dark:text-slate-100" for="payment-ewallet">E-Wallet</label>
-                                            </div>
-                                            <span class="material-symbols-outlined text-slate-600 dark:text-slate-400 text-xl">wallet</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Kartu Kredit/Debit -->
-                                    <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 transition-all duration-200 hover:border-primary/50" id="payment-card-option">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex items-center">
-                                                <input class="h-5 w-5 text-primary border-slate-400 focus:ring-primary" id="payment-card" name="payment-method" type="radio" onclick="selectPayment('card')"/>
-                                                <label class="ml-3 block text-sm font-bold text-slate-800 dark:text-slate-100" for="payment-card">Kartu Kredit/Debit</label>
-                                            </div>
-                                            <span class="material-symbols-outlined text-slate-600 dark:text-slate-400 text-xl">credit_card</span>
-                                        </div>
-                                    </div>
+                        
+                        <!-- Review 2 -->
+                        <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800 fade-in">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100">Dwiki&Zaki</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">20 Oktober 2024</p>
                                 </div>
-                                
-                                <!-- Info Pembayaran -->
-                                <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-xl mt-0.5">info</span>
-                                        <div>
-                                            <p class="text-sm font-medium text-blue-800 dark:text-blue-300 mb-1">Petunjuk Pembayaran</p>
-                                            <p class="text-xs text-blue-700 dark:text-blue-400" id="payment-instruction">
-                                                Pilih metode pembayaran untuk melihat petunjuk
-                                            </p>
-                                        </div>
-                                    </div>
+                                <div class="flex items-center text-yellow-500">
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base">star</span>
                                 </div>
                             </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Tempatnya bagus untuk rekreasi keluarga. Hanya saja beberapa area terlihat kurang terawat. Harganya terjangkau untuk ukuran kebun binatang sebesar ini. Overall worth to visit!</p>
+                        </div>
+                        
+                        <!-- Review 3 -->
+                        <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800 fade-in">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100">Hafid_keren_banget</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">15 Oktober 2024</p>
+                                </div>
+                                <div class="flex items-center text-yellow-500">
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base">star</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Koleksi satwanya cukup lengkap. Anak saya khususnya suka dengan bagian reptil. Harga tiketnya murah meriah. Cocok untuk menghabiskan waktu akhir pekan bersama keluarga.</p>
+                        </div>
+                        
+                        <!-- Review 4 -->
+                        <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800 fade-in">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100">YazidAdmin123</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">10 Oktober 2024</p>
+                                </div>
+                                <div class="flex items-center text-yellow-500">
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base">star</span>
+                                    <span class="material-symbols-outlined text-base">star</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Pengalaman yang cukup baik. Beberapa satwa terlihat kurang aktif mungkin karena cuaca. Taman bermain untuk anak cukup bagus. Parkirnya luas tapi agak sulit mencari tempat di hari libur.</p>
                         </div>
                     </div>
+                    
+                    <!-- Review tambahan (hidden) -->
+                    <div class="hidden" id="more-reviews">
+                        <!-- Review 5 - AxelNyanNyan -->
+                        <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100">AxelNyanNyan</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">5 Oktober 2024</p>
+                                </div>
+                                <div class="flex items-center text-yellow-500">
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base">star</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Asik banget! Satwa-satwanya lucu-lucu, terutama kucing besar. Fasilitas bersih, harga murah. Perfect for weekend hangout with friends. Aku suka banget sama bagian bird sanctuary-nya!</p>
+                        </div>
+                        
+                        <!-- Review 6 -->
+                        <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100">Rina_Sari</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">1 Oktober 2024</p>
+                                </div>
+                                <div class="flex items-center text-yellow-500">
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base">star</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Tempatnya luas dan nyaman. Anak-anak betah berlama-lama di sini. Harga tiket sangat terjangkau untuk fasilitas yang diberikan. Recommended untuk keluarga!</p>
+                        </div>
+                        
+                        <!-- Review 7 -->
+                        <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100">Traveler_Jogja</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">28 September 2024</p>
+                                </div>
+                                <div class="flex items-center text-yellow-500">
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base">star</span>
+                                    <span class="material-symbols-outlined text-base">star</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Koleksi satwanya lumayan lengkap. Beberapa kandang terlihat butuh perbaikan, tapi overall oke untuk harga segitu. Cocok untuk edukasi anak tentang satwa.</p>
+                        </div>
+                        
+                        <!-- Review 8 -->
+                        <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100">Wildlife_Lover</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">25 September 2024</p>
+                                </div>
+                                <div class="flex items-center text-yellow-500">
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                    <span class="material-symbols-outlined text-base star-filled">star</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">Salah satu kebun binatang terbaik di Jawa Timur! Pengelolaannya sudah cukup baik. Satwa-satwanya terlihat sehat dan aktif. Sangat mengedukasi!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <div class="flex justify-center mt-6 md:mt-8" id="load-more-container">
+                        <button id="load-more-reviews" class="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-6 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold tracking-[0.015em] hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors active:scale-[0.98] w-full md:w-auto">
+                            <span class="material-symbols-outlined">expand_more</span>
+                            Lihat Lebih Banyak Ulasan
+                        </button>
+                    </div>
+                </div>
 
-                    <!-- Right Column (Sidebar) -->
-                    <div class="lg:col-span-1 w-full flex flex-col gap-6 lg:sticky lg:top-28">
-                        <!-- Rincian Harga -->
-                        <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col gap-4">
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Rincian Harga</h3>
-                            <div class="flex flex-col gap-3 text-slate-600 dark:text-slate-300">
-                                <div class="flex justify-between items-center">
-                                    <p>Tiket Masuk (2 orang)</p>
-                                    <p>Rp 30.000</p>
+                <!-- Lokasi Tab -->
+                <div id="lokasi" class="py-6 md:py-10 hidden">
+                    <h3 class="text-xl md:text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6">Lokasi Kebun Binatang Surabaya</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                        <!-- Map -->
+                        <div class="lg:col-span-2">
+                            <div class="map-container rounded-xl overflow-hidden shadow-lg">
+                                <div class="w-full h-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                                    <div class="text-center p-4">
+                                        <span class="material-symbols-outlined text-5xl md:text-6xl text-slate-400 dark:text-slate-600 mb-2">map</span>
+                                        <p class="text-slate-600 dark:text-slate-400 font-medium">Peta Lokasi Kebun Binatang Surabaya</p>
+                                        <p class="text-sm text-slate-500 dark:text-slate-500 mt-2">Jl. Setail No.1, Darmo, Kec. Wonokromo, Surabaya, Jawa Timur 60241</p>
+                                    </div>
                                 </div>
-                                <div class="flex justify-between items-center">
-                                    <p>Biaya Layanan</p>
-                                    <p>Rp 2.500</p>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <p>Biaya Admin</p>
-                                    <p>Rp 2.500</p>
-                                </div>
-                            </div>
-                            <hr class="border-slate-200 dark:border-slate-700 my-2"/>
-                            <div class="flex justify-between items-center text-slate-900 dark:text-white font-bold text-lg">
-                                <p>Total Pembayaran</p>
-                                <p class="text-primary">Rp 35.000</p>
-                            </div>
-                            
-                            <!-- Virtual Account Info -->
-                            <div class="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800 hidden" id="va-info">
-                                <p class="text-sm font-medium text-green-800 dark:text-green-300 mb-2">Virtual Account BCA</p>
-                                <div class="flex items-center justify-between">
-                                    <p class="text-xs text-green-700 dark:text-green-400">Nomor VA</p>
-                                    <p class="text-sm font-bold text-green-800 dark:text-green-300">82710 1234 5678</p>
-                                </div>
-                                <button class="w-full mt-3 flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-green-600 text-white text-sm font-bold hover:bg-green-700 transition-colors" onclick="copyVANumber()">
-                                    <span class="material-symbols-outlined text-base">content_copy</span>
-                                    Salin Nomor VA
-                                </button>
-                            </div>
-                            
-                            <button class="w-full flex items-center justify-center gap-2 rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-wide mt-4 hover:bg-primary/90 transition-colors duration-200" id="pay-button" onclick="prosesPembayaran()">
-                                <span class="material-symbols-outlined text-xl">lock</span>
-                                Bayar Sekarang
-                            </button>
-                            
-                            <p class="text-xs text-center text-slate-500 dark:text-slate-400 mt-2">
-                                Dengan melanjutkan, Anda menyetujui <a href="#" class="text-primary hover:underline">Syarat & Ketentuan</a>
-                            </p>
-                        </div>
-                        
-                        <!-- Info Keamanan -->
-                        <div class="flex items-start gap-3 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-                            <span class="material-symbols-outlined text-primary text-xl mt-0.5">verified_user</span>
-                            <div>
-                                <p class="text-sm font-medium text-green-800 dark:text-green-300 mb-1">100% Aman & Terjamin</p>
-                                <p class="text-xs text-green-700 dark:text-green-400">Transaksi Anda aman dan terenkripsi. E-tiket akan dikirim ke email Anda setelah pembayaran berhasil.</p>
                             </div>
                         </div>
                         
-                        <!-- Bantuan -->
-                        <div class="flex items-start gap-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                            <span class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-xl mt-0.5">help</span>
-                            <div>
-                                <p class="text-sm font-medium text-blue-800 dark:text-blue-300 mb-1">Butuh Bantuan?</p>
-                                <p class="text-xs text-blue-700 dark:text-blue-400">Hubungi Customer Service 24/7 di <span class="font-bold">1500-123</span></p>
+                        <!-- Location Info -->
+                        <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-lg">
+                            <h4 class="text-lg md:text-xl font-bold text-slate-800 dark:text-slate-100 mb-4">Informasi Lokasi</h4>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-primary">location_on</span>
+                                    <div>
+                                        <p class="font-medium text-slate-800 dark:text-slate-100">Alamat</p>
+                                        <p class="text-sm text-slate-600 dark:text-slate-400">Jl. Setail No.1, Darmo, Kec. Wonokromo, Surabaya, Jawa Timur 60241</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-primary">schedule</span>
+                                    <div>
+                                        <p class="font-medium text-slate-800 dark:text-slate-100">Jam Operasional</p>
+                                        <p class="text-sm text-slate-600 dark:text-slate-400">Setiap Hari: 08.00 - 17.00 WIB</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-primary">call</span>
+                                    <div>
+                                        <p class="font-medium text-slate-800 dark:text-slate-100">Telepon</p>
+                                        <p class="text-sm text-slate-600 dark:text-slate-400">(031) 5678703</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-primary">directions_car</span>
+                                    <div>
+                                        <p class="font-medium text-slate-800 dark:text-slate-100">Akses Transportasi</p>
+                                        <ul class="text-sm text-slate-600 dark:text-slate-400 list-disc pl-4 mt-1 space-y-1">
+                                            <li>Bus kota: Rute 1, 2, dan 3</li>
+                                            <li>Angkutan umum: M04, M05</li>
+                                            <li>Parkir luas tersedia</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800">
+                                <h5 class="font-bold text-slate-800 dark:text-slate-100 mb-2">Tips Berkunjung</h5>
+                                <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <li>• Datang lebih awal untuk menghindari keramaian</li>
+                                    <li>• Gunakan pakaian yang nyaman dan sepatu yang cocok untuk berjalan</li>
+                                    <li>• Bawa air minum dan makanan ringan</li>
+                                    <li>• Patuhi semua peraturan yang ada di kebun binatang</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -419,271 +618,293 @@
     </div>
 
     <script>
-        // Script untuk hamburger menu - TAMBAHAN BARU
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
+        // DOM Elements
+        const paxInput = document.getElementById('pax-selector');
+        const decreaseBtn = document.getElementById('decrease-pax');
+        const increaseBtn = document.getElementById('increase-pax');
+        const priceDisplay = document.getElementById('price-display');
+        const perPersonText = document.getElementById('per-person-text');
+        const tabButtons = document.querySelectorAll('nav[aria-label="Tabs"] button');
+        const tabContents = {
+            deskripsi: document.getElementById('deskripsi'),
+            ulasan: document.getElementById('ulasan'),
+            lokasi: document.getElementById('lokasi')
+        };
+        
+        // Hamburger menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('open');
+                const icon = mobileMenuButton.querySelector('.material-symbols-outlined');
+                icon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+            });
             
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('open');
-                    const icon = mobileMenuButton.querySelector('.material-symbols-outlined');
-                    icon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+            // Close mobile menu ketika klik link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                    mobileMenuButton.querySelector('.material-symbols-outlined').textContent = 'menu';
                 });
-                
-                // Close mobile menu ketika klik link
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.remove('open');
-                        mobileMenuButton.querySelector('.material-symbols-outlined').textContent = 'menu';
-                    });
-                });
+            });
+        }
+        
+        // Price calculation constants
+        const PRICE_PER_PERSON = 15000;
+        
+        // Update price based on number of people
+        function updatePrice() {
+            const pax = parseInt(paxInput.value) || 1;
+            const totalPrice = pax * PRICE_PER_PERSON;
+            
+            // Format price to Indonesian Rupiah
+            const formattedPrice = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(totalPrice).replace('Rp', 'Rp ');
+            
+            priceDisplay.textContent = formattedPrice;
+            perPersonText.textContent = ` / ${pax} orang`;
+        }
+        
+        // Event listeners for pax controls
+        decreaseBtn.addEventListener('click', () => {
+            let currentValue = parseInt(paxInput.value) || 1;
+            if (currentValue > 1) {
+                paxInput.value = currentValue - 1;
+                updatePrice();
             }
         });
         
-        // Timer Countdown
-        let timeLeft = 59 * 60 + 59; // 59 menit 59 detik
-        
-        function updateCountdown() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
+        increaseBtn.addEventListener('click', () => {
+            let currentValue = parseInt(paxInput.value) || 1;
+            const maxValue = parseInt(paxInput.max) || 10;
             
-            document.getElementById('countdown').textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            
-            if (timeLeft > 0) {
-                timeLeft--;
-                setTimeout(updateCountdown, 1000);
-            } else {
-                document.getElementById('countdown').textContent = "00:00";
-                document.getElementById('pay-button').disabled = true;
-                document.getElementById('pay-button').classList.add('opacity-50', 'cursor-not-allowed');
-                alert("Waktu pembayaran telah habis. Silakan buat pesanan baru.");
+            if (currentValue < maxValue) {
+                paxInput.value = currentValue + 1;
+                updatePrice();
             }
-        }
+        });
         
-        // Data pemesan
-        let dataPemesanTersimpan = false;
-        let dataPemesan = {
-            nama: '',
-            email: '',
-            telepon: ''
-        };
-        
-        // Fungsi untuk menyimpan data pemesan
-        function simpanDataPemesan() {
-            const nama = document.getElementById('nama').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const telepon = document.getElementById('telepon').value.trim();
+        paxInput.addEventListener('change', () => {
+            let currentValue = parseInt(paxInput.value) || 1;
+            const maxValue = parseInt(paxInput.max) || 10;
+            const minValue = parseInt(paxInput.min) || 1;
             
-            // Validasi input
-            if (!nama || !email || !telepon) {
-                showError('Harap isi semua data pemesan!');
-                return;
+            if (currentValue > maxValue) {
+                paxInput.value = maxValue;
+            } else if (currentValue < minValue) {
+                paxInput.value = minValue;
             }
             
-            // Validasi email sederhana
-            if (!email.includes('@') || !email.includes('.')) {
-                showError('Format email tidak valid!');
-                return;
-            }
-            
-            // Simpan data
-            dataPemesan = { nama, email, telepon };
-            dataPemesanTersimpan = true;
-            
-            // Update tampilan
-            document.getElementById('display-nama').textContent = nama;
-            document.getElementById('display-email').textContent = email;
-            document.getElementById('display-telepon').textContent = telepon;
-            document.getElementById('status-verifikasi').innerHTML = '<span class="material-symbols-outlined text-xs mr-1">check_circle</span> Terverifikasi';
-            document.getElementById('status-verifikasi').className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
-            
-            // Tampilkan data tersimpan, sembunyikan form
-            document.getElementById('data-tersimpan').classList.remove('hidden');
-            document.querySelector('#data-pemesan .grid.grid-cols-1').classList.add('hidden');
-            
-            // Sembunyikan error jika ada
-            hideError();
-            
-            // Tampilkan notifikasi sukses
-            showSuccess('Data pemesan berhasil disimpan!');
-        }
+            updatePrice();
+        });
         
-        // Fungsi untuk mengubah data pemesan
-        function ubahDataPemesan() {
-            // Tampilkan form, sembunyikan data tersimpan
-            document.getElementById('data-tersimpan').classList.add('hidden');
-            document.querySelector('#data-pemesan .grid.grid-cols-1').classList.remove('hidden');
-            
-            // Isi form dengan data yang ada
-            document.getElementById('nama').value = dataPemesan.nama;
-            document.getElementById('email').value = dataPemesan.email;
-            document.getElementById('telepon').value = dataPemesan.telepon;
-        }
-        
-        // Fungsi untuk menampilkan error
-        function showError(message) {
-            const errorElement = document.getElementById('data-error');
-            errorElement.classList.remove('hidden');
-            errorElement.querySelector('span:last-child').textContent = message;
-            
-            // Tambahkan animasi shake
-            errorElement.classList.add('shake');
-            setTimeout(() => {
-                errorElement.classList.remove('shake');
-            }, 500);
-        }
-        
-        // Fungsi untuk menyembunyikan error
-        function hideError() {
-            document.getElementById('data-error').classList.add('hidden');
-        }
-        
-        // Fungsi untuk menampilkan sukses
-        function showSuccess(message) {
-            // Buat notifikasi sementara
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-20 right-4 z-50 px-4 py-3 rounded-lg bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 shadow-lg';
-            notification.innerHTML = `
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-green-600 dark:text-green-400">check_circle</span>
-                    <span>${message}</span>
-                </div>
-            `;
-            document.body.appendChild(notification);
-            
-            // Hapus notifikasi setelah 3 detik
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
-        
-        // Fungsi untuk memilih metode pembayaran
-        function selectPayment(method) {
-            // Reset semua border
-            document.getElementById('payment-va-option').classList.remove('border-2', 'border-primary/70', 'bg-primary/10');
-            document.getElementById('payment-ewallet-option').classList.remove('border-2', 'border-primary/70', 'bg-primary/10');
-            document.getElementById('payment-card-option').classList.remove('border-2', 'border-primary/70', 'bg-primary/10');
-            
-            // Hapus bg-primary dari semua
-            document.getElementById('payment-va-option').classList.add('border', 'border-slate-200', 'dark:border-slate-700');
-            document.getElementById('payment-ewallet-option').classList.add('border', 'border-slate-200', 'dark:border-slate-700');
-            document.getElementById('payment-card-option').classList.add('border', 'border-slate-200', 'dark:border-slate-700');
-            
-            // Hapus bg-primary/10 dari semua
-            document.getElementById('payment-va-option').classList.remove('bg-primary/10', 'dark:bg-primary/20');
-            document.getElementById('payment-ewallet-option').classList.remove('bg-primary/10', 'dark:bg-primary/20');
-            document.getElementById('payment-card-option').classList.remove('bg-primary/10', 'dark:bg-primary/20');
-            
-            // Tampilkan info VA jika dipilih
-            document.getElementById('va-info').classList.add('hidden');
-            
-            // Atur yang dipilih
-            let selectedElement;
-            let instruction;
-            
-            switch(method) {
-                case 'va':
-                    selectedElement = document.getElementById('payment-va-option');
-                    instruction = "Transfer ke Virtual Account yang muncul setelah klik Bayar. Pembayaran otomatis terverifikasi.";
-                    document.getElementById('va-info').classList.remove('hidden');
-                    break;
-                case 'ewallet':
-                    selectedElement = document.getElementById('payment-ewallet-option');
-                    instruction = "Scan QR code atau transfer ke e-wallet yang tersedia. Pastikan saldo mencukupi.";
-                    break;
-                case 'card':
-                    selectedElement = document.getElementById('payment-card-option');
-                    instruction = "Masukkan detail kartu Anda. Transaksi aman dengan sistem enkripsi terbaru.";
-                    break;
-            }
-            
-            // Update styling untuk yang dipilih
-            selectedElement.classList.remove('border', 'border-slate-200', 'dark:border-slate-700');
-            selectedElement.classList.add('border-2', 'border-primary/70', 'bg-primary/10', 'dark:bg-primary/20');
-            
-            // Update petunjuk
-            document.getElementById('payment-instruction').textContent = instruction;
-        }
-        
-        // Fungsi untuk memilih bank
-        function selectBank(bank) {
-            // Reset semua tombol bank
-            document.querySelectorAll('.payment-bank-btn').forEach(btn => {
-                btn.classList.remove('border-2', 'border-primary', 'bg-primary/10');
-                btn.classList.add('border', 'border-slate-200', 'dark:border-slate-700');
-            });
-            
-            // Set yang dipilih
-            const selectedBtn = document.querySelector(`[data-bank="${bank}"]`);
-            selectedBtn.classList.remove('border', 'border-slate-200', 'dark:border-slate-700');
-            selectedBtn.classList.add('border-2', 'border-primary', 'bg-primary/10');
-            
-            // Update info VA
-            const banks = {
-                'bca': 'BCA',
-                'mandiri': 'Mandiri',
-                'bri': 'BRI'
-            };
-            
-            document.querySelector('#va-info p.text-sm').textContent = `Virtual Account ${banks[bank]}`;
-            document.querySelector('#va-info p.text-sm.font-bold').textContent = `82710 1234 ${Math.floor(Math.random()*9000)+1000}`;
-        }
-        
-        // Fungsi untuk menyalin nomor VA
-        function copyVANumber() {
-            const vaNumber = document.querySelector('#va-info p.text-sm.font-bold').textContent;
-            navigator.clipboard.writeText(vaNumber.replace(/\s/g, '')).then(() => {
-                showSuccess('Nomor VA berhasil disalin!');
-            });
-        }
-        
-        // Fungsi untuk memproses pembayaran
-        function prosesPembayaran() {
-            // Validasi data pemesan
-            if (!dataPemesanTersimpan) {
-                showError('Harap isi dan simpan data pemesan terlebih dahulu!');
-                document.getElementById('data-pemesan').scrollIntoView({ behavior: 'smooth' });
-                return;
-            }
-            
-            // Validasi metode pembayaran
-            const selectedPayment = document.querySelector('input[name="payment-method"]:checked');
-            if (!selectedPayment) {
-                alert('Pilih metode pembayaran terlebih dahulu!');
-                return;
-            }
-            
-            // Simulasi proses pembayaran
-            const payButton = document.getElementById('pay-button');
-            payButton.disabled = true;
-            payButton.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Memproses...';
-            payButton.classList.add('opacity-50', 'cursor-not-allowed');
-            
-            // Simulasi delay pembayaran
-            setTimeout(() => {
-                showSuccess('Pembayaran berhasil! E-tiket telah dikirim ke email Anda.');
+        // Tab switching functionality
+        tabButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
                 
-                // Redirect ke halaman tiket saya setelah 2 detik
-                setTimeout(() => {
-                    window.location.href = 'tiket-saya.html';
-                }, 2000);
-            }, 2000);
+                // Get target tab id from data attribute
+                const targetId = button.getAttribute('data-tab');
+                
+                // Update active tab
+                tabButtons.forEach(t => {
+                    t.classList.remove('tab-active');
+                    t.classList.add('border-transparent', 'text-slate-500', 'hover:text-slate-700', 'hover:border-slate-300', 'dark:text-slate-400', 'dark:hover:text-slate-300', 'dark:hover:border-slate-700');
+                });
+                
+                button.classList.add('tab-active');
+                button.classList.remove('border-transparent', 'text-slate-500', 'hover:text-slate-700', 'hover:border-slate-300', 'dark:text-slate-400', 'dark:hover:text-slate-300', 'dark:hover:border-slate-700');
+                
+                // Show target tab content
+                Object.keys(tabContents).forEach(key => {
+                    if (key === targetId) {
+                        tabContents[key].classList.remove('hidden');
+                    } else {
+                        tabContents[key].classList.add('hidden');
+                    }
+                });
+                
+                // Smooth scroll to tab content on mobile
+                if (window.innerWidth < 768) {
+                    document.getElementById(targetId).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Set minimum date to tomorrow for date picker
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        const yyyy = tomorrow.getFullYear();
+        const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        const dd = String(tomorrow.getDate()).padStart(2, '0');
+        
+        const tomorrowFormatted = `${yyyy}-${mm}-${dd}`;
+        document.getElementById('date-picker').min = tomorrowFormatted;
+        document.getElementById('date-picker').value = tomorrowFormatted;
+        
+        // Initialize price on page load
+        updatePrice();
+        
+        // Add hover effect to gallery images
+        const galleryImages = document.querySelectorAll('.gallery-grid > div');
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                // For mobile, show a simple alert. In a real app, you might want a modal or lightbox
+                if (window.innerWidth < 768) {
+                    alert('Klik gambar thumbnail untuk melihat versi yang lebih besar.');
+                }
+            });
+        });
+        
+        // Fix untuk navbar sticky
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 0) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+
+        // ===============================
+        // FUNGSI UNTUK ULASAN
+        // ===============================
+
+        // DOM Elements tambahan
+        const loadMoreBtn = document.getElementById('load-more-reviews');
+        const moreReviewsContainer = document.getElementById('more-reviews');
+        const reviewContainer = document.getElementById('review-container');
+        const tulisUlasanBtn = document.getElementById('tulis-ulasan');
+
+        // State untuk tracking
+        let reviewsLoaded = false;
+        let showLessMode = false;
+
+        // Fungsi untuk load lebih banyak review
+        function loadMoreReviews() {
+            if (!reviewsLoaded) {
+                // Clone dan append reviews dari #more-reviews
+                const reviews = moreReviewsContainer.querySelectorAll('div.bg-white');
+                reviews.forEach(review => {
+                    const clonedReview = review.cloneNode(true);
+                    clonedReview.classList.add('fade-in');
+                    reviewContainer.appendChild(clonedReview);
+                });
+                
+                // Update tombol
+                loadMoreBtn.innerHTML = `
+                    <span class="material-symbols-outlined">expand_less</span>
+                    Lihat Lebih Sedikit Ulasan
+                `;
+                reviewsLoaded = true;
+                showLessMode = true;
+            } else {
+                // Toggle mode: show less
+                if (showLessMode) {
+                    // Hapus 4 review terakhir (reviews tambahan)
+                    const allReviews = reviewContainer.querySelectorAll('div.bg-white');
+                    for (let i = allReviews.length - 1; i >= 4; i--) {
+                        allReviews[i].remove();
+                    }
+                    
+                    // Update tombol
+                    loadMoreBtn.innerHTML = `
+                        <span class="material-symbols-outlined">expand_more</span>
+                        Lihat Lebih Banyak Ulasan
+                    `;
+                    showLessMode = false;
+                } else {
+                    // Load lagi
+                    const reviews = moreReviewsContainer.querySelectorAll('div.bg-white');
+                    reviews.forEach(review => {
+                        const clonedReview = review.cloneNode(true);
+                        clonedReview.classList.add('fade-in');
+                        reviewContainer.appendChild(clonedReview);
+                    });
+                    
+                    // Update tombol
+                    loadMoreBtn.innerHTML = `
+                        <span class="material-symbols-outlined">expand_less</span>
+                        Lihat Lebih Sedikit Ulasan
+                    `;
+                    showLessMode = true;
+                }
+            }
+        }
+
+        // Fungsi untuk tulis ulasan
+        function tulisUlasan() {
+            const nama = prompt("Masukkan nama Anda:");
+            if (!nama) return;
+            
+            const rating = prompt("Berikan rating (1-5):");
+            if (!rating || rating < 1 || rating > 5) {
+                alert("Rating harus antara 1-5");
+                return;
+            }
+            
+            const komentar = prompt("Tulis ulasan Anda:");
+            if (!komentar) return;
+            
+            // Buat elemen review baru
+            const newReview = document.createElement('div');
+            newReview.className = 'bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800 fade-in';
+            newReview.innerHTML = `
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100">${nama}</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">${new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                    </div>
+                    <div class="flex items-center text-yellow-500">
+                        ${Array.from({length: 5}, (_, i) => 
+                            `<span class="material-symbols-outlined text-base ${i < rating ? 'star-filled' : ''}">star</span>`
+                        ).join('')}
+                    </div>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base">${komentar}</p>
+            `;
+            
+            // Tambahkan di awal container
+            reviewContainer.prepend(newReview);
+            
+            // Update jumlah ulasan
+            const ratingText = document.querySelector('#ulasan p.text-slate-600');
+            if (ratingText) {
+                const currentReviews = ratingText.textContent.match(/\d+/)[0];
+                const newReviewCount = parseInt(currentReviews) + 1;
+                ratingText.textContent = `4.2 dari ${newReviewCount} ulasan`;
+            }
+            
+            alert("Ulasan berhasil ditambahkan! Terima kasih.");
+        }
+
+        // Event listeners untuk tombol ulasan
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', loadMoreReviews);
+        }
+
+        if (tulisUlasanBtn) {
+            tulisUlasanBtn.addEventListener('click', tulisUlasan);
         }
         
-        // Inisialisasi
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mulai countdown
-            updateCountdown();
+        // Touch feedback untuk tombol
+        document.querySelectorAll('button, a[href]').forEach(element => {
+            element.addEventListener('touchstart', function() {
+                this.classList.add('active:scale-[0.98]');
+            });
             
-            // Set default payment method
-            selectPayment('va');
-            selectBank('bca');
-            
-            // Tambahkan styling untuk tombol bank
-            document.querySelectorAll('.payment-bank-btn').forEach(btn => {
-                btn.classList.add('p-3', 'rounded-lg', 'border', 'border-slate-200', 'dark:border-slate-700', 'hover:border-primary/50', 'transition-colors', 'flex', 'items-center', 'justify-center');
+            element.addEventListener('touchend', function() {
+                this.classList.remove('active:scale-[0.98]');
             });
         });
     </script>

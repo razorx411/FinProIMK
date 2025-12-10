@@ -16,7 +16,7 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         
-        /* Animasi hamburger menu - TAMBAHAN SAJA */
+        /* Animasi hamburger menu */
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
@@ -26,6 +26,75 @@
         .mobile-menu.open {
             max-height: 500px;
             transition: max-height 0.3s ease-in;
+        }
+        
+        /* Search dropdown styling */
+        .search-dropdown {
+            max-height: 350px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #c1c1c1 #f1f1f1;
+        }
+        
+        .search-dropdown::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .search-dropdown::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .search-dropdown::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        .search-dropdown::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Dark mode scrollbar */
+        .dark .search-dropdown::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        
+        .dark .search-dropdown::-webkit-scrollbar-thumb {
+            background: #4a5568;
+        }
+        
+        .dark .search-dropdown::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+        
+        /* Active state for search results */
+        .search-result-item:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .dark .search-result-item:hover {
+            background-color: #374151;
+        }
+        
+        /* Animation for search results */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.2s ease-out;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .search-dropdown {
+                max-height: 300px;
+            }
+            
+            .search-result-item {
+                padding: 12px;
+            }
         }
     </style>
     
@@ -57,7 +126,7 @@
 <body class="bg-background-light dark:bg-background-dark font-display">
     <div class="relative flex min-h-screen w-full flex-col">
         
-        <!-- Header - DIKEMBALIKAN KE ASLI + TAMBAHAN MOBILE -->
+        <!-- Header -->
         <header id="navbar"
             class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80 transition-transform duration-300 transform -translate-y-0">
             <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
@@ -67,26 +136,26 @@
                     <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
                 </a>
 
-                <!-- Desktop Navigation - TETAP SAMA -->
+                <!-- Desktop Navigation -->
                 <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
                     <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
                     <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="promosi.html">Promosi</a>
                     <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="tiket-saya.html">Tiket Saya</a>
                 </nav>
 
-                <!-- Right section - TAMBAH HAMBURGER UNTUK MOBILE -->
+                <!-- Right section -->
                 <div class="flex items-center gap-4">
                     <!-- Link Bantuan (Desktop) -->
                     <a class="hidden md:block text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
                     
-                    <!-- HAMBURGER MENU BUTTON SAJA (Search dihapus) -->
+                    <!-- HAMBURGER MENU BUTTON -->
                     <button id="mobile-menu-button" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                 </div>
             </div>
             
-            <!-- Mobile Menu Dropdown (TAMBAHAN BARU) -->
+            <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu" class="mobile-menu md:hidden bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-800/50">
                 <div class="px-4 py-3 space-y-1">
                     <a href="destinasi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
@@ -112,7 +181,7 @@
             </div>
         </header>
 
-        <!-- Main Content - TETAP SAMA PERSIS -->
+        <!-- Main Content -->
         <main>
             <!-- Hero Section - GIF Background -->
             <section class="relative flex min-h-[560px] w-full items-center justify-center bg-cover bg-center py-16 text-center text-white" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('gambar/lv_0_20251209070901.gif');">
@@ -122,17 +191,29 @@
                     
                     <!-- Search Form -->
                     <div class="mt-10 rounded-xl bg-white/10 p-4 backdrop-blur-md">
-                        <div class="grid grid-cols-1 items-center gap-4 rounded-lg bg-white dark:bg-gray-900 md:grid-cols-12 md:p-2">
+                        <div class="relative grid grid-cols-1 items-center gap-4 rounded-lg bg-white dark:bg-gray-900 md:grid-cols-12 md:p-2">
                             <!-- Destination Search -->
                             <label class="col-span-12 flex h-14 w-full items-center px-4 md:col-span-5">
                                 <span class="material-symbols-outlined text-gray-400">search</span>
-                                <input class="w-full border-0 bg-transparent pl-2 text-gray-800 placeholder-gray-500 focus:ring-0 dark:text-gray-200 dark:placeholder-gray-400" placeholder="Destinasi atau Aktivitas" type="text" />
+                                <input 
+                                    id="search-input"
+                                    class="w-full border-0 bg-transparent pl-2 text-gray-800 placeholder-gray-500 focus:ring-0 dark:text-gray-200 dark:placeholder-gray-400" 
+                                    placeholder="Cari wisata di Surabaya..." 
+                                    type="text" 
+                                    autocomplete="off"
+                                />
                             </label>
                             <!-- Search Button -->
                             <button 
-                                class="absolute right-9 h-12 w-12 flex items-center justify-center rounded-md bg-primary text-white hover:bg-primary/90">
+                                id="search-button"
+                                class="absolute right-1 h-12 w-12 flex items-center justify-center rounded-md bg-primary text-white hover:bg-primary/90">
                                 <span class="material-symbols-outlined">search</span>
                             </button>
+                            
+                            <!-- Search Results Dropdown -->
+                            <div id="search-results" class="search-dropdown absolute top-full left-0 right-0 mt-1 z-50 hidden rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900 fade-in">
+                                <!-- Search results will be inserted here -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -279,7 +360,7 @@
             </div>
         </main>
 
-        <!-- Footer - TETAP SAMA -->
+        <!-- Footer -->
         <footer class="mt-auto border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900/50">
             <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
@@ -329,7 +410,80 @@
     </div>
 
     <script>
-        // Script untuk hamburger menu - TAMBAHAN BARU
+        // Data wisata yang bisa dicari
+        const wisataData = [
+            { 
+                id: "kbs",
+                name: "Kebun Binatang Surabaya", 
+                harga: 25000, 
+                url: "pesanTiket.html?wisata=kbs",
+                description: "Kebun binatang terbesar di Surabaya",
+                image: "gambar/kbs.jpg"
+            },
+            { 
+                id: "museum10nov",
+                name: "Museum 10 November", 
+                harga: 5000, 
+                url: "pesanTiket.html?wisata=museum10nov",
+                description: "Museum sejarah perjuangan Surabaya",
+                image: "gambar/museumnovember.jpg"
+            },
+            { 
+                id: "museumpendidikan",
+                name: "Museum Pendidikan", 
+                harga: 10000, 
+                url: "pesanTiket.html?wisata=museumpendidikan",
+                description: "Museum sejarah pendidikan Indonesia",
+                image: "gambar/museumpendidikan.jpg"
+            },
+            { 
+                id: "kenjeran",
+                name: "Taman Hiburan Pantai Kenjeran", 
+                harga: 15000, 
+                url: "pesanTiket.html?wisata=kenjeran",
+                description: "Pantai wisata dengan berbagai wahana",
+                image: "gambar/kenjeran.jpg"
+            },
+            { 
+                id: "monkasel",
+                name: "Monumen Kapal Selam", 
+                harga: 15000, 
+                url: "pesanTiket.html?wisata=monkasel",
+                description: "Museum kapal selam bersejarah",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop"
+            },
+            { 
+                id: "kalimas",
+                name: "Wisata Perahu Kalimas", 
+                harga: 7000, 
+                url: "pesanTiket.html?wisata=kalimas",
+                description: "Wisata sungai dengan perahu tradisional",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop"
+            },
+            { 
+                id: "tugu_pahlawan",
+                name: "Tugu Pahlawan", 
+                harga: 0, 
+                url: "pesanTiket.html?wisata=tugu_pahlawan",
+                description: "Monumen bersejarah Kota Surabaya",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop"
+            },
+            { 
+                id: "house_sampoerna",
+                name: "House of Sampoerna", 
+                harga: 0, 
+                url: "pesanTiket.html?wisata=house_sampoerna",
+                description: "Museum dan galeri sejarah rokok Sampoerna",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop"
+            }
+        ];
+
+        // DOM Elements
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const searchResults = document.getElementById('search-results');
+
+        // Script untuk hamburger menu
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -349,76 +503,45 @@
                     });
                 });
             }
-        });
-        
-        // Script search yang lama - TETAP SAMA
-        document.addEventListener('DOMContentLoaded', function() {
-            const wisataData = [
-                { name: "Kebun Binatang Surabaya", harga: 25000, url: "pesanTiket.html?wisata=kbs" },
-                { name: "Museum 10 November", harga: 5000, url: "pesanTiket.html?wisata=museum10nov" },
-                { name: "Museum Pendidikan", harga: 10000, url: "pesanTiket.html?wisata=museumpendidikan" },
-                { name: "Taman Hiburan Pantai Kenjeran", harga: 15000, url: "pesanTiket.html?wisata=kenjeran" },
-                { name: "Monumen Kapal Selam", harga: 15000, url: "pesanTiket.html?wisata=monkasel" },
-                { name: "Wisata Perahu Kalimas", harga: 7000, url: "pesanTiket.html?wisata=kalimas" }
-            ];
 
-            const searchInput = document.querySelector('input[placeholder="Destinasi atau Aktivitas"]');
-            const searchResults = document.createElement('div');
-            searchResults.className = 'absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-900 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto hidden';
-            
-            // Insert dropdown after search container
-            searchInput.parentElement.parentElement.appendChild(searchResults);
-
-            searchInput.addEventListener('input', function(e) {
-                const query = e.target.value.toLowerCase().trim();
-                searchResults.innerHTML = '';
-                
-                if (query.length < 2) {
+            // Close search dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target) && !searchButton.contains(e.target)) {
                     searchResults.classList.add('hidden');
-                    return;
-                }
-                
-                const filtered = wisataData.filter(item => 
-                    item.name.toLowerCase().includes(query)
-                );
-                
-                if (filtered.length > 0) {
-                    filtered.forEach(item => {
-                        const resultItem = document.createElement('a');
-                        resultItem.href = item.url;
-                        resultItem.className = 'flex items-center justify-between p-4 hover:bg-gray-100 dark:hover:bg-gray-800 border-b border-gray-100 dark:border-gray-800 cursor-pointer';
-                        resultItem.innerHTML = `
-                            <div>
-                                <div class="font-medium text-gray-900 dark:text-white">${item.name}</div>
-                                <div class="text-sm text-gray-500 dark:text-gray-400">Mulai dari Rp ${item.harga.toLocaleString()}</div>
-                            </div>
-                            <span class="material-symbols-outlined text-gray-400">chevron_right</span>
-                        `;
-                        searchResults.appendChild(resultItem);
-                    });
-                    searchResults.classList.remove('hidden');
-                } else {
-                    const noResult = document.createElement('div');
-                    noResult.className = 'p-4 text-gray-500 dark:text-gray-400 text-center';
-                    noResult.textContent = 'Tidak ditemukan destinasi';
-                    searchResults.appendChild(noResult);
-                    searchResults.classList.remove('hidden');
                 }
             });
 
-            // Hide dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                    searchResults.classList.add('hidden');
-                }
+            // Handle search input focus - TAMPILKAN SEMUA HASIL SAAT KLIK/FOCUS
+            searchInput.addEventListener('focus', function() {
+                showAllResults();
+            });
+
+            // Handle search input - TAMPILKAN SEMUA HASIL SAAT INPUT DIMULAI
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase().trim();
+                showSearchResults(query);
             });
 
             // Handle search button click
-            document.querySelector('button.bg-primary').addEventListener('click', function() {
+            searchButton.addEventListener('click', function() {
                 const query = searchInput.value.trim();
                 if (query) {
-                    // Redirect to search results page with query parameter
-                    window.location.href = `destinasi.html?search=${encodeURIComponent(query)}`;
+                    // Cari apakah ada hasil yang cocok
+                    const filtered = wisataData.filter(item => 
+                        item.name.toLowerCase().includes(query.toLowerCase()) ||
+                        item.description.toLowerCase().includes(query.toLowerCase())
+                    );
+                    
+                    if (filtered.length > 0) {
+                        // Redirect ke hasil pertama yang cocok
+                        window.location.href = filtered[0].url;
+                    } else {
+                        // Jika tidak ditemukan, redirect ke destinasi dengan search query
+                        window.location.href = `destinasi.html?search=${encodeURIComponent(query)}`;
+                    }
+                } else {
+                    // Jika kosong, tetap tampilkan semua hasil
+                    showAllResults();
                 }
             });
 
@@ -427,11 +550,175 @@
                 if (e.key === 'Enter') {
                     const query = searchInput.value.trim();
                     if (query) {
-                        window.location.href = `destinasi.html?search=${encodeURIComponent(query)}`;
+                        // Cari apakah ada hasil yang cocok
+                        const filtered = wisataData.filter(item => 
+                            item.name.toLowerCase().includes(query.toLowerCase()) ||
+                            item.description.toLowerCase().includes(query.toLowerCase())
+                        );
+                        
+                        if (filtered.length > 0) {
+                            // Redirect ke hasil pertama yang cocok
+                            window.location.href = filtered[0].url;
+                        } else {
+                            // Jika tidak ditemukan, redirect ke destinasi dengan search query
+                            window.location.href = `destinasi.html?search=${encodeURIComponent(query)}`;
+                        }
                     }
                 }
             });
+
+            // Tampilkan semua hasil saat pertama kali load halaman jika search box sudah fokus
+            if (document.activeElement === searchInput) {
+                showAllResults();
+            }
         });
+
+        // Function to show ALL results (no filtering)
+        function showAllResults() {
+            searchResults.innerHTML = '';
+            
+            // Show header for all results
+            const headerItem = document.createElement('div');
+            headerItem.className = 'p-3 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800';
+            headerItem.innerHTML = `
+                <div class="font-medium text-gray-900 dark:text-white">Semua Destinasi Wisata Surabaya</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">${wisataData.length} destinasi tersedia</div>
+            `;
+            searchResults.appendChild(headerItem);
+            
+            wisataData.forEach(item => {
+                const resultItem = document.createElement('a');
+                resultItem.href = item.url;
+                resultItem.className = 'search-result-item flex items-center gap-3 p-4 border-b border-gray-100 dark:border-gray-800 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors';
+                resultItem.innerHTML = `
+                    <div class="flex-shrink-0">
+                        <div class="h-12 w-12 rounded-lg bg-cover bg-center" style="background-image: url('${item.image}')"></div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-medium text-gray-900 dark:text-white truncate">${item.name}</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400 truncate">${item.description}</div>
+                        <div class="text-sm font-medium text-primary">${item.harga === 0 ? 'Gratis' : 'Rp ' + item.harga.toLocaleString()}</div>
+                    </div>
+                    <span class="material-symbols-outlined text-gray-400 flex-shrink-0">chevron_right</span>
+                `;
+                
+                // Add click handler to close dropdown
+                resultItem.addEventListener('click', function() {
+                    searchResults.classList.add('hidden');
+                    searchInput.value = item.name; // Optional: set input value to selected item
+                });
+                
+                searchResults.appendChild(resultItem);
+            });
+            
+            // Add "View all destinations" option
+            const viewAllItem = document.createElement('a');
+            viewAllItem.href = `destinasi.html`;
+            viewAllItem.className = 'flex items-center justify-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 text-center text-sm font-medium text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors rounded-b-lg';
+            viewAllItem.innerHTML = `
+                <span>Lihat semua destinasi di Surabaya</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            `;
+            
+            viewAllItem.addEventListener('click', function() {
+                searchResults.classList.add('hidden');
+            });
+            
+            searchResults.appendChild(viewAllItem);
+            searchResults.classList.remove('hidden');
+        }
+
+        // Function to show filtered search results
+        function showSearchResults(query) {
+            searchResults.innerHTML = '';
+            
+            // If query is empty, show all results
+            if (query.length === 0) {
+                showAllResults();
+                return;
+            }
+            
+            const filtered = wisataData.filter(item => 
+                item.name.toLowerCase().includes(query.toLowerCase()) ||
+                item.description.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (filtered.length > 0) {
+                // Show header with search info
+                const headerItem = document.createElement('div');
+                headerItem.className = 'p-3 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800';
+                headerItem.innerHTML = `
+                    <div class="font-medium text-gray-900 dark:text-white">Hasil pencarian untuk "${query}"</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">${filtered.length} destinasi ditemukan</div>
+                `;
+                searchResults.appendChild(headerItem);
+                
+                filtered.forEach(item => {
+                    const resultItem = document.createElement('a');
+                    resultItem.href = item.url;
+                    resultItem.className = 'search-result-item flex items-center gap-3 p-4 border-b border-gray-100 dark:border-gray-800 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors';
+                    resultItem.innerHTML = `
+                        <div class="flex-shrink-0">
+                            <div class="h-12 w-12 rounded-lg bg-cover bg-center" style="background-image: url('${item.image}')"></div>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-medium text-gray-900 dark:text-white truncate">${item.name}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 truncate">${item.description}</div>
+                            <div class="text-sm font-medium text-primary">${item.harga === 0 ? 'Gratis' : 'Rp ' + item.harga.toLocaleString()}</div>
+                        </div>
+                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0">chevron_right</span>
+                    `;
+                    
+                    // Add click handler to close dropdown
+                    resultItem.addEventListener('click', function() {
+                        searchResults.classList.add('hidden');
+                        searchInput.value = item.name;
+                    });
+                    
+                    searchResults.appendChild(resultItem);
+                });
+                
+                // Add "View all results" option
+                const viewAllItem = document.createElement('a');
+                viewAllItem.href = `destinasi.html?search=${encodeURIComponent(query)}`;
+                viewAllItem.className = 'flex items-center justify-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 text-center text-sm font-medium text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors rounded-b-lg';
+                viewAllItem.innerHTML = `
+                    <span>Lihat semua hasil untuk "${query}"</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                `;
+                
+                viewAllItem.addEventListener('click', function() {
+                    searchResults.classList.add('hidden');
+                });
+                
+                searchResults.appendChild(viewAllItem);
+                searchResults.classList.remove('hidden');
+            } else {
+                const noResult = document.createElement('div');
+                noResult.className = 'p-4 text-gray-500 dark:text-gray-400 text-center';
+                noResult.innerHTML = `
+                    <p>Tidak ditemukan destinasi untuk "${query}"</p>
+                    <p class="text-sm mt-2">Coba kata kunci lain atau lihat semua destinasi</p>
+                `;
+                searchResults.appendChild(noResult);
+                
+                // Add link to all destinations
+                const viewAllDestinations = document.createElement('a');
+                viewAllDestinations.href = 'destinasi.html';
+                viewAllDestinations.className = 'flex items-center justify-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 text-center text-sm font-medium text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors rounded-b-lg';
+                viewAllDestinations.innerHTML = `
+                    <span>Lihat semua destinasi</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                `;
+                
+                viewAllDestinations.addEventListener('click', function() {
+                    searchResults.classList.add('hidden');
+                });
+                
+                searchResults.appendChild(viewAllDestinations);
+                searchResults.classList.remove('hidden');
+            }
+        }
     </script>
 </body>
 </html>

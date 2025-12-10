@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tentang Kami - Tiket Wisata Surabaya</title>
+    
+    <!-- External Resources -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        :root {
+            --neon-primary: #00ff9d;
+            --neon-secondary: #0080ff;
+            --neon-pink: #ff00ff;
+            --neon-purple: #9d00ff;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow-x: hidden;
+        }
+        
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(0, 255, 157, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 157, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .cyber-border {
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, var(--neon-primary), var(--neon-purple)) border-box;
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        .cyber-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--neon-primary), 
+                var(--neon-secondary),
+                var(--neon-pink),
+                var(--neon-purple));
+            border-radius: 22px;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+            filter: blur(5px);
+        }
+        
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        .cyber-card {
+            background: rgba(16, 18, 27, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .cyber-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-primary);
+            box-shadow: 0 20px 40px rgba(0, 255, 157, 0.2);
+        }
+        
+        .neon-text {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 
+                0 0 10px var(--neon-primary),
+                0 0 20px var(--neon-primary),
+                0 0 30px var(--neon-primary);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, var(--neon-primary), var(--neon-secondary), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .photo-frame {
+            width: 160px; /* Dikecilkan dari 180px */
+            height: 160px; /* Dikecilkan dari 180px */
+            border-radius: 50%;
+            padding: 6px; /* Dikecilkan dari 8px */
+            background: linear-gradient(45deg, var(--neon-primary), var(--neon-purple));
+            position: relative;
+            animation: rotate 10s linear infinite;
+            margin: 0 auto 1.5rem; /* Center dan beri margin bottom */
+        }
+        
+        .photo-frame-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #0a0a0a;
+            background: #1a1a2e;
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-frame:hover img {
+            transform: scale(1.1);
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .typing {
+            overflow: hidden;
+            border-right: 3px solid var(--neon-primary);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--neon-primary) }
+        }
+        
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            animation: glitch-1 2s infinite linear alternate-reverse;
+            color: var(--neon-pink);
+            z-index: -1;
+        }
+        
+        .glitch::after {
+            animation: glitch-2 3s infinite linear alternate-reverse;
+            color: var(--neon-secondary);
+            z-index: -2;
+        }
+        
+        @keyframes glitch-1 {
+            0% { transform: translate(0) }
+            20% { transform: translate(-3px, 3px) }
+            40% { transform: translate(-3px, -3px) }
+            60% { transform: translate(3px, 3px) }
+            80% { transform: translate(3px, -3px) }
+            100% { transform: translate(0) }
+        }
+        
+        @keyframes glitch-2 {
+            0% { transform: translate(0) }
+            10% { transform: translate(-2px, -2px) }
+            30% { transform: translate(2px, 2px) }
+            50% { transform: translate(-2px, 2px) }
+            70% { transform: translate(2px, -2px) }
+            90% { transform: translate(-2px, 0) }
+            100% { transform: translate(0) }
+        }
+        
+        .matrix-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: #0a0a0a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--neon-primary), var(--neon-purple));
+            border-radius: 5px;
+        }
+        
+        /* Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-primary);
+            border-radius: 50%;
+            animation: particle-float 20s infinite linear;
+        }
+        
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Team card content fix */
+        .team-card-content {
+            min-height: 300px; /* Atur tinggi minimal agar seragam */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .team-title {
+            font-size: 1.5rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            height: 3.6rem; /* Fixed height untuk title */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .team-subtitle {
+            color: #9ca3af;
+            margin-bottom: 1rem;
+            height: 2.5rem; /* Fixed height untuk subtitle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .team-skills {
+            flex-grow: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* Cube styles */
+        .cube {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform: rotateX(25deg) rotateY(25deg);
+        }
+        
+        .cube .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .cube .front  { transform: translateZ(100px); }
+        .cube .back   { transform: rotateY(180deg) translateZ(100px); }
+        .cube .right  { transform: rotateY(90deg) translateZ(100px); }
+        .cube .left   { transform: rotateY(-90deg) translateZ(100px); }
+        .cube .top    { transform: rotateX(90deg) translateZ(100px); }
+        .cube .bottom { transform: rotateX(-90deg) translateZ(100px); }
+    </style>
+</head>
+
+<body class="font-['Plus_Jakarta_Sans'] text-white">
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix" class="matrix-rain"></canvas>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Cyber Grid Overlay -->
+    <div class="cyber-grid fixed inset-0 pointer-events-none z-0"></div>
+    
+    <div class="relative z-10">
+        <!-- Header -->
+        <header id="navbar" class="sticky top-0 z-50 w-full bg-black/30 backdrop-blur-md border-b border-[#00ff9d]/20">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+                <!-- Logo -->
+                <a href="index.html"> 
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#00ff9d] to-[#0080ff] animate-pulse"></div>
+                        <span class="text-xl font-bold neon-text">TWS</span>
+                    </div>
+                </a>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+                    <a class="text-sm font-medium hover:text-[#00ff9d] transition-all hover:scale-110" href="destinasi.html">Destinasi</a>
+                    <a class="text-sm font-medium hover:text-[#00ff9d] transition-all hover:scale-110" href="promosi.html">Promosi</a>
+                    <a class="text-sm font-medium hover:text-[#00ff9d] transition-all hover:scale-110" href="tiket-saya.html">Tiket Saya</a>
+                    <a class="text-sm font-medium hover:text-[#00ff9d] transition-all hover:scale-110" href="bantuan.html">Bantuan</a>
+                </nav>
+
+                <!-- Theme Toggle -->
+                <button class="p-3 rounded-full bg-gradient-to-r from-[#00ff9d] to-[#0080ff] hover:from-[#0080ff] hover:to-[#00ff9d] transition-all duration-300">
+                    <span class="material-symbols-outlined">palette</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="min-h-screen">
+            <!-- Hero Section -->
+            <section class="relative py-20 overflow-hidden">
+                <div class="container mx-auto px-4 text-center">
+                    <!-- Glitch Title -->
+                    <h1 class="text-6xl md:text-8xl font-black mb-6 glitch" data-text="TENTANG KAMI">
+                        <span class="gradient-text">TENTANG KAMI</span>
+                    </h1>
+                    
+                    <!-- Cyber Subtitle -->
+                    <div class="cyber-border max-w-3xl mx-auto mb-12 p-8">
+                        <p class="text-xl md:text-2xl typing">
+                            <span class="gradient-text font-bold">IMK-D KELOMPOK 2</span> - The Future of Tourism
+                        </p>
+                        <p class="text-gray-300 mt-4">
+                            Lima insan kreatif yang membawa revolusi digital dalam dunia pariwisata Surabaya.
+                            Kami bukan hanya developer, kami adalah <span class="gradient-text font-bold">visioner</span>.
+                        </p>
+                    </div>
+
+                    <!-- Stats Counter -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-20">
+                        <div class="cyber-card p-6">
+                            <div class="text-4xl font-bold gradient-text">05</div>
+                            <div class="text-gray-400">MASTERMINDS</div>
+                        </div>
+                        <div class="cyber-card p-6">
+                            <div class="text-4xl font-bold gradient-text">100+</div>
+                            <div class="text-gray-400">DESTINASI</div>
+                        </div>
+                        <div class="cyber-card p-6">
+                            <div class="text-4xl font-bold gradient-text">24/7</div>
+                            <div class="text-gray-400">SUPPORT</div>
+                        </div>
+                        <div class="cyber-card p-6">
+                            <div class="text-4xl font-bold gradient-text">∞</div>
+                            <div class="text-gray-400">INOVASI</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Elements -->
+                <div class="absolute top-20 left-10 w-20 h-20 rounded-full bg-gradient-to-r from-[#ff00ff] to-[#9d00ff] opacity-30 floating"></div>
+                <div class="absolute bottom-20 right-10 w-32 h-32 rounded-full bg-gradient-to-r from-[#00ff9d] to-[#0080ff] opacity-20 floating" style="animation-delay: 1s;"></div>
+            </section>
+
+            <!-- Team Section -->
+            <section class="py-20">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="text-5xl font-bold mb-6 gradient-text">THE CREW</h2>
+                        <div class="w-32 h-1 bg-gradient-to-r from-[#00ff9d] to-[#0080ff] mx-auto mb-6"></div>
+                        <p class="text-gray-300 max-w-2xl mx-auto">
+                            Meet the brilliant minds behind this digital revolution. 
+                            Each member brings unique superpowers to the table.
+                        </p>
+                    </div>
+
+                    <!-- Team Grid - FIXED HEIGHT CARDS -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+                        <!-- Member 1 -->
+                        <div class="cyber-card p-6">
+                            <div class="team-card-content">
+                                <div class="photo-frame">
+                                    <div class="photo-frame-inner">
+                                        <!-- Ganti dengan foto asli -->
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Leader&backgroundColor=00ff9d" alt="Member 1">
+                                    </div>
+                                </div>
+                                <h3 class="team-title neon-text">PROJECT LEADER</h3>
+                                <p class="team-subtitle">The Visionary Strategist</p>
+                                <div class="team-skills space-y-2 text-sm text-gray-300">
+                                    <p>• System Architecture</p>
+                                    <p>• Project Management</p>
+                                    <p>• UI/UX Design</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Member 2 -->
+                        <div class="cyber-card p-6">
+                            <div class="team-card-content">
+                                <div class="photo-frame">
+                                    <div class="photo-frame-inner">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Frontend&backgroundColor=0080ff" alt="Member 2">
+                                    </div>
+                                </div>
+                                <h3 class="team-title neon-text">FRONTEND MASTER</h3>
+                                <p class="team-subtitle">The Pixel Perfectionist</p>
+                                <div class="team-skills space-y-2 text-sm text-gray-300">
+                                    <p>• React/Vue Expert</p>
+                                    <p>• Animation Wizard</p>
+                                    <p>• Responsive Design</p>
+                                    <p>• Search</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Member 3 -->
+                        <div class="cyber-card p-6">
+                            <div class="team-card-content">
+                                <div class="photo-frame">
+                                    <div class="photo-frame-inner">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Backend&backgroundColor=ff00ff" alt="Member 3">
+                                    </div>
+                                </div>
+                                <h3 class="team-title neon-text">BACKEND NINJA</h3>
+                                <p class="team-subtitle">The Code Samurai</p>
+                                <div class="team-skills space-y-2 text-sm text-gray-300">
+                                    <p>• API Development</p>
+                                    <p>• Database Design</p>
+                                    <p>• Security Expert</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Member 4 -->
+                        <div class="cyber-card p-6">
+                            <div class="team-card-content">
+                                <div class="photo-frame">
+                                    <div class="photo-frame-inner">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Designer&backgroundColor=9d00ff" alt="Member 4">
+                                    </div>
+                                </div>
+                                <h3 class="team-title neon-text">CREATIVE DIRECTOR</h3>
+                                <p class="team-subtitle">The Aesthetic Guru</p>
+                                <div class="team-skills space-y-2 text-sm text-gray-300">
+                                    <p>• Brand Identity</p>
+                                    <p>• Visual Design</p>
+                                    <p>• User Experience</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Member 5 -->
+                        <div class="cyber-card p-6">
+                            <div class="team-card-content">
+                                <div class="photo-frame">
+                                    <div class="photo-frame-inner">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=DevOps&backgroundColor=00ff9d" alt="Member 5">
+                                    </div>
+                                </div>
+                                <h3 class="team-title neon-text">TECH OPS</h3>
+                                <p class="team-subtitle">The System Guardian</p>
+                                <div class="team-skills space-y-2 text-sm text-gray-300">
+                                    <p>• Deployment</p>
+                                    <p>• Performance</p>
+                                    <p>• Maintenance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Quote -->
+                    <div class="max-w-3xl mx-auto mt-20 cyber-border p-8">
+                        <div class="text-center">
+                            <span class="material-symbols-outlined text-6xl gradient-text mb-4">format_quote</span>
+                            <p class="text-2xl italic mb-6">
+                                "We don't just build websites; we create digital experiences that bridge technology with human emotion."
+                            </p>
+                            <div class="w-24 h-1 bg-gradient-to-r from-[#00ff9d] to-[#0080ff] mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission Section -->
+            <section class="py-20 relative">
+                <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <!-- Left Column -->
+                        <div>
+                            <h2 class="text-5xl font-bold mb-8 gradient-text glitch" data-text="OUR MISSION">
+                                OUR MISSION
+                            </h2>
+                            
+                            <div class="space-y-6">
+                                <div class="cyber-card p-6">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-[#00ff9d] to-[#0080ff] flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-black">rocket_launch</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold mb-2">Digital Transformation</h3>
+                                            <p class="text-gray-300">Membawa pariwisata Surabaya ke era digital dengan solusi inovatif.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cyber-card p-6">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-[#ff00ff] to-[#9d00ff] flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-black">diversity</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold mb-2">User Experience</h3>
+                                            <p class="text-gray-300">Menciptakan pengalaman pemesanan yang seamless dan menyenangkan.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cyber-card p-6">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-[#0080ff] to-[#00ff9d] flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-black">trending_up</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold mb-2">Growth & Innovation</h3>
+                                            <p class="text-gray-300">Terus berinovasi untuk memberikan nilai lebih kepada pengguna.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column - 3D Cube -->
+                        <div class="relative h-96 flex items-center justify-center">
+                            <div class="cube">
+                                <div class="face front absolute w-full h-full bg-gradient-to-br from-[#00ff9d]/30 to-[#0080ff]/30 border border-[#00ff9d]/50 rounded-xl flex items-center justify-center">
+                                    <span class="text-4xl">🚀</span>
+                                </div>
+                                <div class="face back absolute w-full h-full bg-gradient-to-br from-[#ff00ff]/30 to-[#9d00ff]/30 border border-[#ff00ff]/50 rounded-xl flex items-center justify-center">
+                                    <span class="text-4xl">💡</span>
+                                </div>
+                                <div class="face right absolute w-full h-full bg-gradient-to-br from-[#0080ff]/30 to-[#00ff9d]/30 border border-[#0080ff]/50 rounded-xl flex items-center justify-center">
+                                    <span class="text-4xl">❤️</span>
+                                </div>
+                                <div class="face left absolute w-full h-full bg-gradient-to-br from-[#9d00ff]/30 to-[#ff00ff]/30 border border-[#9d00ff]/50 rounded-xl flex items-center justify-center">
+                                    <span class="text-4xl">⚡</span>
+                                </div>
+                                <div class="face top absolute w-full h-full bg-gradient-to-br from-[#00ff9d]/30 to-[#ff00ff]/30 border border-[#00ff9d]/50 rounded-xl flex items-center justify-center">
+                                    <span class="text-4xl">🌟</span>
+                                </div>
+                                <div class="face bottom absolute w-full h-full bg-gradient-to-br from-[#0080ff]/30 to-[#9d00ff]/30 border border-[#0080ff]/50 rounded-xl flex items-center justify-center">
+                                    <span class="text-4xl">🎯</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="py-20 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#00ff9d]/10 to-[#0080ff]/10"></div>
+                <div class="container mx-auto px-4 text-center relative z-10">
+                    <h2 class="text-5xl font-bold mb-8 gradient-text">READY TO COLLABORATE?</h2>
+                    <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                        Punya project keren? Mari wujudkan bersama kami!
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                        <a href="https://wa.me/081915166152" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="px-8 py-4 bg-gradient-to-r from-[#00ff9d] to-[#0080ff] rounded-xl font-bold text-black hover:scale-105 transition-transform pulse inline-block">
+                            CONTACT US
+                        </a>
+                        <a href="https://github.com/razorx411/FinProIMK" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="px-8 py-4 border-2 border-[#00ff9d] rounded-xl font-bold hover:bg-[#00ff9d] hover:text-black transition-all inline-block">
+                            VIEW PROJECTS
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-[#00ff9d]/20 py-12">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <a href="index.html" class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#00ff9d] to-[#0080ff]"></div>
+                            <span class="text-xl font-bold neon-text">TWS</span>
+                        </a>
+                        <p class="text-gray-400 text-sm mt-2">© 2025 IMK-D Kelompok 2. All systems operational.</p>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <a href="https://github.com/razorx411/FinProIMK" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="text-gray-400 hover:text-[#00ff9d] transition-colors">
+                            <span class="text-2xl">🐙</span>
+                        </a>
+                        <a href="https://wa.me/081915166152" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="text-gray-400 hover:text-[#00ff9d] transition-colors">
+                            <span class="text-2xl">💬</span>
+                        </a>
+                        <a href="https://instagram.com" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="text-gray-400 hover:text-[#00ff9d] transition-colors">
+                            <span class="text-2xl">📸</span>
+                        </a>
+                        <a href="mailto:info@tiketwisatasurabaya.com" 
+                           class="text-gray-400 hover:text-[#00ff9d] transition-colors">
+                            <span class="text-2xl">📧</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                    <p class="text-gray-500 text-sm">
+                        "Inovasi bukan hanya tentang teknologi, tapi tentang bagaimana teknologi mengubah hidup manusia."
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%"\'#&_(),.;:?!\\|{}<>[]^~';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        
+        for(let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff9d';
+            ctx.font = `${fontSize}px monospace`;
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        // Particles Effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for(let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 20}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 3D Cube Animation
+        const cube = document.querySelector('.cube');
+        let angle = 0;
+        
+        function animateCube() {
+            angle += 0.5;
+            cube.style.transform = `rotateX(${25 + angle * 0.1}deg) rotateY(${25 + angle}deg)`;
+            requestAnimationFrame(animateCube);
+        }
+        
+        // Glitch effect on hover
+        document.querySelectorAll('.glitch').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                el.style.animation = 'none';
+                setTimeout(() => {
+                    el.style.animation = '';
+                }, 100);
+            });
+        });
+        
+        // Initialize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        setInterval(drawMatrix, 50);
+        createParticles();
+        animateCube();
+        
+        // Typing effect restart
+        setInterval(() => {
+            const typing = document.querySelector('.typing');
+            typing.style.animation = 'none';
+            setTimeout(() => {
+                typing.style.animation = '';
+            }, 10);
+        }, 3500);
+        
+        // Interactive photo frames
+        document.querySelectorAll('.photo-frame').forEach(frame => {
+            frame.addEventListener('mouseenter', () => {
+                frame.style.animationPlayState = 'paused';
+            });
+            
+            frame.addEventListener('mouseleave', () => {
+                frame.style.animationPlayState = 'running';
+            });
+        });
+        
+        // Equalize card heights
+        function equalizeCardHeights() {
+            const cards = document.querySelectorAll('.cyber-card');
+            let maxHeight = 0;
+            
+            // Reset heights first
+            cards.forEach(card => {
+                card.style.height = 'auto';
+            });
+            
+            // Find max height
+            cards.forEach(card => {
+                const height = card.offsetHeight;
+                if (height > maxHeight) {
+                    maxHeight = height;
+                }
+            });
+            
+            // Set all cards to max height
+            cards.forEach(card => {
+                card.style.height = `${maxHeight}px`;
+            });
+        }
+        
+        // Run on load and resize
+        window.addEventListener('load', equalizeCardHeights);
+        window.addEventListener('resize', equalizeCardHeights);
+    </script>
+</body>
+</html>

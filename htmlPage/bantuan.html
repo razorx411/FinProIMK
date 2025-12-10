@@ -14,27 +14,34 @@
     
     <style>
         .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         
     /* Animasi FAQ - FIXED VERSION */
     .faq-answer {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        max-height 0.4s ease,
+        padding 0.25s ease,
+        opacity 0.3s ease;
     }
     
     .faq-item.active .faq-answer {
-        max-height: 1000px;
-        transition: max-height 1s ease-in-out;
+    max-height: 500px;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    opacity: 1;
+    visibility: visible;
     }
-    
+
     .faq-toggle .material-symbols-outlined {
-        transition: transform 0.3s ease;
-    }
-    
-    .faq-item.active .faq-toggle .material-symbols-outlined {
-        transform: rotate(180deg);
+    transition: transform 0.4s ease;
     }
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
@@ -544,53 +551,54 @@ class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/
         </main>
 
         <!-- Footer -->
-        <footer class="mt-auto border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900/50">
-            <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-                    <!-- Company -->
-                    <div>
-                        <h4 class="font-bold text-gray-900 dark:text-white">Perusahaan</h4>
-                        <ul class="mt-4 space-y-2 text-sm">
-                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="#">Tentang Kami</a></li>
-                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="#">Karir</a></li>
-                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="#">Pers</a></li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Support -->
-                    <div>
-                        <h4 class="font-bold text-gray-900 dark:text-white">Dukungan</h4>
-                        <ul class="mt-4 space-y-2 text-sm">
-                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html">Pusat Bantuan</a></li>
-                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="#kontak">Hubungi Kami</a></li>
-                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="#">FAQ</a></li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Legal -->
-                    <div>
-                        <h4 class="font-bold text-gray-900 dark:text-white">Hukum</h4>
-                        <ul class="mt-4 space-y-2 text-sm">
-                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="#">Ketentuan Layanan</a></li>
-                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="#">Kebijakan Privasi</a></li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Brand -->
-                    <div>
-                        <div class="flex items-center gap-4 text-gray-900 dark:text-white">
-                            <img src="gambar/logoo.png" width="120" height="40" alt="Logo">
-                        </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Platform pemesanan tiket wisata Surabaya terpercaya.</p>
-                    </div>
-                </div>
-                
-                <!-- Copyright -->
-                <div class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:text-gray-400">
-                    <p>© 2025 IMK-D Kelompok 2. Tiket Wisata Surabaya.</p>
-                </div>
+       <!-- Footer -->
+<footer class="mt-auto border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900/50">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <!-- Perusahaan -->
+            <div>
+                <h4 class="font-bold text-gray-900 dark:text-white">Perusahaan</h4>
+                <ul class="mt-4 space-y-2 text-sm">
+                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Tentang Kami</a></li>
+                    <!-- Karir dihapus sesuai permintaan -->
+                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Pers</a></li>
+                </ul>
             </div>
-        </footer>
+            
+            <!-- Dukungan -->
+            <div>
+                <h4 class="font-bold text-gray-900 dark:text-white">Dukungan</h4>
+                <ul class="mt-4 space-y-2 text-sm">
+                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html">Pusat Bantuan</a></li>
+                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Hubungi Kami</a></li>
+                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#faq">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <!-- Hukum -->
+            <div>
+                <h4 class="font-bold text-gray-900 dark:text-white">Hukum</h4>
+                <ul class="mt-4 space-y-2 text-sm">
+                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#ketentuan">Ketentuan Layanan</a></li>
+                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#privasi">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            
+            <!-- Brand -->
+            <div>
+                <a href="index.html" class="flex items-center gap-4 text-gray-900 dark:text-white">
+                    <img src="gambar/logoo.png" width="120" height="40" alt="Logo Tiket Wisata Surabaya">
+                </a>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Platform pemesanan tiket wisata Surabaya terpercaya.</p>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:text-gray-400">
+            <p>© 2025 IMK-D Kelompok 2</p>
+        </div>
+    </div>
+</footer>
     </div>
 
     <script>

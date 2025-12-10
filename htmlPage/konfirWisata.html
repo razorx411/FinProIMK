@@ -1,168 +1,629 @@
 <!DOCTYPE html>
-<html class="light" lang="id"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Halaman Konfirmasi Pemesanan (diperbarui tanpa login, tema hijau, navigasi baru)</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#10B981", // Updated to green
-            "background-light": "#F9FAFB", // Slightly off-white for a softer look
-            "background-dark": "#111827",
-          },
-          fontFamily: {
-            "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
-          },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-        },
-      },
-    }
-  </script>
-<style>
-    .material-symbols-outlined {
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
-    }
-  </style>
+<html class="light" lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Konfirmasi Pemesanan - Tiket Wisata Surabaya</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10B981",
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#111827",
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+        
+        /* Animasi untuk status pembayaran */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Animasi untuk error */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+    </style>
 </head>
-<body class="font-display">
-<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
-<div class="layout-container flex h-full grow flex-col">
-<header class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <!-- NAVBAR YANG SAMA PERSIS -->
+        <header class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/95 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/95">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+                <!-- Logo -->
+                <a href="index.html"> 
+                    <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
+                </a>
 
-        <!-- Logo -->
-        <a href="index.html" class="flex items-center gap-3 text-gray-900 dark:text-white">
-            <span class="material-symbols-outlined text-primary text-3xl">local_activity</span>
-            <h2 class="text-lg font-bold tracking-tight">Tiket Wisata Surabaya</h2>
-        </a>
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center gap-9 ml-auto mr-8">
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="destinasi.html">Destinasi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="promosi.html">Promosi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="tiket-saya.html">Tiket Saya</a>
+                </nav>
 
-        <!-- Navigation -->
-        <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Promosi</a>
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Tiket Saya</a>
-        </nav>
+                <!-- Right section -->
+                <div class="flex items-center gap-4">
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors hidden md:block" href="#">Bantuan</a>
+                    <button class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 transition-colors md:hidden">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                </div>
+            </div>
+        </header>
 
-        <!-- Right section -->
-        <div class="flex items-center gap-4">
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Bantuan</a>
-            <button class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 md:hidden">
-                <span class="material-symbols-outlined">search</span>
-            </button>
-        </div>
+        <main class="flex flex-1 justify-center py-5 sm:py-10 px-4">
+            <div class="layout-content-container flex flex-col w-full max-w-4xl flex-1 gap-6">
+                <!-- Breadcrumb -->
+                <div class="flex flex-col gap-4">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <a class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium leading-normal hover:text-primary transition-colors flex items-center gap-1" href="index.html">
+                            <span class="material-symbols-outlined text-base">home</span>
+                            Beranda
+                        </a>
+                        <span class="text-slate-500 dark:text-slate-400 text-sm sm:text-base">/</span>
+                        <a class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium leading-normal hover:text-primary transition-colors" href="destinasi.html">Destinasi</a>
+                        <span class="text-slate-500 dark:text-slate-400 text-sm sm:text-base">/</span>
+                        <a class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium leading-normal hover:text-primary transition-colors" href="detail-tiket.html">Detail</a>
+                        <span class="text-slate-500 dark:text-slate-400 text-sm sm:text-base">/</span>
+                        <span class="text-slate-900 dark:text-white text-sm sm:text-base font-medium leading-normal">Konfirmasi</span>
+                    </div>
+                    
+                    <!-- Progress Steps -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">1</div>
+                                <span class="text-sm font-medium text-primary">Pilih Tiket</span>
+                            </div>
+                            <div class="flex-1 h-1 mx-4 bg-slate-300 dark:bg-slate-700"></div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">2</div>
+                                <span class="text-sm font-medium text-primary">Isi Data</span>
+                            </div>
+                            <div class="flex-1 h-1 mx-4 bg-slate-300 dark:bg-slate-700"></div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold pulse-animation">3</div>
+                                <span class="text-sm font-bold text-primary">Bayar</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap justify-between gap-3">
+                            <p class="text-slate-900 dark:text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Konfirmasi Pemesanan</p>
+                            <div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                                <span class="material-symbols-outlined text-primary">schedule</span>
+                                <span>Waktu tersisa: <span class="font-bold text-red-500" id="countdown">59:59</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                    <!-- Left Column -->
+                    <div class="lg:col-span-2 flex flex-col gap-8">
+                        <!-- Ringkasan Pesanan -->
+                        <div class="flex flex-col gap-5">
+                            <h2 class="text-slate-900 dark:text-white text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em]">Ringkasan Pesanan Anda</h2>
+                            <div class="p-0">
+                                <div class="flex flex-col md:flex-row items-stretch justify-start rounded-xl shadow-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden">
+                                    <img class="w-full md:w-48 h-48 md:h-auto object-cover" src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kebun Binatang Surabaya"/>
+                                    <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-3 p-5">
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Tiket Masuk</p>
+                                        <p class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Kebun Binatang Surabaya</p>
+                                        
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                                            <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm">
+                                                <span class="material-symbols-outlined text-base text-primary">calendar_today</span>
+                                                <div>
+                                                    <p class="font-medium">Tanggal Kunjungan</p>
+                                                    <p class="font-bold">Sab, 28 Okt 2024</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm">
+                                                <span class="material-symbols-outlined text-base text-primary">schedule</span>
+                                                <div>
+                                                    <p class="font-medium">Waktu Masuk</p>
+                                                    <p class="font-bold">08.00 - 17.00 WIB</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm">
+                                                <span class="material-symbols-outlined text-base text-primary">group</span>
+                                                <div>
+                                                    <p class="font-medium">Jumlah Pengunjung</p>
+                                                    <p class="font-bold">2 Orang</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm">
+                                                <span class="material-symbols-outlined text-base text-primary">confirmation_number</span>
+                                                <div>
+                                                    <p class="font-medium">Tiket</p>
+                                                    <p class="font-bold">#KBZ20241028001</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Pemesan -->
+                        <div class="flex flex-col gap-5">
+                            <div class="flex justify-between items-center">
+                                <h2 class="text-slate-900 dark:text-white text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em]">Data Pemesan</h2>
+                                <div id="data-error" class="hidden items-center gap-2 text-red-600 dark:text-red-400">
+                                    <span class="material-symbols-outlined text-base">error</span>
+                                    <span class="text-sm font-medium">Harap isi data pemesan</span>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 p-5 sm:p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="text-sm text-slate-500 dark:text-slate-400 mb-1 block" for="nama">Nama Lengkap *</label>
+                                        <input type="text" id="nama" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Masukkan nama lengkap">
+                                    </div>
+                                    <div>
+                                        <label class="text-sm text-slate-500 dark:text-slate-400 mb-1 block" for="email">Email *</label>
+                                        <input type="email" id="email" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="nama@email.com">
+                                    </div>
+                                    <div>
+                                        <label class="text-sm text-slate-500 dark:text-slate-400 mb-1 block" for="telepon">No. Telepon *</label>
+                                        <input type="tel" id="telepon" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="0812-3456-7890">
+                                    </div>
+                                    <div class="flex items-end">
+                                        <button class="w-full flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors" onclick="simpanDataPemesan()">
+                                            <span class="material-symbols-outlined text-base">save</span>
+                                            Simpan Data
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div id="data-tersimpan" class="hidden">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Nama Lengkap</p>
+                                            <p id="display-nama" class="font-medium text-slate-800 dark:text-slate-200">-</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Email</p>
+                                            <p id="display-email" class="font-medium text-slate-800 dark:text-slate-200">-</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">No. Telepon</p>
+                                            <p id="display-telepon" class="font-medium text-slate-800 dark:text-slate-200">-</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Status</p>
+                                            <span id="status-verifikasi" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                                                <span class="material-symbols-outlined text-xs mr-1">hourglass_empty</span>
+                                                Belum Disimpan
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button class="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium" onclick="ubahDataPemesan()">
+                                        <span class="material-symbols-outlined text-base">edit</span>
+                                        Ubah Data Pemesan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metode Pembayaran -->
+                        <div class="flex flex-col gap-5">
+                            <h2 class="text-slate-900 dark:text-white text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em]">Pilih Metode Pembayaran</h2>
+                            <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 p-5 sm:p-6">
+                                <div class="flex flex-col gap-4">
+                                    <!-- Virtual Account -->
+                                    <div class="border-2 border-primary/70 bg-primary/10 dark:bg-primary/20 rounded-xl p-4 transition-all duration-200" id="payment-va-option">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <input checked class="h-5 w-5 text-primary border-slate-400 focus:ring-primary" id="payment-va" name="payment-method" type="radio" onclick="selectPayment('va')"/>
+                                                <label class="ml-3 block text-sm font-bold text-slate-800 dark:text-slate-100" for="payment-va">Virtual Account</label>
+                                            </div>
+                                            <span class="material-symbols-outlined text-primary text-xl">account_balance</span>
+                                        </div>
+                                        <div class="mt-3 pl-8 grid grid-cols-1 sm:grid-cols-3 gap-3" id="va-banks">
+                                            <button class="payment-bank-btn" data-bank="bca" onclick="selectBank('bca')">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" class="h-6" alt="BCA">
+                                            </button>
+                                            <button class="payment-bank-btn" data-bank="mandiri" onclick="selectBank('mandiri')">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/2560px-Bank_Mandiri_logo_2016.svg.png" class="h-6" alt="Mandiri">
+                                            </button>
+                                            <button class="payment-bank-btn" data-bank="bri" onclick="selectBank('bri')">
+                                                <img src="gambar/BRI_2020.svg.png" class="h-6" alt="BRI">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- E-Wallet -->
+                                    <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 transition-all duration-200 hover:border-primary/50" id="payment-ewallet-option">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <input class="h-5 w-5 text-primary border-slate-400 focus:ring-primary" id="payment-ewallet" name="payment-method" type="radio" onclick="selectPayment('ewallet')"/>
+                                                <label class="ml-3 block text-sm font-bold text-slate-800 dark:text-slate-100" for="payment-ewallet">E-Wallet</label>
+                                            </div>
+                                            <span class="material-symbols-outlined text-slate-600 dark:text-slate-400 text-xl">wallet</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Kartu Kredit/Debit -->
+                                    <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 transition-all duration-200 hover:border-primary/50" id="payment-card-option">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <input class="h-5 w-5 text-primary border-slate-400 focus:ring-primary" id="payment-card" name="payment-method" type="radio" onclick="selectPayment('card')"/>
+                                                <label class="ml-3 block text-sm font-bold text-slate-800 dark:text-slate-100" for="payment-card">Kartu Kredit/Debit</label>
+                                            </div>
+                                            <span class="material-symbols-outlined text-slate-600 dark:text-slate-400 text-xl">credit_card</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Info Pembayaran -->
+                                <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                                    <div class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-xl mt-0.5">info</span>
+                                        <div>
+                                            <p class="text-sm font-medium text-blue-800 dark:text-blue-300 mb-1">Petunjuk Pembayaran</p>
+                                            <p class="text-xs text-blue-700 dark:text-blue-400" id="payment-instruction">
+                                                Pilih metode pembayaran untuk melihat petunjuk
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column (Sidebar) -->
+                    <div class="lg:col-span-1 w-full flex flex-col gap-6 lg:sticky lg:top-28">
+                        <!-- Rincian Harga -->
+                        <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Rincian Harga</h3>
+                            <div class="flex flex-col gap-3 text-slate-600 dark:text-slate-300">
+                                <div class="flex justify-between items-center">
+                                    <p>Tiket Masuk (2 orang)</p>
+                                    <p>Rp 30.000</p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <p>Biaya Layanan</p>
+                                    <p>Rp 2.500</p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <p>Biaya Admin</p>
+                                    <p>Rp 2.500</p>
+                                </div>
+                            </div>
+                            <hr class="border-slate-200 dark:border-slate-700 my-2"/>
+                            <div class="flex justify-between items-center text-slate-900 dark:text-white font-bold text-lg">
+                                <p>Total Pembayaran</p>
+                                <p class="text-primary">Rp 35.000</p>
+                            </div>
+                            
+                            <!-- Virtual Account Info -->
+                            <div class="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800 hidden" id="va-info">
+                                <p class="text-sm font-medium text-green-800 dark:text-green-300 mb-2">Virtual Account BCA</p>
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs text-green-700 dark:text-green-400">Nomor VA</p>
+                                    <p class="text-sm font-bold text-green-800 dark:text-green-300">82710 1234 5678</p>
+                                </div>
+                                <button class="w-full mt-3 flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-green-600 text-white text-sm font-bold hover:bg-green-700 transition-colors" onclick="copyVANumber()">
+                                    <span class="material-symbols-outlined text-base">content_copy</span>
+                                    Salin Nomor VA
+                                </button>
+                            </div>
+                            
+                            <button class="w-full flex items-center justify-center gap-2 rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-wide mt-4 hover:bg-primary/90 transition-colors duration-200" id="pay-button" onclick="prosesPembayaran()">
+                                <span class="material-symbols-outlined text-xl">lock</span>
+                                Bayar Sekarang
+                            </button>
+                            
+                            <p class="text-xs text-center text-slate-500 dark:text-slate-400 mt-2">
+                                Dengan melanjutkan, Anda menyetujui <a href="#" class="text-primary hover:underline">Syarat & Ketentuan</a>
+                            </p>
+                        </div>
+                        
+                        <!-- Info Keamanan -->
+                        <div class="flex items-start gap-3 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                            <span class="material-symbols-outlined text-primary text-xl mt-0.5">verified_user</span>
+                            <div>
+                                <p class="text-sm font-medium text-green-800 dark:text-green-300 mb-1">100% Aman & Terjamin</p>
+                                <p class="text-xs text-green-700 dark:text-green-400">Transaksi Anda aman dan terenkripsi. E-tiket akan dikirim ke email Anda setelah pembayaran berhasil.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Bantuan -->
+                        <div class="flex items-start gap-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                            <span class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-xl mt-0.5">help</span>
+                            <div>
+                                <p class="text-sm font-medium text-blue-800 dark:text-blue-300 mb-1">Butuh Bantuan?</p>
+                                <p class="text-xs text-blue-700 dark:text-blue-400">Hubungi Customer Service 24/7 di <span class="font-bold">1500-123</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-</header>
 
-<main class="flex flex-1 justify-center py-5 sm:py-10 px-4">
-<div class="layout-content-container flex flex-col w-full max-w-4xl flex-1 gap-6">
-<div class="flex flex-col gap-4">
-<div class="flex flex-wrap gap-2">
-<a class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium leading-normal" href="#">Pilih Tiket</a>
-<span class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium leading-normal">/</span>
-<a class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium leading-normal" href="#">Isi Data</a>
-<span class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium leading-normal">/</span>
-<span class="text-slate-900 dark:text-white text-sm sm:text-base font-medium leading-normal">Konfirmasi &amp; Bayar</span>
-</div>
-<div class="flex flex-wrap justify-between gap-3">
-<p class="text-slate-900 dark:text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Konfirmasi Pemesanan</p>
-</div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-<div class="lg:col-span-2 flex flex-col gap-8">
-<div class="flex flex-col gap-5">
-<h2 class="text-slate-900 dark:text-white text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em]">Ringkasan Pesanan Anda</h2>
-<div class="p-0 @container">
-<div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start shadow-[0_2px_8px_rgba(0,0,0,0.05)] bg-white dark:bg-background-dark">
-<img class="w-full @xl:w-48 h-40 @xl:h-full object-cover rounded-t-xl @xl:rounded-l-xl @xl:rounded-r-none" data-alt="View of the Surabaya submarine monument at dusk with city lights in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTQttSucOxkp6SuriV1j38KfG8IuomdBpn-VEc9NMOBZBaDf2OTEzFi11_54xqF2jeuU3HLmhoI3StKHRv3iTLnc3n6cp00ihkSdrc41B-ihLkaEoTKuIWVaXOVoB6XQAyGVPHpFf8xvIpQKl1HjROvMT5lutjMIGuQH2m_mtJGL9Grv4B0EGK6zTplnOD-VIc3Hr1sht_RjKJokLMOVFlks80QwCk5XcRsFuE6e981v1lJDtsjwSAIzXQ42k5oDfAnEZOLOLkX_o"/>
-<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 p-4 sm:p-5">
-<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Tiket Masuk</p>
-<p class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Surabaya Night Zoo</p>
-<div class="flex items-center gap-3 mt-2 text-slate-600 dark:text-slate-300 text-sm">
-<span class="material-symbols-outlined text-base">calendar_today</span>
-<span>Sab, 28 Okt 2024</span>
-</div>
-<div class="flex items-center gap-3 text-slate-600 dark:text-slate-300 text-sm">
-<span class="material-symbols-outlined text-base">group</span>
-<span>2 Dewasa</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="flex flex-col gap-5">
-<h2 class="text-slate-900 dark:text-white text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em]">Pilih Metode Pembayaran</h2>
-<div class="bg-white dark:bg-background-dark rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.05)] p-5 sm:p-6">
-<div class="flex flex-col gap-4">
-<div class="border border-primary/50 bg-primary/10 dark:bg-primary/20 rounded-lg p-4">
-<div class="flex items-center">
-<input checked="" class="h-4 w-4 text-primary border-slate-400 focus:ring-primary" id="payment-va" name="payment-method" type="radio"/>
-<label class="ml-3 block text-sm font-bold text-slate-800 dark:text-slate-100" for="payment-va">Virtual Account</label>
-</div>
-</div>
-<div class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
-<div class="flex items-center">
-<input class="h-4 w-4 text-primary border-slate-400 focus:ring-primary" id="payment-ewallet" name="payment-method" type="radio"/>
-<label class="ml-3 block text-sm font-bold text-slate-800 dark:text-slate-100" for="payment-ewallet">E-Wallet</label>
-</div>
-</div>
-<div class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
-<div class="flex items-center">
-<input class="h-4 w-4 text-primary border-slate-400 focus:ring-primary" id="payment-card" name="payment-method" type="radio"/>
-<label class="ml-3 block text-sm font-bold text-slate-800 dark:text-slate-100" for="payment-card">Kartu Kredit/Debit</label>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="lg:col-span-1 w-full flex flex-col gap-6 lg:sticky lg:top-28">
-<div class="bg-white dark:bg-background-dark rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.05)] p-5 sm:p-6 flex flex-col gap-4">
-<h3 class="text-lg font-bold text-slate-900 dark:text-white">Rincian Harga</h3>
-<div class="flex flex-col gap-3 text-slate-600 dark:text-slate-300">
-<div class="flex justify-between items-center">
-<p>Tiket Masuk (2x)</p>
-<p>Rp 200.000</p>
-</div>
-<div class="flex justify-between items-center">
-<p>Biaya Layanan</p>
-<p>Rp 5.000</p>
-</div>
-</div>
-<hr class="border-slate-200 dark:border-slate-700 my-2"/>
-<div class="flex justify-between items-center text-slate-900 dark:text-white font-bold text-lg">
-<p>Total Pembayaran</p>
-<p class="text-primary">Rp 205.000</p>
-</div>
-<button class="w-full flex items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-wide mt-4 hover:bg-primary/90 transition-colors duration-200">
-                  Lanjutkan Pembayaran
-                </button>
-</div>
-<div class="flex items-start gap-3 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
-<span class="material-symbols-outlined text-primary text-xl mt-0.5">verified_user</span>
-<p class="text-sm text-slate-600 dark:text-slate-300">Transaksi Anda aman dan terenkripsi. E-tiket akan dikirim ke email Anda setelah pembayaran berhasil.</p>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
-</div>
-
-</body></html>
+    <script>
+        // Timer Countdown
+        let timeLeft = 59 * 60 + 59; // 59 menit 59 detik
+        
+        function updateCountdown() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            
+            document.getElementById('countdown').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft > 0) {
+                timeLeft--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                document.getElementById('countdown').textContent = "00:00";
+                document.getElementById('pay-button').disabled = true;
+                document.getElementById('pay-button').classList.add('opacity-50', 'cursor-not-allowed');
+                alert("Waktu pembayaran telah habis. Silakan buat pesanan baru.");
+            }
+        }
+        
+        // Data pemesan
+        let dataPemesanTersimpan = false;
+        let dataPemesan = {
+            nama: '',
+            email: '',
+            telepon: ''
+        };
+        
+        // Fungsi untuk menyimpan data pemesan
+        function simpanDataPemesan() {
+            const nama = document.getElementById('nama').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telepon = document.getElementById('telepon').value.trim();
+            
+            // Validasi input
+            if (!nama || !email || !telepon) {
+                showError('Harap isi semua data pemesan!');
+                return;
+            }
+            
+            // Validasi email sederhana
+            if (!email.includes('@') || !email.includes('.')) {
+                showError('Format email tidak valid!');
+                return;
+            }
+            
+            // Simpan data
+            dataPemesan = { nama, email, telepon };
+            dataPemesanTersimpan = true;
+            
+            // Update tampilan
+            document.getElementById('display-nama').textContent = nama;
+            document.getElementById('display-email').textContent = email;
+            document.getElementById('display-telepon').textContent = telepon;
+            document.getElementById('status-verifikasi').innerHTML = '<span class="material-symbols-outlined text-xs mr-1">check_circle</span> Terverifikasi';
+            document.getElementById('status-verifikasi').className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+            
+            // Tampilkan data tersimpan, sembunyikan form
+            document.getElementById('data-tersimpan').classList.remove('hidden');
+            document.querySelector('#data-pemesan .grid.grid-cols-1').classList.add('hidden');
+            
+            // Sembunyikan error jika ada
+            hideError();
+            
+            // Tampilkan notifikasi sukses
+            showSuccess('Data pemesan berhasil disimpan!');
+        }
+        
+        // Fungsi untuk mengubah data pemesan
+        function ubahDataPemesan() {
+            // Tampilkan form, sembunyikan data tersimpan
+            document.getElementById('data-tersimpan').classList.add('hidden');
+            document.querySelector('#data-pemesan .grid.grid-cols-1').classList.remove('hidden');
+            
+            // Isi form dengan data yang ada
+            document.getElementById('nama').value = dataPemesan.nama;
+            document.getElementById('email').value = dataPemesan.email;
+            document.getElementById('telepon').value = dataPemesan.telepon;
+        }
+        
+        // Fungsi untuk menampilkan error
+        function showError(message) {
+            const errorElement = document.getElementById('data-error');
+            errorElement.classList.remove('hidden');
+            errorElement.querySelector('span:last-child').textContent = message;
+            
+            // Tambahkan animasi shake
+            errorElement.classList.add('shake');
+            setTimeout(() => {
+                errorElement.classList.remove('shake');
+            }, 500);
+        }
+        
+        // Fungsi untuk menyembunyikan error
+        function hideError() {
+            document.getElementById('data-error').classList.add('hidden');
+        }
+        
+        // Fungsi untuk menampilkan sukses
+        function showSuccess(message) {
+            // Buat notifikasi sementara
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-20 right-4 z-50 px-4 py-3 rounded-lg bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 shadow-lg';
+            notification.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-green-600 dark:text-green-400">check_circle</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Hapus notifikasi setelah 3 detik
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Fungsi untuk memilih metode pembayaran
+        function selectPayment(method) {
+            // Reset semua border
+            document.getElementById('payment-va-option').classList.remove('border-2', 'border-primary/70', 'bg-primary/10');
+            document.getElementById('payment-ewallet-option').classList.remove('border-2', 'border-primary/70', 'bg-primary/10');
+            document.getElementById('payment-card-option').classList.remove('border-2', 'border-primary/70', 'bg-primary/10');
+            
+            // Hapus bg-primary dari semua
+            document.getElementById('payment-va-option').classList.add('border', 'border-slate-200', 'dark:border-slate-700');
+            document.getElementById('payment-ewallet-option').classList.add('border', 'border-slate-200', 'dark:border-slate-700');
+            document.getElementById('payment-card-option').classList.add('border', 'border-slate-200', 'dark:border-slate-700');
+            
+            // Hapus bg-primary/10 dari semua
+            document.getElementById('payment-va-option').classList.remove('bg-primary/10', 'dark:bg-primary/20');
+            document.getElementById('payment-ewallet-option').classList.remove('bg-primary/10', 'dark:bg-primary/20');
+            document.getElementById('payment-card-option').classList.remove('bg-primary/10', 'dark:bg-primary/20');
+            
+            // Tampilkan info VA jika dipilih
+            document.getElementById('va-info').classList.add('hidden');
+            
+            // Atur yang dipilih
+            let selectedElement;
+            let instruction;
+            
+            switch(method) {
+                case 'va':
+                    selectedElement = document.getElementById('payment-va-option');
+                    instruction = "Transfer ke Virtual Account yang muncul setelah klik Bayar. Pembayaran otomatis terverifikasi.";
+                    document.getElementById('va-info').classList.remove('hidden');
+                    break;
+                case 'ewallet':
+                    selectedElement = document.getElementById('payment-ewallet-option');
+                    instruction = "Scan QR code atau transfer ke e-wallet yang tersedia. Pastikan saldo mencukupi.";
+                    break;
+                case 'card':
+                    selectedElement = document.getElementById('payment-card-option');
+                    instruction = "Masukkan detail kartu Anda. Transaksi aman dengan sistem enkripsi terbaru.";
+                    break;
+            }
+            
+            // Update styling untuk yang dipilih
+            selectedElement.classList.remove('border', 'border-slate-200', 'dark:border-slate-700');
+            selectedElement.classList.add('border-2', 'border-primary/70', 'bg-primary/10', 'dark:bg-primary/20');
+            
+            // Update petunjuk
+            document.getElementById('payment-instruction').textContent = instruction;
+        }
+        
+        // Fungsi untuk memilih bank
+        function selectBank(bank) {
+            // Reset semua tombol bank
+            document.querySelectorAll('.payment-bank-btn').forEach(btn => {
+                btn.classList.remove('border-2', 'border-primary', 'bg-primary/10');
+                btn.classList.add('border', 'border-slate-200', 'dark:border-slate-700');
+            });
+            
+            // Set yang dipilih
+            const selectedBtn = document.querySelector(`[data-bank="${bank}"]`);
+            selectedBtn.classList.remove('border', 'border-slate-200', 'dark:border-slate-700');
+            selectedBtn.classList.add('border-2', 'border-primary', 'bg-primary/10');
+            
+            // Update info VA
+            const banks = {
+                'bca': 'BCA',
+                'mandiri': 'Mandiri',
+                'bri': 'BRI'
+            };
+            
+            document.querySelector('#va-info p.text-sm').textContent = `Virtual Account ${banks[bank]}`;
+            document.querySelector('#va-info p.text-sm.font-bold').textContent = `82710 1234 ${Math.floor(Math.random()*9000)+1000}`;
+        }
+        
+        // Fungsi untuk menyalin nomor VA
+        function copyVANumber() {
+            const vaNumber = document.querySelector('#va-info p.text-sm.font-bold').textContent;
+            navigator.clipboard.writeText(vaNumber.replace(/\s/g, '')).then(() => {
+                showSuccess('Nomor VA berhasil disalin!');
+            });
+        }
+        
+        // Fungsi untuk memproses pembayaran
+        function prosesPembayaran() {
+            // Validasi data pemesan
+            if (!dataPemesanTersimpan) {
+                showError('Harap isi dan simpan data pemesan terlebih dahulu!');
+                document.getElementById('data-pemesan').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
+            // Validasi metode pembayaran
+            const selectedPayment = document.querySelector('input[name="payment-method"]:checked');
+            if (!selectedPayment) {
+                alert('Pilih metode pembayaran terlebih dahulu!');
+                return;
+            }
+            
+            // Simulasi proses pembayaran
+            const payButton = document.getElementById('pay-button');
+            payButton.disabled = true;
+            payButton.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Memproses...';
+            payButton.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            // Simulasi delay pembayaran
+            setTimeout(() => {
+                showSuccess('Pembayaran berhasil! E-tiket telah dikirim ke email Anda.');
+                
+                // Redirect ke halaman tiket saya setelah 2 detik
+                setTimeout(() => {
+                    window.location.href = 'tiket-saya.html';
+                }, 2000);
+            }, 2000);
+        }
+        
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mulai countdown
+            updateCountdown();
+            
+            // Set default payment method
+            selectPayment('va');
+            selectBank('bca');
+            
+            // Tambahkan styling untuk tombol bank
+            document.querySelectorAll('.payment-bank-btn').forEach(btn => {
+                btn.classList.add('p-3', 'rounded-lg', 'border', 'border-slate-200', 'dark:border-slate-700', 'hover:border-primary/50', 'transition-colors', 'flex', 'items-center', 'justify-center');
+            });
+        });
+    </script>
+</body>
+</html>

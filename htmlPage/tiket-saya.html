@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html class="light" lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Tiket Saya - Tiket Wisata Surabaya</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10B981",
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#111827",
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+        
+        /* Animasi untuk QR Code */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Animasi untuk status badge */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <!-- NAVBAR YANG SAMA PERSIS -->
+        <header class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/95 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/95">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+                <!-- Logo -->
+                <a href="index.html"> 
+                    <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
+                </a>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="destinasi.html">Destinasi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="promosi.html">Promosi</a>
+                    <a class="text-sm font-medium text-primary dark:text-primary font-bold" href="tiket-saya.html">Tiket Saya</a>
+                </nav>
+
+                <!-- Right section -->
+                <div class="flex items-center gap-4">
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors hidden md:block" href="#">Bantuan</a>
+                    <button class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 transition-colors md:hidden">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 py-5 sm:py-10 px-4">
+            <div class="mx-auto max-w-7xl">
+                <!-- Breadcrumb -->
+                <div class="flex flex-col gap-4 mb-8">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <a class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium leading-normal hover:text-primary transition-colors flex items-center gap-1" href="index.html">
+                            <span class="material-symbols-outlined text-base">home</span>
+                            Beranda
+                        </a>
+                        <span class="text-slate-500 dark:text-slate-400 text-sm sm:text-base">/</span>
+                        <span class="text-slate-900 dark:text-white text-sm sm:text-base font-medium leading-normal">Tiket Saya</span>
+                    </div>
+                    
+                    <div class="flex flex-wrap justify-between gap-4">
+                        <div>
+                            <h1 class="text-slate-900 dark:text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em]">Tiket Saya</h1>
+                            <p class="text-slate-600 dark:text-slate-400 mt-2">Kelola dan lihat semua tiket wisata Anda</p>
+                        </div>
+                        
+                        <div class="flex items-center gap-3">
+                            <button id="filter-btn" class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                <span class="material-symbols-outlined text-base">filter_list</span>
+                                Filter
+                            </button>
+                            <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
+                                <span class="material-symbols-outlined text-base">add</span>
+                                Pesan Tiket Baru
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Filter Options (Hidden by default) -->
+                <div id="filter-options" class="hidden mb-8 bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 p-5">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Status Tiket</label>
+                            <select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5">
+                                <option value="all">Semua Status</option>
+                                <option value="active">Aktif</option>
+                                <option value="used">Sudah Digunakan</option>
+                                <option value="cancelled">Dibatalkan</option>
+                                <option value="expired">Kadaluarsa</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Tanggal</label>
+                            <input type="date" class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Destinasi</label>
+                            <select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5">
+                                <option value="all">Semua Destinasi</option>
+                                <option value="kebun-binatang">Kebun Binatang Surabaya</option>
+                                <option value="tugu-pahlawan">Tugu Pahlawan</option>
+                                <option value="submarine">Monumen Kapal Selam</option>
+                                <option value="surabaya-zoo">Surabaya Night Zoo</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <button class="w-full px-4 py-2.5 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
+                                Terapkan Filter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Navigation -->
+                <div class="border-b border-slate-200 dark:border-slate-800 mb-8">
+                    <nav class="-mb-px flex space-x-4 md:space-x-8 overflow-x-auto">
+                        <button class="tab-button active whitespace-nowrap py-4 px-1 border-b-2 border-primary font-medium text-sm text-primary" data-tab="all">
+                            Semua Tiket
+                        </button>
+                        <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors" data-tab="active">
+                            Aktif
+                        </button>
+                        <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors" data-tab="used">
+                            Sudah Digunakan
+                        </button>
+                        <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors" data-tab="cancelled">
+                            Dibatalkan
+                        </button>
+                    </nav>
+                </div>
+                
+                <!-- Tiket List -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="ticket-container">
+                    <!-- Tiket 1: Aktif -->
+                    <div class="ticket-card fade-in" data-status="active">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
+                            <!-- Header Tiket -->
+                            <div class="p-5 border-b border-slate-200 dark:border-slate-800">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                <span class="material-symbols-outlined text-xs mr-1">check_circle</span>
+                                                Aktif
+                                            </span>
+                                            <span class="text-xs text-slate-500 dark:text-slate-400">#KBZ20241028001</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Kebun Binatang Surabaya</h3>
+                                    </div>
+                                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors" onclick="showQRCode('KBZ20241028001')">
+                                        <span class="material-symbols-outlined">qr_code_scanner</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Detail Tiket -->
+                            <div class="p-5">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">calendar_today</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Tanggal Kunjungan</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">Sab, 28 Okt 2024</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">schedule</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Waktu Masuk</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">08.00 - 17.00 WIB</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">group</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Jumlah Tiket</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">2 Orang</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">payments</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Total Bayar</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">Rp 35.000</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors" onclick="showQRCode('KBZ20241028001')">
+                                        <span class="material-symbols-outlined text-base">qr_code_scanner</span>
+                                        Tampilkan QR
+                                    </button>
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                        <span class="material-symbols-outlined text-base">download</span>
+                                        Unduh Tiket
+                                    </button>
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 text-sm font-medium hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors" onclick="cancelTicket('KBZ20241028001')">
+                                        <span class="material-symbols-outlined text-base">close</span>
+                                        Batalkan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tiket 2: Sudah Digunakan -->
+                    <div class="ticket-card fade-in" data-status="used">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
+                            <!-- Header Tiket -->
+                            <div class="p-5 border-b border-slate-200 dark:border-slate-800">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                                <span class="material-symbols-outlined text-xs mr-1">done_all</span>
+                                                Sudah Digunakan
+                                            </span>
+                                            <span class="text-xs text-slate-500 dark:text-slate-400">#TPH20241015001</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Tugu Pahlawan</h3>
+                                    </div>
+                                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors" onclick="showQRCode('TPH20241015001')">
+                                        <span class="material-symbols-outlined">history</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Detail Tiket -->
+                            <div class="p-5">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-blue-500">calendar_today</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Tanggal Kunjungan</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">Sen, 15 Okt 2024</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-blue-500">schedule</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Digunakan Pada</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">15 Okt, 10:30 WIB</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-blue-500">group</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Jumlah Tiket</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">1 Orang</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-blue-500">payments</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Total Bayar</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">Rp 15.000</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors" onclick="showReceipt('TPH20241015001')">
+                                        <span class="material-symbols-outlined text-base">receipt</span>
+                                        Lihat Nota
+                                    </button>
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                        <span class="material-symbols-outlined text-base">star</span>
+                                        Beri Ulasan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tiket 3: Aktif (Akan Datang) -->
+                    <div class="ticket-card fade-in" data-status="active">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
+                            <!-- Header Tiket -->
+                            <div class="p-5 border-b border-slate-200 dark:border-slate-800">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 pulse-animation">
+                                                <span class="material-symbols-outlined text-xs mr-1">schedule</span>
+                                                Akan Datang
+                                            </span>
+                                            <span class="text-xs text-slate-500 dark:text-slate-400">#SNZ20241105001</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Surabaya Night Zoo</h3>
+                                    </div>
+                                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors" onclick="showQRCode('SNZ20241105001')">
+                                        <span class="material-symbols-outlined">qr_code_scanner</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Detail Tiket -->
+                            <div class="p-5">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-yellow-500">calendar_today</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Tanggal Kunjungan</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">Sel, 5 Nov 2024</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-yellow-500">schedule</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Waktu Masuk</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">18.00 - 22.00 WIB</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-yellow-500">group</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Jumlah Tiket</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">4 Orang</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-yellow-500">payments</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Total Bayar</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">Rp 200.000</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Countdown -->
+                                <div class="mb-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-yellow-600 dark:text-yellow-400">notifications_active</span>
+                                        <p class="text-sm font-medium text-yellow-800 dark:text-yellow-300">Mulai dalam: 
+                                            <span class="font-bold" id="countdown-ticket">5 hari 12 jam</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-yellow-500 text-white text-sm font-medium hover:bg-yellow-600 transition-colors" onclick="remindMe('SNZ20241105001')">
+                                        <span class="material-symbols-outlined text-base">notifications</span>
+                                        Ingatkan Saya
+                                    </button>
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                        <span class="material-symbols-outlined text-base">share</span>
+                                        Bagikan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tiket 4: Dibatalkan -->
+                    <div class="ticket-card fade-in" data-status="cancelled">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden opacity-80">
+                            <!-- Header Tiket -->
+                            <div class="p-5 border-b border-slate-200 dark:border-slate-800">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                                                <span class="material-symbols-outlined text-xs mr-1">cancel</span>
+                                                Dibatalkan
+                                            </span>
+                                            <span class="text-xs text-slate-500 dark:text-slate-400">#MKS20241010001</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Monumen Kapal Selam</h3>
+                                    </div>
+                                    <span class="material-symbols-outlined text-slate-400">block</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Detail Tiket -->
+                            <div class="p-5">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-red-500">calendar_today</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Tanggal Dibatalkan</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">Rab, 10 Okt 2024</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-red-500">payments</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Dana Dikembalikan</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">Rp 20.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Alasan Pembatalan</p>
+                                        <p class="text-sm text-slate-700 dark:text-slate-300">Perubahan jadwal perjalanan</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                        <span class="material-symbols-outlined text-base">receipt</span>
+                                        Lihat Nota
+                                    </button>
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                        <span class="material-symbols-outlined text-base">redo</span>
+                                        Pesan Ulang
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Empty State -->
+                <div id="empty-state" class="hidden text-center py-12">
+                    <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 mb-4">confirmation_number</span>
+                    <h3 class="text-xl font-bold text-slate-600 dark:text-slate-400 mb-2">Tidak ada tiket</h3>
+                    <p class="text-slate-500 dark:text-slate-500 mb-6">Anda belum memiliki tiket dengan status ini</p>
+                    <a href="destinasi.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
+                        <span class="material-symbols-outlined">explore</span>
+                        Jelajahi Destinasi
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div id="qr-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-xl shadow-2xl max-w-md w-full fade-in">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">QR Code Tiket</h3>
+                    <button onclick="closeQRCode()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                
+                <div class="text-center mb-4">
+                    <div class="inline-block p-4 bg-white border-2 border-slate-200 rounded-lg mb-4">
+                        <!-- QR Code Placeholder -->
+                        <div class="w-64 h-64 bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center rounded">
+                            <div class="text-center">
+                                <span class="material-symbols-outlined text-6xl text-primary">qr_code_scanner</span>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2" id="qr-code-id">#KBZ20241028001</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-2">Tunjukkan QR code ini di loket masuk</p>
+                    <p class="text-xs text-slate-400 dark:text-slate-500">Berlaku hingga: <span id="qr-valid-until">28 Okt 2024, 17:00 WIB</span></p>
+                </div>
+                
+                <div class="flex gap-3">
+                    <button class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
+                        <span class="material-symbols-outlined">download</span>
+                        Simpan QR
+                    </button>
+                    <button class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                        <span class="material-symbols-outlined">share</span>
+                        Bagikan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter Toggle
+        document.getElementById('filter-btn').addEventListener('click', function() {
+            const filterOptions = document.getElementById('filter-options');
+            filterOptions.classList.toggle('hidden');
+            
+            if (!filterOptions.classList.contains('hidden')) {
+                filterOptions.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        
+        // Tab Navigation
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active tab
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active', 'border-primary', 'text-primary');
+                    btn.classList.add('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+                });
+                
+                this.classList.add('active', 'border-primary', 'text-primary');
+                this.classList.remove('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+                
+                // Filter tickets
+                const tab = this.dataset.tab;
+                filterTickets(tab);
+            });
+        });
+        
+        // Filter Tickets Function
+        function filterTickets(status) {
+            const tickets = document.querySelectorAll('.ticket-card');
+            let visibleCount = 0;
+            
+            tickets.forEach(ticket => {
+                if (status === 'all' || ticket.dataset.status === status) {
+                    ticket.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    ticket.classList.add('hidden');
+                }
+            });
+            
+            // Show/hide empty state
+            const emptyState = document.getElementById('empty-state');
+            if (visibleCount === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+        }
+        
+        // QR Code Modal
+        function showQRCode(ticketId) {
+            const modal = document.getElementById('qr-modal');
+            document.getElementById('qr-code-id').textContent = `#${ticketId}`;
+            
+            // Set expiry date based on ticket
+            const expiryDates = {
+                'KBZ20241028001': '28 Okt 2024, 17:00 WIB',
+                'TPH20241015001': 'Sudah digunakan',
+                'SNZ20241105001': '5 Nov 2024, 22:00 WIB'
+            };
+            
+            document.getElementById('qr-valid-until').textContent = expiryDates[ticketId] || 'Tidak diketahui';
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeQRCode() {
+            const modal = document.getElementById('qr-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('qr-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeQRCode();
+            }
+        });
+        
+        // Cancel Ticket Function
+        function cancelTicket(ticketId) {
+            if (confirm('Apakah Anda yakin ingin membatalkan tiket ini? Dana akan dikembalikan dalam 1-3 hari kerja.')) {
+                // Simulate API call
+                const ticket = document.querySelector(`[data-status="active"]`);
+                if (ticket) {
+                    ticket.querySelector('.bg-green-100').classList.replace('bg-green-100', 'bg-red-100');
+                    ticket.querySelector('.text-green-800').classList.replace('text-green-800', 'text-red-800');
+                    ticket.querySelector('.dark\\:bg-green-900').classList.replace('dark:bg-green-900', 'dark:bg-red-900');
+                    ticket.querySelector('.dark\\:text-green-200').classList.replace('dark:text-green-200', 'dark:text-red-200');
+                    ticket.querySelector('span.material-symbols-outlined').textContent = 'cancel';
+                    ticket.querySelector('span.material-symbols-outlined').nextSibling.textContent = ' Dibatalkan';
+                    
+                    // Update status
+                    ticket.dataset.status = 'cancelled';
+                    
+                    alert(`Tiket ${ticketId} berhasil dibatalkan. Dana akan dikembalikan.`);
+                }
+            }
+        }
+        
+        // Remind Me Function
+        function remindMe(ticketId) {
+            alert(`Pengingat untuk tiket ${ticketId} telah diatur. Kami akan mengingatkan Anda 1 hari sebelum kunjungan.`);
+        }
+        
+        // Show Receipt Function
+        function showReceipt(ticketId) {
+            alert(`Nota untuk tiket ${ticketId} akan ditampilkan di sini. Fitur ini dalam pengembangan.`);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default active tab
+            filterTickets('all');
+            
+            // Simulate loading
+            setTimeout(() => {
+                document.querySelectorAll('.ticket-card').forEach(card => {
+                    card.style.opacity = '1';
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>

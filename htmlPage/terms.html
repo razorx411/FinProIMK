@@ -17,6 +17,18 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         
+        /* Animasi hamburger menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+            transition: max-height 0.3s ease-in;
+        }
+        
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -85,7 +97,7 @@
 <body class="bg-background-light dark:bg-background-dark font-display">
     <div class="relative flex min-h-screen w-full flex-col">
         
-        <!-- Header (Sama dengan bantuan.html) -->
+        <!-- Header yang sudah diperbaiki -->
         <header id="navbar" class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80 transition-transform duration-300 transform -translate-y-0">
             <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
                 <!-- Logo -->
@@ -93,7 +105,7 @@
                     <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
                 </a>
 
-                <!-- Navigation -->
+                <!-- Desktop Navigation -->
                 <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
                     <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
                     <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="promosi.html">Promosi</a>
@@ -102,10 +114,38 @@
 
                 <!-- Right section -->
                 <div class="flex items-center gap-4">
-                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
-                    <button class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 md:hidden">
-                        <span class="material-symbols-outlined">search</span>
+                    <!-- Link Bantuan (Desktop) -->
+                    <a class="hidden md:block text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
+                    
+                    <!-- HAMBURGER MENU BUTTON -->
+                    <button id="mobile-menu-button" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60">
+                        <span class="material-symbols-outlined">menu</span>
                     </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="mobile-menu md:hidden bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-800/50">
+                <div class="px-4 py-3 space-y-1">
+                    <a href="destinasi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">location_on</span>
+                        <span class="font-medium">Destinasi</span>
+                    </a>
+                    
+                    <a href="promosi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">local_offer</span>
+                        <span class="font-medium">Promosi</span>
+                    </a>
+                    
+                    <a href="tiket-saya.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">confirmation_number</span>
+                        <span class="font-medium">Tiket Saya</span>
+                    </a>
+                    
+                    <a href="bantuan.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">help</span>
+                        <span class="font-medium">Bantuan</span>
+                    </a>
                 </div>
             </div>
         </header>
@@ -155,6 +195,14 @@
                                     <p class="mt-1 text-xs">Dokumen ini berlaku untuk semua pengguna platform Tiket Wisata Surabaya</p>
                                 </div>
                             </div>
+                            
+                            <!-- Download PDF -->
+                            <div class="mt-6">
+                                <a href="#" class="flex items-center justify-center gap-2 w-full px-4 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined">download</span>
+                                    Download PDF
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -179,6 +227,15 @@
                                     <p class="text-gray-600 dark:text-gray-400 mb-4">
                                         Dengan mengakses dan menggunakan platform Tiket Wisata Surabaya, Anda menyetujui untuk terikat dengan syarat dan ketentuan yang ditetapkan di bawah ini. Jika Anda tidak setuju dengan ketentuan ini, harap tidak menggunakan layanan kami.
                                     </p>
+                                    <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mt-4">
+                                        <div class="flex items-start gap-3">
+                                            <span class="material-symbols-outlined text-yellow-600 dark:text-yellow-400 mt-0.5">warning</span>
+                                            <div>
+                                                <p class="text-sm font-medium text-yellow-800 dark:text-yellow-300">Perhatian</p>
+                                                <p class="text-sm text-yellow-700 dark:text-yellow-400 mt-1">Dengan melanjutkan penggunaan layanan kami, Anda dianggap telah membaca, memahami, dan menyetujui semua ketentuan yang berlaku.</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Penggunaan Layanan -->
@@ -209,10 +266,37 @@
                                 <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-gray-800">
                                     <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-white section-indicator">3. Pemesanan dan Pembayaran</h3>
                                     <div class="space-y-4 text-gray-600 dark:text-gray-400">
-                                        <p>3.1. Harga tiket yang tertera sudah termasuk pajak dan biaya layanan.</p>
-                                        <p>3.2. Pembayaran harus dilakukan dalam batas waktu yang ditentukan (2 jam setelah pemesanan).</p>
-                                        <p>3.3. Konfirmasi pemesanan akan dikirim melalui email setelah pembayaran berhasil.</p>
-                                        <p>3.4. Tiket yang sudah dibeli tidak dapat dialihkan atau dijual kembali tanpa persetujuan kami.</p>
+                                        <div class="flex items-start gap-3">
+                                            <span class="material-symbols-outlined text-primary mt-0.5">payments</span>
+                                            <div>
+                                                <p class="font-medium text-gray-900 dark:text-white mb-1">3.1. Harga dan Pajak</p>
+                                                <p>Harga tiket yang tertera sudah termasuk pajak dan biaya layanan sesuai dengan peraturan yang berlaku.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-start gap-3">
+                                            <span class="material-symbols-outlined text-primary mt-0.5">schedule</span>
+                                            <div>
+                                                <p class="font-medium text-gray-900 dark:text-white mb-1">3.2. Batas Waktu Pembayaran</p>
+                                                <p>Pembayaran harus dilakukan dalam batas waktu yang ditentukan (2 jam setelah pemesanan). Tiket akan hangus secara otomatis jika pembayaran tidak dilakukan dalam waktu tersebut.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-start gap-3">
+                                            <span class="material-symbols-outlined text-primary mt-0.5">mail</span>
+                                            <div>
+                                                <p class="font-medium text-gray-900 dark:text-white mb-1">3.3. Konfirmasi Pemesanan</p>
+                                                <p>Konfirmasi pemesanan dan e-tiket akan dikirim melalui email setelah pembayaran berhasil. Pastikan email yang Anda berikan valid dan aktif.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-start gap-3">
+                                            <span class="material-symbols-outlined text-primary mt-0.5">swap_horiz</span>
+                                            <div>
+                                                <p class="font-medium text-gray-900 dark:text-white mb-1">3.4. Transfer Tiket</p>
+                                                <p>Tiket yang sudah dibeli tidak dapat dialihkan atau dijual kembali tanpa persetujuan tertulis dari kami.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -222,21 +306,48 @@
                                     <div class="space-y-4 text-gray-600 dark:text-gray-400">
                                         <p>4.1. Kebijakan pembatalan mengikuti ketentuan yang berlaku di masing-masing destinasi.</p>
                                         <p>4.2. Pengembalian dana mengikuti ketentuan berikut:</p>
-                                        <ul class="ml-4 space-y-2">
-                                            <li>• 24 jam sebelum kunjungan: Pengembalian 100%</li>
-                                            <li>• 12-24 jam sebelum kunjungan: Pengembalian 50%</li>
-                                            <li>• Kurang dari 12 jam: Tidak ada pengembalian</li>
-                                        </ul>
-                                        <p>4.3. Proses pengembalian dana memakan waktu 1-3 hari kerja.</p>
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+                                            <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span class="material-symbols-outlined text-green-600 dark:text-green-400">check_circle</span>
+                                                    <p class="font-bold text-green-800 dark:text-green-300">100% Refund</p>
+                                                </div>
+                                                <p class="text-sm text-green-700 dark:text-green-400">24 jam sebelum kunjungan</p>
+                                            </div>
+                                            <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span class="material-symbols-outlined text-yellow-600 dark:text-yellow-400">info</span>
+                                                    <p class="font-bold text-yellow-800 dark:text-yellow-300">50% Refund</p>
+                                                </div>
+                                                <p class="text-sm text-yellow-700 dark:text-yellow-400">12-24 jam sebelum kunjungan</p>
+                                            </div>
+                                            <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span class="material-symbols-outlined text-red-600 dark:text-red-400">cancel</span>
+                                                    <p class="font-bold text-red-800 dark:text-red-300">No Refund</p>
+                                                </div>
+                                                <p class="text-sm text-red-700 dark:text-red-400">Kurang dari 12 jam</p>
+                                            </div>
+                                        </div>
+                                        <p class="mt-4">4.3. Proses pengembalian dana memakan waktu 1-3 hari kerja tergantung metode pembayaran yang digunakan.</p>
                                     </div>
                                 </div>
 
-                                <!-- Kekuatan Mayor -->
+                                <!-- Tanggung Jawab Pengguna -->
                                 <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-gray-800">
                                     <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-white section-indicator">5. Tanggung Jawab Pengguna</h3>
-                                    <p class="text-gray-600 dark:text-gray-400">
+                                    <p class="text-gray-600 dark:text-gray-400 mb-4">
                                         Pengguna bertanggung jawab penuh atas semua aktivitas yang dilakukan melalui akunnya. Tiket Wisata Surabaya tidak bertanggung jawab atas kerugian yang timbul akibat kelalaian pengguna dalam menjaga kerahasiaan akun.
                                     </p>
+                                    <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                                        <div class="flex items-start gap-3">
+                                            <span class="material-symbols-outlined text-blue-600 dark:text-blue-400 mt-0.5">security</span>
+                                            <div>
+                                                <p class="font-medium text-blue-800 dark:text-blue-300">Tips Keamanan Akun</p>
+                                                <p class="text-sm text-blue-700 dark:text-blue-400 mt-1">• Gunakan password yang kuat dan berbeda dari akun lain<br>• Jangan bagikan informasi login Anda kepada siapapun<br>• Segera laporkan aktivitas mencurigakan pada akun Anda</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -257,24 +368,30 @@
                                 <!-- Pengumpulan Data -->
                                 <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-gray-800">
                                     <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-white section-indicator">1. Data yang Kami Kumpulkan</h3>
-                                    <p class="text-gray-600 dark:text-gray-400 mb-4">Kami mengumpulkan data berikut:</p>
+                                    <p class="text-gray-600 dark:text-gray-400 mb-4">Kami mengumpulkan data berikut untuk memberikan layanan terbaik:</p>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                                            <h4 class="font-bold mb-2 text-gray-900 dark:text-white">Data Pribadi</h4>
+                                            <div class="flex items-center gap-2 mb-3">
+                                                <span class="material-symbols-outlined text-primary">person</span>
+                                                <h4 class="font-bold text-gray-900 dark:text-white">Data Pribadi</h4>
+                                            </div>
                                             <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                                                <li>• Nama lengkap</li>
-                                                <li>• Alamat email</li>
-                                                <li>• Nomor telepon</li>
-                                                <li>• Data pembayaran</li>
+                                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">chevron_right</span> Nama lengkap</li>
+                                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">chevron_right</span> Alamat email</li>
+                                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">chevron_right</span> Nomor telepon</li>
+                                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">chevron_right</span> Data pembayaran</li>
                                             </ul>
                                         </div>
                                         <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                                            <h4 class="font-bold mb-2 text-gray-900 dark:text-white">Data Teknis</h4>
+                                            <div class="flex items-center gap-2 mb-3">
+                                                <span class="material-symbols-outlined text-primary">devices</span>
+                                                <h4 class="font-bold text-gray-900 dark:text-white">Data Teknis</h4>
+                                            </div>
                                             <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                                                <li>• Alamat IP</li>
-                                                <li>• Jenis perangkat</li>
-                                                <li>• Riwayat browser</li>
-                                                <li>• Cookie</li>
+                                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">chevron_right</span> Alamat IP</li>
+                                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">chevron_right</span> Jenis perangkat</li>
+                                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">chevron_right</span> Riwayat browser</li>
+                                                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">chevron_right</span> Cookie</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -284,28 +401,36 @@
                                 <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-gray-800">
                                     <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-white section-indicator">2. Penggunaan Data</h3>
                                     <p class="text-gray-600 dark:text-gray-400 mb-4">Data yang dikumpulkan digunakan untuk:</p>
-                                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-                                        <li class="flex items-start gap-2">
-                                            <span class="material-symbols-outlined text-primary text-sm mt-1">done</span>
-                                            <span>Memproses pemesanan dan pembayaran tiket</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <span class="material-symbols-outlined text-primary text-sm mt-1">done</span>
-                                            <span>Mengirim konfirmasi dan e-ticket</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <span class="material-symbols-outlined text-primary text-sm mt-1">done</span>
-                                            <span>Memberikan dukungan pelanggan</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <span class="material-symbols-outlined text-primary text-sm mt-1">done</span>
-                                            <span>Meningkatkan kualitas layanan</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <span class="material-symbols-outlined text-primary text-sm mt-1">done</span>
-                                            <span>Mengirim informasi promosi (jika diizinkan)</span>
-                                        </li>
-                                    </ul>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="space-y-3">
+                                            <div class="flex items-start gap-2">
+                                                <span class="material-symbols-outlined text-primary text-sm mt-1">shopping_cart</span>
+                                                <span class="text-gray-600 dark:text-gray-400">Memproses pemesanan dan pembayaran tiket</span>
+                                            </div>
+                                            <div class="flex items-start gap-2">
+                                                <span class="material-symbols-outlined text-primary text-sm mt-1">mail</span>
+                                                <span class="text-gray-600 dark:text-gray-400">Mengirim konfirmasi dan e-ticket</span>
+                                            </div>
+                                            <div class="flex items-start gap-2">
+                                                <span class="material-symbols-outlined text-primary text-sm mt-1">support_agent</span>
+                                                <span class="text-gray-600 dark:text-gray-400">Memberikan dukungan pelanggan</span>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="flex items-start gap-2">
+                                                <span class="material-symbols-outlined text-primary text-sm mt-1">trending_up</span>
+                                                <span class="text-gray-600 dark:text-gray-400">Meningkatkan kualitas layanan</span>
+                                            </div>
+                                            <div class="flex items-start gap-2">
+                                                <span class="material-symbols-outlined text-primary text-sm mt-1">campaign</span>
+                                                <span class="text-gray-600 dark:text-gray-400">Mengirim informasi promosi (jika diizinkan)</span>
+                                            </div>
+                                            <div class="flex items-start gap-2">
+                                                <span class="material-symbols-outlined text-primary text-sm mt-1">shield</span>
+                                                <span class="text-gray-600 dark:text-gray-400">Keamanan dan pencegahan penipuan</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Perlindungan Data -->
@@ -314,13 +439,21 @@
                                     <p class="text-gray-600 dark:text-gray-400 mb-4">
                                         Kami menerapkan langkah-langkah keamanan teknis dan organisasi yang sesuai untuk melindungi data pribadi Anda dari akses, pengungkapan, penyalahgunaan, atau kerusakan yang tidak sah.
                                     </p>
-                                    <div class="flex items-center gap-4 mt-4">
-                                        <div class="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
-                                            <span class="material-symbols-outlined text-green-600 dark:text-green-400">lock</span>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                                        <div class="flex flex-col items-center p-4 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                                            <span class="material-symbols-outlined text-green-600 dark:text-green-400 text-3xl mb-2">lock</span>
+                                            <h4 class="font-bold text-green-800 dark:text-green-300 text-center">Enkripsi SSL</h4>
+                                            <p class="text-sm text-center text-gray-600 dark:text-gray-400">Semua transaksi dilindungi dengan enkripsi SSL 256-bit</p>
                                         </div>
-                                        <div>
-                                            <h4 class="font-bold text-green-800 dark:text-green-300">Keamanan Terenkripsi</h4>
-                                            <p class="text-sm text-gray-600 dark:text-gray-400">Semua transaksi dilindungi dengan enkripsi SSL 256-bit</p>
+                                        <div class="flex flex-col items-center p-4 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                                            <span class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-3xl mb-2">shield</span>
+                                            <h4 class="font-bold text-blue-800 dark:text-blue-300 text-center">Firewall</h4>
+                                            <p class="text-sm text-center text-gray-600 dark:text-gray-400">Sistem dilindungi dengan firewall multi-layer</p>
+                                        </div>
+                                        <div class="flex flex-col items-center p-4 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
+                                            <span class="material-symbols-outlined text-purple-600 dark:text-purple-400 text-3xl mb-2">verified</span>
+                                            <h4 class="font-bold text-purple-800 dark:text-purple-300 text-center">Audit Rutin</h4>
+                                            <p class="text-sm text-center text-gray-600 dark:text-gray-400">Audit keamanan rutin oleh tim ahli</p>
                                         </div>
                                     </div>
                                 </div>
@@ -329,16 +462,35 @@
                                 <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-soft dark:shadow-soft-dark border border-gray-100 dark:border-gray-800">
                                     <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-white section-indicator">4. Hak Pengguna</h3>
                                     <div class="space-y-4 text-gray-600 dark:text-gray-400">
-                                        <p>Anda berhak untuk:</p>
-                                        <ul class="ml-4 space-y-2">
-                                            <li>• Mengakses data pribadi Anda</li>
-                                            <li>• Memperbaiki data yang tidak akurat</li>
-                                            <li>• Menghapus data pribadi Anda</li>
-                                            <li>• Menolak pemrosesan data untuk pemasaran</li>
-                                            <li>• Mencabut persetujuan kapan saja</li>
-                                        </ul>
+                                        <p>Sebagai pengguna, Anda memiliki hak untuk:</p>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                            <div class="flex items-start gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                                <span class="material-symbols-outlined text-primary">visibility</span>
+                                                <span>Akses data pribadi Anda</span>
+                                            </div>
+                                            <div class="flex items-start gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                                <span class="material-symbols-outlined text-primary">edit</span>
+                                                <span>Perbaiki data yang tidak akurat</span>
+                                            </div>
+                                            <div class="flex items-start gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                                <span class="material-symbols-outlined text-primary">delete</span>
+                                                <span>Hapus data pribadi Anda</span>
+                                            </div>
+                                            <div class="flex items-start gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                                <span class="material-symbols-outlined text-primary">block</span>
+                                                <span>Tolak pemrosesan data untuk pemasaran</span>
+                                            </div>
+                                            <div class="flex items-start gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                                <span class="material-symbols-outlined text-primary">undo</span>
+                                                <span>Cabut persetujuan kapan saja</span>
+                                            </div>
+                                            <div class="flex items-start gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                                <span class="material-symbols-outlined text-primary">download</span>
+                                                <span>Portabilitas data</span>
+                                            </div>
+                                        </div>
                                         <p class="mt-4">
-                                            Untuk menggunakan hak-hak ini, silakan hubungi kami melalui <a href="mailto:privasi@tiketwisatasurabaya.com" class="text-primary hover:underline">privasi@tiketwisatasurabaya.com</a>
+                                            Untuk menggunakan hak-hak ini, silakan hubungi kami melalui <a href="mailto:privasi@tiketwisatasurabaya.com" class="text-primary hover:underline font-medium">privasi@tiketwisatasurabaya.com</a>
                                         </p>
                                     </div>
                                 </div>
@@ -350,9 +502,24 @@
                                         Kami menggunakan cookie untuk meningkatkan pengalaman browsing Anda. Cookie membantu kami memahami bagaimana Anda menggunakan situs web kami sehingga kami dapat meningkatkan layanan.
                                     </p>
                                     <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                                        <p class="text-sm text-gray-600 dark:text-gray-400">
-                                            Anda dapat mengatur browser untuk menolak semua atau beberapa cookie, atau untuk memberi tahu Anda ketika situs web menyetel atau mengakses cookie. Namun, jika Anda menonaktifkan atau menolak cookie, beberapa bagian situs web ini mungkin menjadi tidak dapat diakses atau tidak berfungsi dengan baik.
-                                        </p>
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <span class="material-symbols-outlined text-gray-600 dark:text-gray-400">cookie</span>
+                                            <p class="font-medium text-gray-900 dark:text-white">Jenis Cookie yang Kami Gunakan</p>
+                                        </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                            <div class="text-sm text-gray-600 dark:text-gray-400 p-3 bg-white dark:bg-gray-900 rounded">
+                                                <p class="font-medium mb-1">Cookie Esensial</p>
+                                                <p>Diperlukan untuk fungsi dasar website</p>
+                                            </div>
+                                            <div class="text-sm text-gray-600 dark:text-gray-400 p-3 bg-white dark:bg-gray-900 rounded">
+                                                <p class="font-medium mb-1">Cookie Performa</p>
+                                                <p>Mengumpulkan data analitik anonim</p>
+                                            </div>
+                                            <div class="text-sm text-gray-600 dark:text-gray-400 p-3 bg-white dark:bg-gray-900 rounded">
+                                                <p class="font-medium mb-1">Cookie Fungsionalitas</p>
+                                                <p>Mengingat preferensi pengguna</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -370,14 +537,27 @@
                                     <p class="text-gray-600 dark:text-gray-400 mb-6">
                                         Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami:
                                     </p>
-                                    <div class="flex flex-col sm:flex-row gap-4">
-                                        <div class="flex-1">
-                                            <p class="font-bold mb-2 text-gray-900 dark:text-white">Email</p>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                        <div>
+                                            <p class="font-bold mb-2 text-gray-900 dark:text-white flex items-center gap-2">
+                                                <span class="material-symbols-outlined text-primary">mail</span>
+                                                Email
+                                            </p>
                                             <a href="mailto:privasi@tiketwisatasurabaya.com" class="text-primary hover:underline">privasi@tiketwisatasurabaya.com</a>
                                         </div>
-                                        <div class="flex-1">
-                                            <p class="font-bold mb-2 text-gray-900 dark:text-white">Telepon</p>
+                                        <div>
+                                            <p class="font-bold mb-2 text-gray-900 dark:text-white flex items-center gap-2">
+                                                <span class="material-symbols-outlined text-primary">call</span>
+                                                Telepon
+                                            </p>
                                             <p class="text-gray-600 dark:text-gray-400">(031) 1234-5678</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold mb-2 text-gray-900 dark:text-white flex items-center gap-2">
+                                                <span class="material-symbols-outlined text-primary">schedule</span>
+                                                Jam Operasional
+                                            </p>
+                                            <p class="text-gray-600 dark:text-gray-400">Senin - Jumat<br>09:00 - 17:00 WIB</p>
                                         </div>
                                     </div>
                                 </div>
@@ -388,55 +568,53 @@
             </div>
         </main>
 
-        <!-- Footer (Sama seperti di atas) -->
         <!-- Footer -->
-<footer class="mt-auto border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900/50">
-    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-            <!-- Perusahaan -->
-            <div>
-                <h4 class="font-bold text-gray-900 dark:text-white">Perusahaan</h4>
-                <ul class="mt-4 space-y-2 text-sm">
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Tentang Kami</a></li>
-                    <!-- Karir dihapus sesuai permintaan -->
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Pers</a></li>
-                </ul>
+        <footer class="mt-auto border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900/50">
+            <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+                    <!-- Perusahaan -->
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Perusahaan</h4>
+                        <ul class="mt-4 space-y-2 text-sm">
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Tentang Kami</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Pers</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Dukungan -->
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Dukungan</h4>
+                        <ul class="mt-4 space-y-2 text-sm">
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html">Pusat Bantuan</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Hubungi Kami</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Hukum -->
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Hukum</h4>
+                        <ul class="mt-4 space-y-2 text-sm">
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#ketentuan">Ketentuan Layanan</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#privasi">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Brand -->
+                    <div>
+                        <a href="index.html" class="flex items-center gap-4 text-gray-900 dark:text-white">
+                            <img src="gambar/logoo.png" width="120" height="40" alt="Logo Tiket Wisata Surabaya">
+                        </a>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Platform pemesanan tiket wisata Surabaya terpercaya.</p>
+                    </div>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:text-gray-400">
+                    <p>© 2025 IMK-D Kelompok 2</p>
+                </div>
             </div>
-            
-            <!-- Dukungan -->
-            <div>
-                <h4 class="font-bold text-gray-900 dark:text-white">Dukungan</h4>
-                <ul class="mt-4 space-y-2 text-sm">
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html">Pusat Bantuan</a></li>
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Hubungi Kami</a></li>
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#faq">FAQ</a></li>
-                </ul>
-            </div>
-            
-            <!-- Hukum -->
-            <div>
-                <h4 class="font-bold text-gray-900 dark:text-white">Hukum</h4>
-                <ul class="mt-4 space-y-2 text-sm">
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#ketentuan">Ketentuan Layanan</a></li>
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#privasi">Kebijakan Privasi</a></li>
-                </ul>
-            </div>
-            
-            <!-- Brand -->
-            <div>
-                <a href="index.html" class="flex items-center gap-4 text-gray-900 dark:text-white">
-                    <img src="gambar/logoo.png" width="120" height="40" alt="Logo Tiket Wisata Surabaya">
-                </a>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Platform pemesanan tiket wisata Surabaya terpercaya.</p>
-            </div>
-        </div>
-        
-        <!-- Copyright -->
-        <div class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:text-gray-400">
-            <p>© 2025 IMK-D Kelompok 2</p>
-        </div>
-    </div>
-</footer>
+        </footer>
     </div>
 
     <script>
@@ -482,6 +660,28 @@
                     link.classList.add('bg-primary-light', 'dark:bg-gray-800', 'text-primary');
                 }
             });
+        });
+
+        // Script untuk hamburger menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    const icon = mobileMenuButton.querySelector('.material-symbols-outlined');
+                    icon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+                });
+                
+                // Close mobile menu ketika klik link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        mobileMenuButton.querySelector('.material-symbols-outlined').textContent = 'menu';
+                    });
+                });
+            }
         });
     </script>
 </body>

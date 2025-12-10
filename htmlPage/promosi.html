@@ -40,6 +40,18 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+        
+        /* Animasi hamburger menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+            transition: max-height 0.3s ease-in;
+        }
     </style>
 </head>
 
@@ -47,77 +59,278 @@
     <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
             
- <header id="navbar"
-class="fixed top-0 left-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+            <!-- Header dengan Navbar yang lebih baik -->
+            <header id="navbar" class="fixed top-0 left-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80">
+                <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
 
-        <!-- Logo -->
-        <a href="index.html"> 
-            <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
-        </a>
+                    <!-- Logo -->
+                    <a href="index.html"> 
+                        <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
+                    </a>
 
-        <!-- Navigation -->
-        <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="promosi.html">Promosi</a>
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="tiket-saya.html">Tiket Saya</a>
-        </nav>
+                    <!-- Desktop Navigation -->
+                    <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+                        <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
+                        <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="promosi.html">Promosi</a>
+                        <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="tiket-saya.html">Tiket Saya</a>
+                    </nav>
 
-        <!-- Right section -->
-        <div class="flex items-center gap-4">
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
-            <button class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 md:hidden">
-                <span class="material-symbols-outlined">search</span>
-            </button>
-        </div>
-    </div>
-</header>
-                    
-                    
-                    <!-- Mobile Menu Button -->
-                    <div class="md:hidden">
-                        <button class="flex items-center justify-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
-                            <span class="material-symbols-outlined text-[#111418] dark:text-white">menu</span>
+                    <!-- Right section -->
+                    <div class="flex items-center gap-4">
+                        <!-- Link Bantuan (Desktop) -->
+                        <a class="hidden md:block text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
+                        
+                        <!-- HAMBURGER MENU BUTTON -->
+                        <button id="mobile-menu-button" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60">
+                            <span class="material-symbols-outlined">menu</span>
                         </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Dropdown -->
+                <div id="mobile-menu" class="mobile-menu md:hidden bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-800/50">
+                    <div class="px-4 py-3 space-y-1">
+                        <a href="destinasi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                            <span class="material-symbols-outlined text-gray-400">location_on</span>
+                            <span class="font-medium">Destinasi</span>
+                        </a>
+                        
+                        <a href="promosi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                            <span class="material-symbols-outlined text-gray-400">local_offer</span>
+                            <span class="font-medium">Promosi</span>
+                        </a>
+                        
+                        <a href="tiket-saya.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                            <span class="material-symbols-outlined text-gray-400">confirmation_number</span>
+                            <span class="font-medium">Tiket Saya</span>
+                        </a>
+                        
+                        <a href="bantuan.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                            <span class="material-symbols-outlined text-gray-400">help</span>
+                            <span class="font-medium">Bantuan</span>
+                        </a>
                     </div>
                 </div>
             </header>
             
             <!-- Main Content -->
-            <main class="flex-1">
-                <main class="flex-1 pt-24">
-                <div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40 py-5">
+            <main class="flex-1 pt-24">
+                <div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40 py-8">
                     <div class="layout-content-container flex flex-col w-full">
+                        <!-- Header Promosi -->
+                        <div class="mb-10 text-center">
+                            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">Promosi Spesial</h1>
+                            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Nikmati diskon dan penawaran menarik untuk tiket wisata di Surabaya. Hemat lebih banyak untuk pengalaman berkesan!</p>
+                        </div>
+                        
                         <div class="@container">
-                            <div class="flex flex-col gap-6">
+                            <div class="flex flex-col gap-8">
                                 
-                                <!-- Promotion 1 -->
-                                <div class="relative flex min-h-[300px] flex-col overflow-hidden rounded-xl text-white">
-                                    <div class="absolute inset-0 h-full w-full bg-cover bg-center bg-no-repeat blur-sm scale-105" data-alt="Enclosure with deer at Surabaya Zoo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgk1Grdd4r7YaVOViolWOqiGXGK14jvZ048n0NMFQME8t2o8pE8HKYBMIDcpYMmU5dNWyMq38uY0hSShNSgS56P9kzo0sdImAlKDXHqAn5mdc2rclqx4p33Sjd-jc_pjQC4DLqT7XuSU8oMu288qc60KjLzDZjBD733suEoLUQT3dW_FoVwKCzvt__KsOGWUOK8vz7nXVErAsbXP85tLtoT2APuVwZNkWzIkaTdH61-oALlFFMRjTNvyIJTVFBbikzpFeh6-SYKvWw");'></div>
-                                    <div class="relative z-10 mt-auto flex flex-col gap-2 bg-gradient-to-t from-black/70 via-black/50 to-transparent p-6">
-                                        <h3 class="text-3xl font-bold tracking-tight">Hari Jadi KBS</h3>
-                                        <div class="flex items-baseline gap-3">
-                                            <p class="text-4xl font-black text-yellow-300">Diskon 67%</p>
+                                <!-- Promotion 1 - KBS -->
+                                <div class="relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl text-white shadow-xl hover:shadow-2xl transition-all duration-300">
+                                    <div class="absolute inset-0 h-full w-full bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-700 hover:scale-110" style='background-image: url("https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'></div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                    <div class="relative z-10 mt-auto flex flex-col gap-3 p-8">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-yellow-500 text-white text-sm font-bold">DISKON 67%</span>
+                                            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-red-500 text-white text-sm font-bold">TERBATAS</span>
                                         </div>
-                                        <div class="flex items-center gap-2">
-                                            <p class="text-gray-300 text-lg font-medium leading-normal line-through">Rp15.000</p>
-                                            <p class="text-white text-2xl font-bold leading-normal">Rp5.000</p>
+                                        <h3 class="text-3xl md:text-4xl font-bold tracking-tight">Hari Jadi Kebun Binatang Surabaya</h3>
+                                        <p class="text-gray-200 text-lg">Rayakan hari jadi KBS dengan harga spesial!</p>
+                                        <div class="flex items-center gap-4 mt-2">
+                                            <div class="flex items-baseline gap-2">
+                                                <p class="text-gray-300 text-lg font-medium leading-normal line-through">Rp 15.000</p>
+                                                <p class="text-white text-3xl font-bold leading-normal">Rp 5.000</p>
+                                            </div>
+                                            <p class="text-yellow-300 text-2xl font-black ml-auto">67% OFF</p>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-4">
+                                            <div class="flex items-center gap-2 text-gray-200">
+                                                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                                <span class="text-sm">Berlaku hingga 30 Des 2024</span>
+                                            </div>
+                                            <a href="detail-tiket.html?promo=kbs" class="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors">
+                                                <span class="material-symbols-outlined">confirmation_number</span>
+                                                Pesan Sekarang
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <!-- Promotion 2 -->
-                                <div class="relative flex min-h-[300px] flex-col overflow-hidden rounded-xl text-white">
-                                    <div class="absolute inset-0 h-full w-full bg-cover bg-center bg-no-repeat blur-sm scale-105" data-alt="Tugu Pahlawan Surabaya with fireworks in the background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNZPTWKgmCQiNfilZNkTUmIx6ph4KDutDOdGM3s8y8LNDCXc1Np1sdAhiaLo4-WJWyzKl7qf5TaUt1FgXzOXt0VTE6GL9WKd6BpnqnkBjze59yVzha-0ZaFGNBsuy5IqHFuG_0hkw3R3jqLcoyJj4PvaHHgsieoGzuQRXi_RDqw5908YG1rV1WujyMlD_EqFhM5YibufjveNq75svcA7-KfxZLAcV5FIRndQ8Nj8I_hvCc31b7MHhPUx-nI8pL_ANRhmE0MPLyZnUq");'></div>
-                                    <div class="relative z-10 mt-auto flex flex-col gap-2 bg-gradient-to-t from-black/70 via-black/50 to-transparent p-6">
-                                        <h3 class="text-3xl font-bold tracking-tight">Spesial HUT Surabaya</h3>
-                                        <div class="flex items-baseline gap-3">
-                                            <p class="text-4xl font-black text-yellow-300">Diskon Hingga 50%</p>
+                                <!-- Promotion 2 - HUT Surabaya -->
+                                <div class="relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl text-white shadow-xl hover:shadow-2xl transition-all duration-300">
+                                    <div class="absolute inset-0 h-full w-full bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-700 hover:scale-110" style='background-image: url("https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'></div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                    <div class="relative z-10 mt-auto flex flex-col gap-3 p-8">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-yellow-500 text-white text-sm font-bold">DISKON 50%</span>
+                                            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-500 text-white text-sm font-bold">SPESIAL</span>
                                         </div>
-                                        <p class="text-white/90 text-sm">Di semua destinasi wisata sejarah &amp; keluarga!</p>
+                                        <h3 class="text-3xl md:text-4xl font-bold tracking-tight">Spesial HUT Kota Surabaya</h3>
+                                        <p class="text-gray-200 text-lg">Diskon di semua destinasi wisata sejarah & keluarga!</p>
+                                        <div class="flex items-center gap-4 mt-2">
+                                            <div class="flex items-baseline gap-2">
+                                                <p class="text-white text-3xl font-bold leading-normal">Mulai Rp 5.000</p>
+                                            </div>
+                                            <p class="text-yellow-300 text-2xl font-black ml-auto">Hingga 50% OFF</p>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-4">
+                                            <div class="flex items-center gap-2 text-gray-200">
+                                                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                                <span class="text-sm">Berlaku hingga 31 Des 2024</span>
+                                            </div>
+                                            <a href="destinasi.html?promo=hut-surabaya" class="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors">
+                                                <span class="material-symbols-outlined">explore</span>
+                                                Lihat Destinasi
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                                 
+                                <!-- Promotion 3 - Paket Keluarga -->
+                                <div class="relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl text-white shadow-xl hover:shadow-2xl transition-all duration-300">
+                                    <div class="absolute inset-0 h-full w-full bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-700 hover:scale-110" style='background-image: url("https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'></div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                    <div class="relative z-10 mt-auto flex flex-col gap-3 p-8">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-green-500 text-white text-sm font-bold">PAKET KELUARGA</span>
+                                            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-purple-500 text-white text-sm font-bold">HEMAT 40%</span>
+                                        </div>
+                                        <h3 class="text-3xl md:text-4xl font-bold tracking-tight">Paket Wisata Keluarga</h3>
+                                        <p class="text-gray-200 text-lg">Liburan hemat untuk 4 orang ke destinasi pilihan!</p>
+                                        <div class="flex items-center gap-4 mt-2">
+                                            <div class="flex items-baseline gap-2">
+                                                <p class="text-gray-300 text-lg font-medium leading-normal line-through">Rp 200.000</p>
+                                                <p class="text-white text-3xl font-bold leading-normal">Rp 120.000</p>
+                                            </div>
+                                            <p class="text-yellow-300 text-2xl font-black ml-auto">40% OFF</p>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-4">
+                                            <div class="flex items-center gap-2 text-gray-200">
+                                                <span class="material-symbols-outlined text-sm">group</span>
+                                                <span class="text-sm">Untuk 4 orang (2 dewasa + 2 anak)</span>
+                                            </div>
+                                            <a href="detail-tiket.html?promo=keluarga" class="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors">
+                                                <span class="material-symbols-outlined">family_restroom</span>
+                                                Pesan Paket
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Promotion 4 - Early Bird -->
+                                <div class="relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl text-white shadow-xl hover:shadow-2xl transition-all duration-300">
+                                    <div class="absolute inset-0 h-full w-full bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-700 hover:scale-110" style='background-image: url("https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'></div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                    <div class="relative z-10 mt-auto flex flex-col gap-3 p-8">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-orange-500 text-white text-sm font-bold">EARLY BIRD</span>
+                                            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-pink-500 text-white text-sm font-bold">30% OFF</span>
+                                        </div>
+                                        <h3 class="text-3xl md:text-4xl font-bold tracking-tight">Early Bird Museum</h3>
+                                        <p class="text-gray-200 text-lg">Pesan tiket museum sebelum jam 10.00 dapat diskon spesial!</p>
+                                        <div class="flex items-center gap-4 mt-2">
+                                            <div class="flex items-baseline gap-2">
+                                                <p class="text-gray-300 text-lg font-medium leading-normal line-through">Rp 10.000</p>
+                                                <p class="text-white text-3xl font-bold leading-normal">Rp 7.000</p>
+                                            </div>
+                                            <p class="text-yellow-300 text-2xl font-black ml-auto">30% OFF</p>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-4">
+                                            <div class="flex items-center gap-2 text-gray-200">
+                                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                                <span class="text-sm">Setiap hari, sebelum jam 10.00</span>
+                                            </div>
+                                            <a href="destinasi.html?kategori=museum&promo=earlybird" class="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors">
+                                                <span class="material-symbols-outlined">museum</span>
+                                                Lihat Museum
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Info Tambahan -->
+                            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <!-- Info Syarat & Ketentuan -->
+                                <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <span class="material-symbols-outlined text-primary text-2xl">info</span>
+                                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Syarat & Ketentuan</h3>
+                                    </div>
+                                    <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                                        <li class="flex items-start gap-2">
+                                            <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                            <span>Diskon tidak dapat digabung dengan promo lainnya</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                            <span>Promo berlaku untuk pembelian online melalui website ini</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                            <span>Kuota promo terbatas setiap harinya</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- Info Cara Klaim -->
+                                <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <span class="material-symbols-outlined text-primary text-2xl">redeem</span>
+                                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Cara Klaim Promo</h3>
+                                    </div>
+                                    <ol class="space-y-3 text-gray-600 dark:text-gray-300">
+                                        <li class="flex items-start gap-2">
+                                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-xs flex items-center justify-center">1</span>
+                                            <span>Pilih destinasi yang memiliki promo</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-xs flex items-center justify-center">2</span>
+                                            <span>Klik tombol "Pesan Sekarang"</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-xs flex items-center justify-center">3</span>
+                                            <span>Diskon akan otomatis terapkan saat checkout</span>
+                                        </li>
+                                    </ol>
+                                </div>
+                                
+                                <!-- Info Kontak -->
+                                <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <span class="material-symbols-outlined text-primary text-2xl">support_agent</span>
+                                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Butuh Bantuan?</h3>
+                                    </div>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">Punya pertanyaan tentang promo? Hubungi customer service kami:</p>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-primary">call</span>
+                                            <div>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">Telepon</p>
+                                                <p class="font-bold text-gray-900 dark:text-white">1500-123</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-primary">mail</span>
+                                            <div>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">Email</p>
+                                                <p class="font-bold text-gray-900 dark:text-white">promo@tiketwisatasby.com</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- CTA Section -->
+                            <div class="mt-16 text-center">
+                                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Temukan Lebih Banyak Destinasi</h2>
+                                <p class="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">Jelajahi berbagai destinasi wisata menarik di Surabaya dengan harga terbaik</p>
+                                <a href="destinasi.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-primary text-white text-lg font-bold hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined">explore</span>
+                                    Lihat Semua Destinasi
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -125,54 +338,95 @@ class="fixed top-0 left-0 z-50 w-full border-b border-gray-200/50 bg-background-
             </main>
             
             <!-- Footer -->
-        <!-- Footer -->
-<footer class="mt-auto border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900/50">
-    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-            <!-- Perusahaan -->
-            <div>
-                <h4 class="font-bold text-gray-900 dark:text-white">Perusahaan</h4>
-                <ul class="mt-4 space-y-2 text-sm">
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Tentang Kami</a></li>
-                    <!-- Karir dihapus sesuai permintaan -->
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Pers</a></li>
-                </ul>
-            </div>
-            
-            <!-- Dukungan -->
-            <div>
-                <h4 class="font-bold text-gray-900 dark:text-white">Dukungan</h4>
-                <ul class="mt-4 space-y-2 text-sm">
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html">Pusat Bantuan</a></li>
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Hubungi Kami</a></li>
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#faq">FAQ</a></li>
-                </ul>
-            </div>
-            
-            <!-- Hukum -->
-            <div>
-                <h4 class="font-bold text-gray-900 dark:text-white">Hukum</h4>
-                <ul class="mt-4 space-y-2 text-sm">
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#ketentuan">Ketentuan Layanan</a></li>
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#privasi">Kebijakan Privasi</a></li>
-                </ul>
-            </div>
-            
-            <!-- Brand -->
-            <div>
-                <a href="index.html" class="flex items-center gap-4 text-gray-900 dark:text-white">
-                    <img src="gambar/logoo.png" width="120" height="40" alt="Logo Tiket Wisata Surabaya">
-                </a>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Platform pemesanan tiket wisata Surabaya terpercaya.</p>
-            </div>
-        </div>
-        
-        <!-- Copyright -->
-        <div class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:text-gray-400">
-            <p>© 2025 IMK-D Kelompok 2</p>
+            <footer class="mt-auto border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900/50">
+                <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+                        <!-- Perusahaan -->
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white">Perusahaan</h4>
+                            <ul class="mt-4 space-y-2 text-sm">
+                                <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Tentang Kami</a></li>
+                                <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Pers</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Dukungan -->
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white">Dukungan</h4>
+                            <ul class="mt-4 space-y-2 text-sm">
+                                <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html">Pusat Bantuan</a></li>
+                                <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Hubungi Kami</a></li>
+                                <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#faq">FAQ</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Hukum -->
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white">Hukum</h4>
+                            <ul class="mt-4 space-y-2 text-sm">
+                                <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#ketentuan">Ketentuan Layanan</a></li>
+                                <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#privasi">Kebijakan Privasi</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Brand -->
+                        <div>
+                            <a href="index.html" class="flex items-center gap-4 text-gray-900 dark:text-white">
+                                <img src="gambar/logoo.png" width="120" height="40" alt="Logo Tiket Wisata Surabaya">
+                            </a>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Platform pemesanan tiket wisata Surabaya terpercaya.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Copyright -->
+                    <div class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:text-gray-400">
+                        <p>© 2025 IMK-D Kelompok 2</p>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
-</footer>
-    </div>
+
+    <script>
+        // Script untuk hamburger menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    const icon = mobileMenuButton.querySelector('.material-symbols-outlined');
+                    icon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+                });
+                
+                // Close mobile menu ketika klik link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        mobileMenuButton.querySelector('.material-symbols-outlined').textContent = 'menu';
+                    });
+                });
+            }
+            
+            // Animasi untuk kartu promo
+            const promoCards = document.querySelectorAll('.relative.flex.min-h-\\[300px\\]');
+            promoCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const bg = card.querySelector('.absolute.inset-0');
+                    if (bg) {
+                        bg.classList.add('scale-110');
+                    }
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    const bg = card.querySelector('.absolute.inset-0');
+                    if (bg) {
+                        bg.classList.remove('scale-110');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

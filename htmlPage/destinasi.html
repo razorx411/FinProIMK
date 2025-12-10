@@ -39,94 +39,135 @@
     
     <!-- Styles -->
     <style>
-            .search-dropdown {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        border-radius: 0.5rem;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        max-height: 300px;
-        overflow-y: auto;
-        z-index: 50;
-    }
-    
-    .dark .search-dropdown {
-        background: #1f2937;
-    }
-    
-    .search-result-item {
-        padding: 12px 16px;
-        border-bottom: 1px solid #e5e7eb;
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-    
-    .search-result-item:hover {
-        background-color: #f9fafb;
-    }
-    
-    .dark .search-result-item {
-        border-bottom-color: #374151;
-    }
-    
-    .dark .search-result-item:hover {
-        background-color: #374151;
-    }
-    
-    .category-card {
-        transition: all 0.3s ease;
-    }
-    
-    .category-card:hover {
-        transform: translateY(-5px);
-    }
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 50;
+        }
+        
+        .dark .search-dropdown {
+            background: #1f2937;
+        }
+        
+        .search-result-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .search-result-item:hover {
+            background-color: #f9fafb;
+        }
+        
+        .dark .search-result-item {
+            border-bottom-color: #374151;
+        }
+        
+        .dark .search-result-item:hover {
+            background-color: #374151;
+        }
+        
+        .category-card {
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-           .fade-out {
-        opacity: 0;
-        transform: scale(0.95);
-        transition: all 0.25s ease;
-    }
+        
+        .fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.25s ease;
+        }
 
-    .fade-in {
-        opacity: 1;
-        transform: scale(1);
-        transition: all 0.25s ease;
-    }
+        .fade-in {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.25s ease;
+        }
+        
+        /* Animasi hamburger menu - TAMBAHAN */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+            transition: max-height 0.3s ease-in;
+        }
     </style>
 
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
     <div class="relative flex min-h-screen w-full flex-col">
-        <!-- Header -->
-       <header class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+        <!-- Header dengan Hamburger Menu -->
+        <header class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
 
-        <!-- Logo -->
-        <a href="index.html">
-            <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
-        </a>
+                <!-- Logo -->
+                <a href="index.html">
+                    <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
+                </a>
 
-        <!-- Navigation -->
-        <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="promosi.html">Promosi</a>
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="tiket-saya.html">Tiket Saya</a>
-        </nav>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="promosi.html">Promosi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="tiket-saya.html">Tiket Saya</a>
+                </nav>
 
-        <!-- Right section -->
-        <div class="flex items-center gap-4">
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
-            <button class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 md:hidden">
-                <span class="material-symbols-outlined">search</span>
-            </button>
-        </div>
-    </div>
-</header>
-
+                <!-- Right section - MODIFIKASI -->
+                <div class="flex items-center gap-4">
+                    <!-- Link Bantuan hanya di Desktop -->
+                    <a class="hidden md:block text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
+                    
+                    <!-- Hamburger Menu Button (Mobile) -->
+                    <button id="mobile-menu-button" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Dropdown (TAMBAHAN BARU) -->
+            <div id="mobile-menu" class="mobile-menu md:hidden bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-800/50">
+                <div class="px-4 py-3 space-y-1">
+                    <a href="destinasi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">location_on</span>
+                        <span class="font-medium">Destinasi</span>
+                    </a>
+                    
+                    <a href="promosi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">local_offer</span>
+                        <span class="font-medium">Promosi</span>
+                    </a>
+                    
+                    <a href="tiket-saya.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">confirmation_number</span>
+                        <span class="font-medium">Tiket Saya</span>
+                    </a>
+                    
+                    <a href="bantuan.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">help</span>
+                        <span class="font-medium">Bantuan</span>
+                    </a>
+                </div>
+            </div>
+        </header>
         
         <!-- Main Content -->
         <main class="container mx-auto flex-1 px-4 py-8">
@@ -144,425 +185,447 @@
                                 </div>
                             </div>
                             
-                           <!-- FILTER SECTION -->
-<div class="space-y-4">
+                            <!-- FILTER SECTION -->
+                            <div class="space-y-4">
+                                <!-- Tag Filter -->
+                                <div>
+                                    <h3 class="font-semibold mb-2">Kategori</h3>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="cursor-pointer hover:text-primary transition">
+                                            <input type="checkbox" class="tagFilter" value="Edukasi"> Edukasi
+                                        </label>
+                                        <label class="cursor-pointer hover:text-primary transition">
+                                            <input type="checkbox" class="tagFilter" value="Sejarah"> Sejarah
+                                        </label>
+                                        <label class="cursor-pointer hover:text-primary transition">
+                                            <input type="checkbox" class="tagFilter" value="Keluarga"> Keluarga
+                                        </label>
+                                        <label class="cursor-pointer hover:text-primary transition">
+                                            <input type="checkbox" class="tagFilter" value="Outdoor"> Outdoor
+                                        </label>
+                                    </div>
+                                </div>
 
-    <!-- Tag Filter -->
-    <div>
-        <h3 class="font-semibold mb-2">Kategori</h3>
-        <div class="flex flex-col gap-1">
-            <label class="cursor-pointer hover:text-primary transition">
-                <input type="checkbox" class="tagFilter" value="Edukasi"> Edukasi
-            </label>
-            <label class="cursor-pointer hover:text-primary transition">
-                <input type="checkbox" class="tagFilter" value="Sejarah"> Sejarah
-            </label>
-            <label class="cursor-pointer hover:text-primary transition">
-                <input type="checkbox" class="tagFilter" value="Keluarga"> Keluarga
-            </label>
-            <label class="cursor-pointer hover:text-primary transition">
-                <input type="checkbox" class="tagFilter" value="Outdoor"> Outdoor
-            </label>
-        </div>
-    </div>
+                                <!-- Rating Filter -->
+                                <div>
+                                    <h3 class="font-semibold mb-2">Rating</h3>
+                                    <select id="ratingFilter" class="p-2 rounded-lg border hover:border-primary transition">
+                                        <option value="">Semua</option>
+                                        <option value="4.0">≥ 4.0</option>
+                                        <option value="4.5">≥ 4.5</option>
+                                        <option value="4.7">≥ 4.7</option>
+                                    </select>
+                                </div>
 
-    <!-- Rating Filter -->
-    <div>
-        <h3 class="font-semibold mb-2">Rating</h3>
-        <select id="ratingFilter" class="p-2 rounded-lg border hover:border-primary transition">
-            <option value="">Semua</option>
-            <option value="4.0">≥ 4.0</option>
-            <option value="4.5">≥ 4.5</option>
-            <option value="4.7">≥ 4.7</option>
-        </select>
-    </div>
-
-    <!-- Price Filter -->
-    <div>
-        <h3 class="font-semibold mb-2">Harga Maksimal (Rp)</h3>
-        <input id="priceFilter" type="range" min="5000" max="20000" step="1000" value="20000"
-               class="w-full accent-primary">
-        <p class="mt-1 text-sm">Maks: <span id="priceValue">20000</span></p>
-    </div>
-
-</div>
-                        
-                        <!-- Filter Buttons -->
+                                <!-- Price Filter -->
+                                <div>
+                                    <h3 class="font-semibold mb-2">Harga Maksimal (Rp)</h3>
+                                    <input id="priceFilter" type="range" min="5000" max="20000" step="1000" value="20000"
+                                           class="w-full accent-primary">
+                                    <p class="mt-1 text-sm">Maks: <span id="priceValue">20000</span></p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                 </aside>
                 
                 <!-- Search Results -->
                 <div class="w-full lg:w-3/4">
-                    
-                    
                     <!-- Sort Options -->
-<div class="flex flex-wrap gap-3 mb-6">
-    <button id="sortByPrice" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Harga Terendah</button>
-    <button id="sortByUlasan" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Popularitas</button>
-    <button id="sortByRating" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Rating Tertinggi</button>
-</div>
-
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <button id="sortByPrice" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Harga Terendah</button>
+                        <button id="sortByUlasan" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Popularitas</button>
+                        <button id="sortByRating" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Rating Tertinggi</button>
+                    </div>
                     
-                   <!-- Attraction Cards Grid -->
-<div id="results" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full"></div>
-                        
+                    <!-- Attraction Cards Grid -->
+                    <div id="results" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full"></div>
+                </div>
+            </div>
+        </main>
+    </div>
 
-<script>
-/* ===========================
-   Data
-   =========================== */
+    <script>
+        // Script untuk hamburger menu - TAMBAHAN BARU
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    const icon = mobileMenuButton.querySelector('.material-symbols-outlined');
+                    icon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+                });
+                
+                // Close mobile menu ketika klik link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        mobileMenuButton.querySelector('.material-symbols-outlined').textContent = 'menu';
+                    });
+                });
+            }
+        });
+        
+        /* ===========================
+           Data
+           =========================== */
 
-/* ===========================
-   Helper: render cards into #results
-   (each card is an <a href="pesanTiket.html"> )
-   =========================== */
-function renderCards(data) {
-    const container = document.getElementById("results");
-    if (!container) return;
+        /* ===========================
+           Helper: render cards into #results
+           (each card is an <a href="pesanTiket.html"> )
+           =========================== */
+        function renderCards(data) {
+            const container = document.getElementById("results");
+            if (!container) return;
 
-    // small fade effect
-    container.classList.add("fade-out");
+            // small fade effect
+            container.classList.add("fade-out");
 
-    setTimeout(() => {
-        container.innerHTML = "";
-
-        data.forEach(item => {
-            // create anchor card so click goes to pesanTiket.html
-            const card = document.createElement("a");
-            card.href = "pesanTiket.html";
-            card.className = "block bg-white shadow-md rounded-lg overflow-hidden p-4 fade-in cursor-pointer hover:shadow-xl hover:-translate-y-1 transition";
-            card.style.opacity = "0";
-            card.style.transform = "scale(0.95)";
-
-            card.innerHTML = `
-                <img src="${item.img}" alt="${item.name}" class="w-full h-40 object-cover rounded-md" />
-                <h3 class="text-lg font-bold mt-3">${item.name}</h3>
-                <p class="text-gray-500 text-sm mb-2">${item.lokasi}</p>
-                <p class="text-green-600 font-bold">Rp ${item.price.toLocaleString()}</p>
-                <p class="text-yellow-500">⭐ ${item.rating}</p>
-            `;
-
-            container.appendChild(card);
-
-            // animate in
             setTimeout(() => {
-                card.style.opacity = "1";
-                card.style.transform = "scale(1)";
-            }, 20);
-        });
+                container.innerHTML = "";
 
-        // container fade-in reset
-        setTimeout(() => {
-            container.classList.remove("fade-out");
-            container.classList.add("fade-in");
-        }, 50);
-    }, 120); // short delay for nicer effect
-}
+                data.forEach(item => {
+                    // create anchor card so click goes to pesanTiket.html
+                    const card = document.createElement("a");
+                    card.href = "pesanTiket.html";
+                    card.className = "block bg-white shadow-md rounded-lg overflow-hidden p-4 fade-in cursor-pointer hover:shadow-xl hover:-translate-y-1 transition";
+                    card.style.opacity = "0";
+                    card.style.transform = "scale(0.95)";
 
-/* ===========================
-   Filtering
-   =========================== */
-function filterCardsAndRender() {
-    const selectedTags = [...document.querySelectorAll(".tagFilter:checked")].map(el => el.value);
-    const ratingMin = document.getElementById("ratingFilter") ? document.getElementById("ratingFilter").value : "";
-    const priceMax = document.getElementById("priceFilter") ? parseInt(document.getElementById("priceFilter").value) : Infinity;
+                    card.innerHTML = `
+                        <img src="${item.img}" alt="${item.name}" class="w-full h-40 object-cover rounded-md" />
+                        <h3 class="text-lg font-bold mt-3">${item.name}</h3>
+                        <p class="text-gray-500 text-sm mb-2">${item.lokasi}</p>
+                        <p class="text-green-600 font-bold">Rp ${item.price.toLocaleString()}</p>
+                        <p class="text-yellow-500">⭐ ${item.rating}</p>
+                    `;
 
-    const filtered = wisataData.filter(item => {
-        const tagMatch = selectedTags.length === 0 || selectedTags.some(t => item.tag.includes(t));
-        const ratingMatch = ratingMin === "" || item.rating >= parseFloat(ratingMin);
-        const priceMatch = item.price <= priceMax;
-        return tagMatch && ratingMatch && priceMatch;
-    });
+                    container.appendChild(card);
 
-    // If a sort is currently active, keep it applied
-    const activeSort = document.querySelector(".sort-btn.active")?.dataset.sort || null;
-    let final = filtered.slice();
-    if (activeSort === "price") final.sort((a,b)=> a.price - b.price);
-    if (activeSort === "ulasan") final.sort((a,b)=> b.ulasan - a.ulasan);
-    if (activeSort === "rating") final.sort((a,b)=> b.rating - a.rating);
+                    // animate in
+                    setTimeout(() => {
+                        card.style.opacity = "1";
+                        card.style.transform = "scale(1)";
+                    }, 20);
+                });
 
-    renderCards(final);
-}
+                // container fade-in reset
+                setTimeout(() => {
+                    container.classList.remove("fade-out");
+                    container.classList.add("fade-in");
+                }, 50);
+            }, 120); // short delay for nicer effect
+        }
 
-/* ===========================
-   Sorting active state helper
-   =========================== */
-function setActiveSort(button) {
-    document.querySelectorAll(".sort-btn").forEach(b=>{
-        b.classList.remove("bg-primary","text-white");
-        b.classList.add("bg-gray-200","text-black");
-        b.classList.remove("active");
-    });
-    if (!button) return;
-    button.classList.remove("bg-gray-200","text-black");
-    button.classList.add("bg-primary","text-white");
-    button.classList.add("active");
-}
-
-/* ===========================
-   Init: attach listeners
-   =========================== */
-document.addEventListener("DOMContentLoaded", () => {
-    // initial render
-    renderCards(wisataData);
-
-    // filter listeners
-    document.querySelectorAll(".tagFilter").forEach(cb => cb.addEventListener("change", filterCardsAndRender));
-    const ratingEl = document.getElementById("ratingFilter");
-    if (ratingEl) ratingEl.addEventListener("change", filterCardsAndRender);
-
-    const priceEl = document.getElementById("priceFilter");
-    if (priceEl) {
-        priceEl.addEventListener("input", () => {
-            const v = priceEl.value;
-            const pv = document.getElementById("priceValue");
-            if (pv) pv.innerText = v;
-            filterCardsAndRender();
-        });
-    }
-
-    // sort buttons
-    const sortPrice = document.getElementById("sortByPrice");
-    const sortUlasan = document.getElementById("sortByUlasan");
-    const sortRating = document.getElementById("sortByRating");
-
-    // normalize buttons by giving them class "sort-btn" and data-sort
-    if (sortPrice) { sortPrice.classList.add("sort-btn"); sortPrice.dataset.sort = "price"; }
-    if (sortUlasan) { sortUlasan.classList.add("sort-btn"); sortUlasan.dataset.sort = "ulasan"; }
-    if (sortRating) { sortRating.classList.add("sort-btn"); sortRating.dataset.sort = "rating"; }
-
-    document.querySelectorAll(".sort-btn").forEach(btn => {
-        // default styling if not set
-        btn.classList.add("px-4","py-2","rounded","bg-gray-200");
-        btn.addEventListener("click", () => {
-            setActiveSort(btn);
-
-            // perform sort on currently filtered data
-            const type = btn.dataset.sort;
-            let currentFiltered = [...wisataData];
-
-            // apply filters first
+        /* ===========================
+           Filtering
+           =========================== */
+        function filterCardsAndRender() {
             const selectedTags = [...document.querySelectorAll(".tagFilter:checked")].map(el => el.value);
             const ratingMin = document.getElementById("ratingFilter") ? document.getElementById("ratingFilter").value : "";
             const priceMax = document.getElementById("priceFilter") ? parseInt(document.getElementById("priceFilter").value) : Infinity;
 
-            currentFiltered = currentFiltered.filter(item => {
+            const filtered = wisataData.filter(item => {
                 const tagMatch = selectedTags.length === 0 || selectedTags.some(t => item.tag.includes(t));
                 const ratingMatch = ratingMin === "" || item.rating >= parseFloat(ratingMin);
                 const priceMatch = item.price <= priceMax;
                 return tagMatch && ratingMatch && priceMatch;
             });
 
-            if (type === "price") currentFiltered.sort((a,b)=> a.price - b.price);
-            if (type === "ulasan") currentFiltered.sort((a,b)=> b.ulasan - a.ulasan);
-            if (type === "rating") currentFiltered.sort((a,b)=> b.rating - a.rating);
+            // If a sort is currently active, keep it applied
+            const activeSort = document.querySelector(".sort-btn.active")?.dataset.sort || null;
+            let final = filtered.slice();
+            if (activeSort === "price") final.sort((a,b)=> a.price - b.price);
+            if (activeSort === "ulasan") final.sort((a,b)=> b.ulasan - a.ulasan);
+            if (activeSort === "rating") final.sort((a,b)=> b.rating - a.rating);
 
-            renderCards(currentFiltered);
+            renderCards(final);
+        }
+
+        /* ===========================
+           Sorting active state helper
+           =========================== */
+        function setActiveSort(button) {
+            document.querySelectorAll(".sort-btn").forEach(b=>{
+                b.classList.remove("bg-primary","text-white");
+                b.classList.add("bg-gray-200","text-black");
+                b.classList.remove("active");
+            });
+            if (!button) return;
+            button.classList.remove("bg-gray-200","text-black");
+            button.classList.add("bg-primary","text-white");
+            button.classList.add("active");
+        }
+
+        /* ===========================
+           Init: attach listeners
+           =========================== */
+        document.addEventListener("DOMContentLoaded", () => {
+            // initial render
+            renderCards(wisataData);
+
+            // filter listeners
+            document.querySelectorAll(".tagFilter").forEach(cb => cb.addEventListener("change", filterCardsAndRender));
+            const ratingEl = document.getElementById("ratingFilter");
+            if (ratingEl) ratingEl.addEventListener("change", filterCardsAndRender);
+
+            const priceEl = document.getElementById("priceFilter");
+            if (priceEl) {
+                priceEl.addEventListener("input", () => {
+                    const v = priceEl.value;
+                    const pv = document.getElementById("priceValue");
+                    if (pv) pv.innerText = v;
+                    filterCardsAndRender();
+                });
+            }
+
+            // sort buttons
+            const sortPrice = document.getElementById("sortByPrice");
+            const sortUlasan = document.getElementById("sortByUlasan");
+            const sortRating = document.getElementById("sortByRating");
+
+            // normalize buttons by giving them class "sort-btn" and data-sort
+            if (sortPrice) { sortPrice.classList.add("sort-btn"); sortPrice.dataset.sort = "price"; }
+            if (sortUlasan) { sortUlasan.classList.add("sort-btn"); sortUlasan.dataset.sort = "ulasan"; }
+            if (sortRating) { sortRating.classList.add("sort-btn"); sortRating.dataset.sort = "rating"; }
+
+            document.querySelectorAll(".sort-btn").forEach(btn => {
+                // default styling if not set
+                btn.classList.add("px-4","py-2","rounded","bg-gray-200");
+                btn.addEventListener("click", () => {
+                    setActiveSort(btn);
+
+                    // perform sort on currently filtered data
+                    const type = btn.dataset.sort;
+                    let currentFiltered = [...wisataData];
+
+                    // apply filters first
+                    const selectedTags = [...document.querySelectorAll(".tagFilter:checked")].map(el => el.value);
+                    const ratingMin = document.getElementById("ratingFilter") ? document.getElementById("ratingFilter").value : "";
+                    const priceMax = document.getElementById("priceFilter") ? parseInt(document.getElementById("priceFilter").value) : Infinity;
+
+                    currentFiltered = currentFiltered.filter(item => {
+                        const tagMatch = selectedTags.length === 0 || selectedTags.some(t => item.tag.includes(t));
+                        const ratingMatch = ratingMin === "" || item.rating >= parseFloat(ratingMin);
+                        const priceMatch = item.price <= priceMax;
+                        return tagMatch && ratingMatch && priceMatch;
+                    });
+
+                    if (type === "price") currentFiltered.sort((a,b)=> a.price - b.price);
+                    if (type === "ulasan") currentFiltered.sort((a,b)=> b.ulasan - a.ulasan);
+                    if (type === "rating") currentFiltered.sort((a,b)=> b.rating - a.rating);
+
+                    renderCards(currentFiltered);
+                });
+            });
         });
-    });
-});
 
-// Fungsi untuk membaca parameter URL
-function getUrlParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        kategori: params.get('kategori'),
-        search: params.get('search')
-    };
-}
+        // Fungsi untuk membaca parameter URL
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                kategori: params.get('kategori'),
+                search: params.get('search')
+            };
+        }
 
-// Update wisataData dengan kategori
-const wisataData = [
-    { 
-        name: "Kebun Binatang Surabaya", 
-        lokasi: "Jl. Setail No.1, Surabaya", 
-        price: 15000, 
-        rating: 4.5, 
-        ulasan: 1234, 
-        img: "gambar/kbs.jpg", 
-        tag: ["Keluarga", "Edukasi"],
-        kategori: ["keluarga", "alam"]
-    },
-    { 
-        name: "Monumen Kapal Selam", 
-        lokasi: "Jl. Pemuda No.39, Surabaya", 
-        price: 15000, 
-        rating: 4.7, 
-        ulasan: 2450, 
-        img: "gambar/monkasel.png", 
-        tag: ["Sejarah", "Edukasi"],
-        kategori: ["museum", "sejarah"]
-    },
-    { 
-        name: "Museum 10 November", 
-        lokasi: "Jl. Pahlawan, Surabaya", 
-        price: 5000, 
-        rating: 4.8, 
-        ulasan: 3112, 
-        img: "gambar/museumnovember.jpg", 
-        tag: ["Sejarah"],
-        kategori: ["museum", "sejarah"]
-    },
-    { 
-        name: "Pantai Kenjeran", 
-        lokasi: "Bulak, Surabaya", 
-        price: 15000, 
-        rating: 4.3, 
-        ulasan: 987, 
-        img: "gambar/kenjeran.jpg", 
-        tag: ["Outdoor", "Keluarga"],
-        kategori: ["alam", "keluarga"]
-    },
-    { 
-        name: "Museum Pendidikan", 
-        lokasi: "Genteng, Surabaya", 
-        price: 10000, 
-        rating: 4.9, 
-        ulasan: 4582, 
-        img: "gambar/museumpendidikan.jpg", 
-        tag: ["Edukasi"],
-        kategori: ["museum", "edukasi"]
-    },
-    { 
-        name: "Wisata Perahu Kalimas", 
-        lokasi: "Ketabang Kali, Surabaya", 
-        price: 7000, 
-        rating: 4.4, 
-        ulasan: 890, 
-        img: "gambar/perahu.jpg", 
-        tag: ["Outdoor"],
-        kategori: ["alam", "keluarga"]
-    }
-];
+        // Update wisataData dengan kategori
+        const wisataData = [
+            { 
+                name: "Kebun Binatang Surabaya", 
+                lokasi: "Jl. Setail No.1, Surabaya", 
+                price: 15000, 
+                rating: 4.5, 
+                ulasan: 1234, 
+                img: "gambar/kbs.jpg", 
+                tag: ["Keluarga", "Edukasi"],
+                kategori: ["keluarga", "alam"]
+            },
+            { 
+                name: "Monumen Kapal Selam", 
+                lokasi: "Jl. Pemuda No.39, Surabaya", 
+                price: 15000, 
+                rating: 4.7, 
+                ulasan: 2450, 
+                img: "gambar/monkasel.png", 
+                tag: ["Sejarah", "Edukasi"],
+                kategori: ["museum", "sejarah"]
+            },
+            { 
+                name: "Museum 10 November", 
+                lokasi: "Jl. Pahlawan, Surabaya", 
+                price: 5000, 
+                rating: 4.8, 
+                ulasan: 3112, 
+                img: "gambar/museumnovember.jpg", 
+                tag: ["Sejarah"],
+                kategori: ["museum", "sejarah"]
+            },
+            { 
+                name: "Pantai Kenjeran", 
+                lokasi: "Bulak, Surabaya", 
+                price: 15000, 
+                rating: 4.3, 
+                ulasan: 987, 
+                img: "gambar/kenjeran.jpg", 
+                tag: ["Outdoor", "Keluarga"],
+                kategori: ["alam", "keluarga"]
+            },
+            { 
+                name: "Museum Pendidikan", 
+                lokasi: "Genteng, Surabaya", 
+                price: 10000, 
+                rating: 4.9, 
+                ulasan: 4582, 
+                img: "gambar/museumpendidikan.jpg", 
+                tag: ["Edukasi"],
+                kategori: ["museum", "edukasi"]
+            },
+            { 
+                name: "Wisata Perahu Kalimas", 
+                lokasi: "Ketabang Kali, Surabaya", 
+                price: 7000, 
+                rating: 4.4, 
+                ulasan: 890, 
+                img: "gambar/perahu.jpg", 
+                tag: ["Outdoor"],
+                kategori: ["alam", "keluarga"]
+            }
+        ];
 
-// Fungsi filter berdasarkan parameter URL
-function filterByUrlParams() {
-    const params = getUrlParams();
-    let filteredData = [...wisataData];
-    
-    if (params.kategori) {
-        filteredData = filteredData.filter(item => 
-            item.kategori.includes(params.kategori.toLowerCase())
-        );
-    }
-    
-    if (params.search) {
-        const searchTerm = params.search.toLowerCase();
-        filteredData = filteredData.filter(item => 
-            item.name.toLowerCase().includes(searchTerm) ||
-            item.lokasi.toLowerCase().includes(searchTerm) ||
-            item.tag.some(tag => tag.toLowerCase().includes(searchTerm))
-        );
-    }
-    
-    return filteredData;
-}
+        // Fungsi filter berdasarkan parameter URL
+        function filterByUrlParams() {
+            const params = getUrlParams();
+            let filteredData = [...wisataData];
+            
+            if (params.kategori) {
+                filteredData = filteredData.filter(item => 
+                    item.kategori.includes(params.kategori.toLowerCase())
+                );
+            }
+            
+            if (params.search) {
+                const searchTerm = params.search.toLowerCase();
+                filteredData = filteredData.filter(item => 
+                    item.name.toLowerCase().includes(searchTerm) ||
+                    item.lokasi.toLowerCase().includes(searchTerm) ||
+                    item.tag.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            return filteredData;
+        }
 
-// Update renderCards untuk menerima data
-function renderCards(data) {
-    const container = document.getElementById("results");
-    if (!container) return;
+        // Update renderCards untuk menerima data
+        function renderCards(data) {
+            const container = document.getElementById("results");
+            if (!container) return;
 
-    container.classList.add("fade-out");
+            container.classList.add("fade-out");
 
-    setTimeout(() => {
-        container.innerHTML = "";
+            setTimeout(() => {
+                container.innerHTML = "";
 
-        if (data.length === 0) {
-            container.innerHTML = `
-                <div class="col-span-full text-center py-12">
-                    <span class="material-symbols-outlined text-6xl text-gray-400">search_off</span>
-                    <h3 class="text-xl font-bold mt-4">Destinasi tidak ditemukan</h3>
-                    <p class="text-gray-500 mt-2">Coba cari dengan kata kunci lain atau kategori berbeda</p>
-                </div>
-            `;
-        } else {
-            data.forEach(item => {
-                const card = document.createElement("a");
-                card.href = `pesanTiket.html?wisata=${encodeURIComponent(item.name.toLowerCase().replace(/\s+/g, '-'))}`;
-                card.className = "block bg-white dark:bg-gray-900 shadow-md rounded-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 fade-in cursor-pointer";
-                card.style.opacity = "0";
-                card.style.transform = "scale(0.95)";
-
-                card.innerHTML = `
-                    <div class="relative">
-                        <img src="${item.img}" alt="${item.name}" class="w-full h-48 object-cover" />
-                        <div class="absolute top-3 right-3 bg-white dark:bg-gray-800 rounded-full px-3 py-1 flex items-center gap-1">
-                            <span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
-                            <span class="font-bold">${item.rating}</span>
+                if (data.length === 0) {
+                    container.innerHTML = `
+                        <div class="col-span-full text-center py-12">
+                            <span class="material-symbols-outlined text-6xl text-gray-400">search_off</span>
+                            <h3 class="text-xl font-bold mt-4">Destinasi tidak ditemukan</h3>
+                            <p class="text-gray-500 mt-2">Coba cari dengan kata kunci lain atau kategori berbeda</p>
                         </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">${item.name}</h3>
-                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">${item.lokasi}</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <div>
-                                <p class="text-green-600 dark:text-green-400 font-bold">Rp ${item.price.toLocaleString()}</p>
-                                <p class="text-gray-500 dark:text-gray-400 text-sm">${item.ulasan} ulasan</p>
-                            </div>
-                            <div class="flex gap-2">
-                                ${item.tag.map(tag => `<span class="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs rounded">${tag}</span>`).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
+                    `;
+                } else {
+                    data.forEach(item => {
+                        const card = document.createElement("a");
+                        card.href = `pesanTiket.html?wisata=${encodeURIComponent(item.name.toLowerCase().replace(/\s+/g, '-'))}`;
+                        card.className = "block bg-white dark:bg-gray-900 shadow-md rounded-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 fade-in cursor-pointer";
+                        card.style.opacity = "0";
+                        card.style.transform = "scale(0.95)";
 
-                container.appendChild(card);
+                        card.innerHTML = `
+                            <div class="relative">
+                                <img src="${item.img}" alt="${item.name}" class="w-full h-48 object-cover" />
+                                <div class="absolute top-3 right-3 bg-white dark:bg-gray-800 rounded-full px-3 py-1 flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+                                    <span class="font-bold">${item.rating}</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">${item.name}</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">${item.lokasi}</p>
+                                <div class="flex items-center justify-between mt-4">
+                                    <div>
+                                        <p class="text-green-600 dark:text-green-400 font-bold">Rp ${item.price.toLocaleString()}</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm">${item.ulasan} ulasan</p>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        ${item.tag.map(tag => `<span class="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs rounded">${tag}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        container.appendChild(card);
+
+                        setTimeout(() => {
+                            card.style.opacity = "1";
+                            card.style.transform = "scale(1)";
+                        }, 20);
+                    });
+                }
 
                 setTimeout(() => {
-                    card.style.opacity = "1";
-                    card.style.transform = "scale(1)";
-                }, 20);
+                    container.classList.remove("fade-out");
+                    container.classList.add("fade-in");
+                }, 50);
+            }, 120);
+        }
+
+        // Update filterCardsAndRender untuk include URL params
+        function filterCardsAndRender() {
+            const selectedTags = [...document.querySelectorAll(".tagFilter:checked")].map(el => el.value);
+            const ratingMin = document.getElementById("ratingFilter") ? document.getElementById("ratingFilter").value : "";
+            const priceMax = document.getElementById("priceFilter") ? parseInt(document.getElementById("priceFilter").value) : Infinity;
+
+            // Start with URL filtered data
+            let filtered = filterByUrlParams();
+            
+            // Apply other filters
+            filtered = filtered.filter(item => {
+                const tagMatch = selectedTags.length === 0 || selectedTags.some(t => item.tag.includes(t));
+                const ratingMatch = ratingMin === "" || item.rating >= parseFloat(ratingMin);
+                const priceMatch = item.price <= priceMax;
+                return tagMatch && ratingMatch && priceMatch;
             });
+
+            // Apply active sort
+            const activeSort = document.querySelector(".sort-btn.active")?.dataset.sort || null;
+            if (activeSort === "price") filtered.sort((a,b)=> a.price - b.price);
+            if (activeSort === "ulasan") filtered.sort((a,b)=> b.ulasan - a.ulasan);
+            if (activeSort === "rating") filtered.sort((a,b)=> b.rating - a.rating);
+
+            renderCards(filtered);
         }
 
-        setTimeout(() => {
-            container.classList.remove("fade-out");
-            container.classList.add("fade-in");
-        }, 50);
-    }, 120);
-}
-
-// Update filterCardsAndRender untuk include URL params
-function filterCardsAndRender() {
-    const selectedTags = [...document.querySelectorAll(".tagFilter:checked")].map(el => el.value);
-    const ratingMin = document.getElementById("ratingFilter") ? document.getElementById("ratingFilter").value : "";
-    const priceMax = document.getElementById("priceFilter") ? parseInt(document.getElementById("priceFilter").value) : Infinity;
-
-    // Start with URL filtered data
-    let filtered = filterByUrlParams();
-    
-    // Apply other filters
-    filtered = filtered.filter(item => {
-        const tagMatch = selectedTags.length === 0 || selectedTags.some(t => item.tag.includes(t));
-        const ratingMatch = ratingMin === "" || item.rating >= parseFloat(ratingMin);
-        const priceMatch = item.price <= priceMax;
-        return tagMatch && ratingMatch && priceMatch;
-    });
-
-    // Apply active sort
-    const activeSort = document.querySelector(".sort-btn.active")?.dataset.sort || null;
-    if (activeSort === "price") filtered.sort((a,b)=> a.price - b.price);
-    if (activeSort === "ulasan") filtered.sort((a,b)=> b.ulasan - a.ulasan);
-    if (activeSort === "rating") filtered.sort((a,b)=> b.rating - a.rating);
-
-    renderCards(filtered);
-}
-
-// Update init function
-document.addEventListener("DOMContentLoaded", () => {
-    // Initial render with URL params
-    filterCardsAndRender();
-    
-    // ... rest of your existing init code ...
-    
-    // Display search query if exists
-    const params = getUrlParams();
-    if (params.search) {
-        const resultsHeader = document.querySelector('h1.text-3xl');
-        if (resultsHeader) {
-            resultsHeader.textContent = `Hasil pencarian: "${params.search}"`;
-        }
-    }
-});
-</script>
+        // Update init function
+        document.addEventListener("DOMContentLoaded", () => {
+            // Initial render with URL params
+            filterCardsAndRender();
+            
+            // ... rest of your existing init code ...
+            
+            // Display search query if exists
+            const params = getUrlParams();
+            if (params.search) {
+                // Coba cari elemen h1 untuk menampilkan hasil pencarian
+                const resultsHeader = document.querySelector('main h1');
+                if (resultsHeader) {
+                    resultsHeader.textContent = `Hasil pencarian: "${params.search}"`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

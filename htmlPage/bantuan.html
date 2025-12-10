@@ -65,6 +65,18 @@
         .dark ::-webkit-scrollbar-thumb {
             background: #059669;
         }
+        
+        /* Animasi hamburger menu - TAMBAHAN */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+            transition: max-height 0.3s ease-in;
+        }
     </style>
     
     <script>
@@ -94,31 +106,60 @@
 <body class="bg-background-light dark:bg-background-dark font-display">
     <div class="relative flex min-h-screen w-full flex-col">
         
-        <!-- Header -->
-       <header id="navbar"
-class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80 transition-transform duration-300 transform -translate-y-0">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+        <!-- Header dengan Hamburger Menu -->
+        <header id="navbar"
+            class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80 transition-transform duration-300 transform -translate-y-0">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
 
-        <!-- Logo -->
-        <a href="index.html"> 
-            <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
-        </a>
+                <!-- Logo -->
+                <a href="index.html"> 
+                    <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
+                </a>
 
-        <!-- Navigation -->
-        <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="promosi.html">Promosi</a>
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="tiket-saya.html">Tiket Saya</a>
-        </nav>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="promosi.html">Promosi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="tiket-saya.html">Tiket Saya</a>
+                    <!-- Link Bantuan (Desktop) -->
+                </nav>
 
-        <!-- Right section -->
-        <div class="flex items-center gap-4">
-            <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
-            <button class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 md:hidden">
-                <span class="material-symbols-outlined">search</span>
-            </button>
-        </div>
-    </div>
+                <!-- Right section - MODIFIKASI -->
+                <div class="flex items-center gap-4">
+                    <!-- Link Bantuan hanya di Desktop -->
+                    <a class="hidden md:block text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
+                    
+                    <!-- Hamburger Menu Button (Mobile) -->
+                    <button id="mobile-menu-button" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Dropdown (TAMBAHAN BARU) -->
+            <div id="mobile-menu" class="mobile-menu md:hidden bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-800/50">
+                <div class="px-4 py-3 space-y-1">
+                    <a href="destinasi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">location_on</span>
+                        <span class="font-medium">Destinasi</span>
+                    </a>
+                    
+                    <a href="promosi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">local_offer</span>
+                        <span class="font-medium">Promosi</span>
+                    </a>
+                    
+                    <a href="tiket-saya.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">confirmation_number</span>
+                        <span class="font-medium">Tiket Saya</span>
+                    </a>
+                    
+                    <a href="bantuan.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">help</span>
+                        <span class="font-medium">Bantuan</span>
+                    </a>
+                </div>
+            </div>
         </header>
 
         <!-- Main Content -->
@@ -551,62 +592,82 @@ class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/
         </main>
 
         <!-- Footer -->
-       <!-- Footer -->
-<footer class="mt-auto border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900/50">
-    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-            <!-- Perusahaan -->
-            <div>
-                <h4 class="font-bold text-gray-900 dark:text-white">Perusahaan</h4>
-                <ul class="mt-4 space-y-2 text-sm">
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Tentang Kami</a></li>
-                    <!-- Karir dihapus sesuai permintaan -->
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Pers</a></li>
-                </ul>
+        <footer class="mt-auto border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900/50">
+            <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+                    <!-- Perusahaan -->
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Perusahaan</h4>
+                        <ul class="mt-4 space-y-2 text-sm">
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Tentang Kami</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Pers</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Dukungan -->
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Dukungan</h4>
+                        <ul class="mt-4 space-y-2 text-sm">
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html">Pusat Bantuan</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Hubungi Kami</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Hukum -->
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Hukum</h4>
+                        <ul class="mt-4 space-y-2 text-sm">
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#ketentuan">Ketentuan Layanan</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#privasi">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Brand -->
+                    <div>
+                        <a href="index.html" class="flex items-center gap-4 text-gray-900 dark:text-white">
+                            <img src="gambar/logoo.png" width="120" height="40" alt="Logo Tiket Wisata Surabaya">
+                        </a>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Platform pemesanan tiket wisata Surabaya terpercaya.</p>
+                    </div>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:text-gray-400">
+                    <p>© 2025 IMK-D Kelompok 2</p>
+                </div>
             </div>
-            
-            <!-- Dukungan -->
-            <div>
-                <h4 class="font-bold text-gray-900 dark:text-white">Dukungan</h4>
-                <ul class="mt-4 space-y-2 text-sm">
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html">Pusat Bantuan</a></li>
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Hubungi Kami</a></li>
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#faq">FAQ</a></li>
-                </ul>
-            </div>
-            
-            <!-- Hukum -->
-            <div>
-                <h4 class="font-bold text-gray-900 dark:text-white">Hukum</h4>
-                <ul class="mt-4 space-y-2 text-sm">
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#ketentuan">Ketentuan Layanan</a></li>
-                    <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#privasi">Kebijakan Privasi</a></li>
-                </ul>
-            </div>
-            
-            <!-- Brand -->
-            <div>
-                <a href="index.html" class="flex items-center gap-4 text-gray-900 dark:text-white">
-                    <img src="gambar/logoo.png" width="120" height="40" alt="Logo Tiket Wisata Surabaya">
-                </a>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Platform pemesanan tiket wisata Surabaya terpercaya.</p>
-            </div>
-        </div>
-        
-        <!-- Copyright -->
-        <div class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:text-gray-400">
-            <p>© 2025 IMK-D Kelompok 2</p>
-        </div>
-    </div>
-</footer>
+        </footer>
     </div>
 
     <script>
-        // FAQ Toggle Script
-        document.querySelectorAll('.faq-toggle').forEach(button => {
-            button.addEventListener('click', () => {
-                const item = button.closest('.faq-item');
-                item.classList.toggle('active');
+        // Script untuk hamburger menu - TAMBAHAN BARU
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    const icon = mobileMenuButton.querySelector('.material-symbols-outlined');
+                    icon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+                });
+                
+                // Close mobile menu ketika klik link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        mobileMenuButton.querySelector('.material-symbols-outlined').textContent = 'menu';
+                    });
+                });
+            }
+            
+            // FAQ Toggle Script (script lama)
+            document.querySelectorAll('.faq-toggle').forEach(button => {
+                button.addEventListener('click', () => {
+                    const item = button.closest('.faq-item');
+                    item.classList.toggle('active');
+                });
             });
         });
 

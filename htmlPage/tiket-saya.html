@@ -16,6 +16,7 @@
                 extend: {
                     colors: {
                         primary: "#10B981",
+                        secondary: "#3B82F6",
                         "background-light": "#F9FAFB",
                         "background-dark": "#111827",
                     },
@@ -56,19 +57,89 @@
         .pulse-animation {
             animation: pulse 2s infinite;
         }
+        
+        /* Animasi untuk slide filter */
+        @keyframes slideDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-10px);
+                max-height: 0;
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+                max-height: 500px;
+            }
+        }
+        
+        .slide-down {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+        
+        /* Animasi untuk tiket card */
+        @keyframes cardAppear {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card-appear {
+            animation: cardAppear 0.4s ease-out forwards;
+        }
+        
+        /* Animasi hamburger menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+            transition: max-height 0.3s ease-in;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #10B981;
+            border-radius: 3px;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #374151;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background: #059669;
+        }
     </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200">
     <div class="relative flex min-h-screen w-full flex-col">
-        <!-- NAVBAR YANG SAMA PERSIS -->
-        <header class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/95 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/95">
+        <!-- NAVBAR YANG SUDAH DIPERBAIKI -->
+        <header id="navbar" class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/95 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/95">
             <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
                 <!-- Logo -->
                 <a href="index.html"> 
                     <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
                 </a>
 
-                <!-- Navigation -->
+                <!-- Desktop Navigation -->
                 <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
                     <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="destinasi.html">Destinasi</a>
                     <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="promosi.html">Promosi</a>
@@ -77,10 +148,38 @@
 
                 <!-- Right section -->
                 <div class="flex items-center gap-4">
-                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors hidden md:block" href="bantuan.html">Bantuan</a>
-                    <button class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 transition-colors md:hidden">
-                        <span class="material-symbols-outlined">search</span>
+                    <!-- Link Bantuan (Desktop) -->
+                    <a class="hidden md:block text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors" href="bantuan.html">Bantuan</a>
+                    
+                    <!-- HAMBURGER MENU BUTTON -->
+                    <button id="mobile-menu-button" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60 transition-colors">
+                        <span class="material-symbols-outlined">menu</span>
                     </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="mobile-menu md:hidden bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-800/50">
+                <div class="px-4 py-3 space-y-1">
+                    <a href="destinasi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">location_on</span>
+                        <span class="font-medium">Destinasi</span>
+                    </a>
+                    
+                    <a href="promosi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">local_offer</span>
+                        <span class="font-medium">Promosi</span>
+                    </a>
+                    
+                    <a href="tiket-saya.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-primary">confirmation_number</span>
+                        <span class="font-medium text-primary">Tiket Saya</span>
+                    </a>
+                    
+                    <a href="bantuan.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">help</span>
+                        <span class="font-medium">Bantuan</span>
+                    </a>
                 </div>
             </div>
         </header>
@@ -105,75 +204,229 @@
                         </div>
                         
                         <div class="flex items-center gap-3">
-                            <button id="filter-btn" class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                <span class="material-symbols-outlined text-base">filter_list</span>
-                                Filter
-                            </button>
-                            <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
+                            <!-- Filter Button with Badge -->
+                            <div class="relative">
+                                <button id="filter-btn" class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                    <span class="material-symbols-outlined text-base">filter_list</span>
+                                    Filter
+                                    <span id="filter-count" class="hidden ml-1 px-1.5 py-0.5 text-xs bg-primary text-white rounded-full">0</span>
+                                </button>
+                                <!-- Filter Badge -->
+                                <div id="active-filters" class="absolute -top-2 -right-2 hidden">
+                                    <span class="flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full">!</span>
+                                </div>
+                            </div>
+                            <a href="destinasi.html" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
                                 <span class="material-symbols-outlined text-base">add</span>
                                 Pesan Tiket Baru
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Filter Options (Hidden by default) -->
-                <div id="filter-options" class="hidden mb-8 bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 p-5">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Status Tiket</label>
-                            <select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5">
-                                <option value="all">Semua Status</option>
-                                <option value="active">Aktif</option>
-                                <option value="used">Sudah Digunakan</option>
-                                <option value="cancelled">Dibatalkan</option>
-                                <option value="expired">Kadaluarsa</option>
-                            </select>
+                <!-- Advanced Filter Options -->
+                <div id="filter-options" class="hidden mb-8 bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
+                    <div class="p-5 border-b border-slate-200 dark:border-slate-800">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Filter Lanjutan</h3>
+                            <div class="flex items-center gap-2">
+                                <button id="reset-filters" class="text-sm text-primary hover:text-primary/80 transition-colors">
+                                    Reset Semua
+                                </button>
+                                <button id="close-filter" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                                    <span class="material-symbols-outlined">close</span>
+                                </button>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Tanggal</label>
-                            <input type="date" class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5">
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <!-- Status Filter -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Status Tiket</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox hidden" value="active" data-filter="status">
+                                        <span class="filter-chip" data-value="active">Aktif</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox hidden" value="used" data-filter="status">
+                                        <span class="filter-chip" data-value="used">Sudah Digunakan</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox hidden" value="upcoming" data-filter="status">
+                                        <span class="filter-chip" data-value="upcoming">Akan Datang</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox hidden" value="cancelled" data-filter="status">
+                                        <span class="filter-chip" data-value="cancelled">Dibatalkan</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox hidden" value="expired" data-filter="status">
+                                        <span class="filter-chip" data-value="expired">Kadaluarsa</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Destinasi Filter -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Destinasi</label>
+                                <div class="space-y-2 max-h-40 overflow-y-auto pr-2">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox hidden" value="kebun-binatang" data-filter="destination">
+                                        <span class="filter-chip" data-value="kebun-binatang">Kebun Binatang</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox hidden" value="tugu-pahlawan" data-filter="destination">
+                                        <span class="filter-chip" data-value="tugu-pahlawan">Tugu Pahlawan</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox hidden" value="monkasel" data-filter="destination">
+                                        <span class="filter-chip" data-value="monkasel">Monumen Kapal Selam</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox hidden" value="night-zoo" data-filter="destination">
+                                        <span class="filter-chip" data-value="night-zoo">Surabaya Night Zoo</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="filter-checkbox hidden" value="museum-10-nov" data-filter="destination">
+                                        <span class="filter-chip" data-value="museum-10-nov">Museum 10 November</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Tanggal Filter -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Rentang Tanggal</label>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Dari</label>
+                                        <input type="date" id="date-from" class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5 text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Sampai</label>
+                                        <input type="date" id="date-to" class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5 text-sm">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Harga Filter -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Rentang Harga</label>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Minimum (Rp)</label>
+                                        <input type="number" id="price-min" placeholder="0" class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5 text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Maksimum (Rp)</label>
+                                        <input type="number" id="price-max" placeholder="500000" class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5 text-sm">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Destinasi</label>
-                            <select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5">
-                                <option value="all">Semua Destinasi</option>
-                                <option value="kebun-binatang">Kebun Binatang Surabaya</option>
-                                <option value="tugu-pahlawan">Tugu Pahlawan</option>
-                                <option value="submarine">Monumen Kapal Selam</option>
-                                <option value="surabaya-zoo">Surabaya Night Zoo</option>
-                            </select>
+                        
+                        <!-- Additional Filters -->
+                        <div class="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800">
+                            <h4 class="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Filter Tambahan</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <!-- Jumlah Tiket -->
+                                <div>
+                                    <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Jumlah Tiket</label>
+                                    <select id="ticket-count" class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5 text-sm">
+                                        <option value="">Semua</option>
+                                        <option value="1">1 Orang</option>
+                                        <option value="2">2 Orang</option>
+                                        <option value="3-5">3-5 Orang</option>
+                                        <option value="5+">5+ Orang</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Urutkan -->
+                                <div>
+                                    <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Urutkan Berdasarkan</label>
+                                    <select id="sort-by" class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5 text-sm">
+                                        <option value="date-desc">Tanggal (Terbaru)</option>
+                                        <option value="date-asc">Tanggal (Terlama)</option>
+                                        <option value="price-desc">Harga (Tertinggi)</option>
+                                        <option value="price-asc">Harga (Terendah)</option>
+                                        <option value="name-asc">Nama (A-Z)</option>
+                                        <option value="name-desc">Nama (Z-A)</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Metode Pembayaran -->
+                                <div>
+                                    <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Metode Pembayaran</label>
+                                    <select id="payment-method" class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary/50 text-slate-800 dark:text-slate-200 p-2.5 text-sm">
+                                        <option value="">Semua</option>
+                                        <option value="va">Virtual Account</option>
+                                        <option value="ewallet">E-Wallet</option>
+                                        <option value="card">Kartu Kredit/Debit</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex items-end">
-                            <button class="w-full px-4 py-2.5 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
-                                Terapkan Filter
-                            </button>
+                        
+                        <!-- Action Buttons -->
+                        <div class="mt-6 flex justify-between items-center">
+                            <div class="text-sm text-slate-500 dark:text-slate-400">
+                                <span id="selected-filters-count">0 filter aktif</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <button id="apply-filters" class="px-6 py-2.5 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors font-medium">
+                                    Terapkan Filter
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Tab Navigation -->
                 <div class="border-b border-slate-200 dark:border-slate-800 mb-8">
-                    <nav class="-mb-px flex space-x-4 md:space-x-8 overflow-x-auto">
-                        <button class="tab-button active whitespace-nowrap py-4 px-1 border-b-2 border-primary font-medium text-sm text-primary" data-tab="all">
+                    <nav class="-mb-px flex space-x-4 md:space-x-8 overflow-x-auto pb-1">
+                        <button class="tab-button active whitespace-nowrap py-3 px-1 border-b-2 border-primary font-medium text-sm text-primary" data-tab="all">
                             Semua Tiket
                         </button>
-                        <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors" data-tab="active">
+                        <button class="tab-button whitespace-nowrap py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors" data-tab="active">
+                            <span class="material-symbols-outlined align-middle text-base mr-1">check_circle</span>
                             Aktif
                         </button>
-                        <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors" data-tab="used">
-                            Sudah Digunakan
+                        <button class="tab-button whitespace-nowrap py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors" data-tab="used">
+                            <span class="material-symbols-outlined align-middle text-base mr-1">done_all</span>
+                            Digunakan
                         </button>
-                        <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors" data-tab="cancelled">
+                        <button class="tab-button whitespace-nowrap py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors" data-tab="upcoming">
+                            <span class="material-symbols-outlined align-middle text-base mr-1">schedule</span>
+                            Akan Datang
+                        </button>
+                        <button class="tab-button whitespace-nowrap py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors" data-tab="cancelled">
+                            <span class="material-symbols-outlined align-middle text-base mr-1">cancel</span>
                             Dibatalkan
                         </button>
                     </nav>
                 </div>
                 
+                <!-- Filter Tags (Active Filters) -->
+                <div id="filter-tags" class="hidden mb-6">
+                    <div class="flex flex-wrap gap-2">
+                        <!-- Filter tags will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <!-- Tiket Counter -->
+                <div id="ticket-counter" class="mb-6">
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Menampilkan <span id="visible-count" class="font-bold">4</span> dari <span id="total-count" class="font-bold">4</span> tiket
+                    </p>
+                </div>
+                
                 <!-- Tiket List -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="ticket-container">
                     <!-- Tiket 1: Aktif -->
-                    <div class="ticket-card fade-in" data-status="active">
+                    <div class="ticket-card card-appear" data-status="active" data-destination="kebun-binatang" data-date="2024-10-28" data-price="35000" data-count="2" data-payment="va" data-upcoming="false">
+                        <!-- Existing ticket content remains the same -->
                         <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
                             <!-- Header Tiket -->
                             <div class="p-5 border-b border-slate-200 dark:border-slate-800">
@@ -227,6 +480,12 @@
                                     </div>
                                 </div>
                                 
+                                <!-- Additional Info -->
+                                <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4">
+                                    <span>Metode: Virtual Account</span>
+                                    <span>Dipesan: 25 Okt 2024</span>
+                                </div>
+                                
                                 <!-- Action Buttons -->
                                 <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
                                     <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors" onclick="showQRCode('KBZ20241028001')">
@@ -247,9 +506,9 @@
                     </div>
                     
                     <!-- Tiket 2: Sudah Digunakan -->
-                    <div class="ticket-card fade-in" data-status="used">
+                    <div class="ticket-card card-appear" data-status="used" data-destination="tugu-pahlawan" data-date="2024-10-15" data-price="15000" data-count="1" data-payment="ewallet" data-upcoming="false">
+                        <!-- Existing ticket content remains the same -->
                         <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
-                            <!-- Header Tiket -->
                             <div class="p-5 border-b border-slate-200 dark:border-slate-800">
                                 <div class="flex justify-between items-start">
                                     <div>
@@ -268,7 +527,6 @@
                                 </div>
                             </div>
                             
-                            <!-- Detail Tiket -->
                             <div class="p-5">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                                     <div class="flex items-center gap-3">
@@ -301,6 +559,12 @@
                                     </div>
                                 </div>
                                 
+                                <!-- Additional Info -->
+                                <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4">
+                                    <span>Metode: E-Wallet</span>
+                                    <span>Dipesan: 12 Okt 2024</span>
+                                </div>
+                                
                                 <!-- Action Buttons -->
                                 <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
                                     <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors" onclick="showReceipt('TPH20241015001')">
@@ -316,10 +580,10 @@
                         </div>
                     </div>
                     
-                    <!-- Tiket 3: Aktif (Akan Datang) -->
-                    <div class="ticket-card fade-in" data-status="active">
+                    <!-- Tiket 3: Akan Datang -->
+                    <div class="ticket-card card-appear" data-status="upcoming" data-destination="night-zoo" data-date="2024-11-05" data-price="200000" data-count="4" data-payment="card" data-upcoming="true">
+                        <!-- Existing ticket content remains the same -->
                         <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
-                            <!-- Header Tiket -->
                             <div class="p-5 border-b border-slate-200 dark:border-slate-800">
                                 <div class="flex justify-between items-start">
                                     <div>
@@ -338,7 +602,6 @@
                                 </div>
                             </div>
                             
-                            <!-- Detail Tiket -->
                             <div class="p-5">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                                     <div class="flex items-center gap-3">
@@ -381,6 +644,12 @@
                                     </div>
                                 </div>
                                 
+                                <!-- Additional Info -->
+                                <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4">
+                                    <span>Metode: Kartu Kredit</span>
+                                    <span>Dipesan: 30 Okt 2024</span>
+                                </div>
+                                
                                 <!-- Action Buttons -->
                                 <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
                                     <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-yellow-500 text-white text-sm font-medium hover:bg-yellow-600 transition-colors" onclick="remindMe('SNZ20241105001')">
@@ -397,9 +666,9 @@
                     </div>
                     
                     <!-- Tiket 4: Dibatalkan -->
-                    <div class="ticket-card fade-in" data-status="cancelled">
+                    <div class="ticket-card card-appear" data-status="cancelled" data-destination="monkasel" data-date="2024-10-10" data-price="20000" data-count="1" data-payment="va" data-upcoming="false">
+                        <!-- Existing ticket content remains the same -->
                         <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden opacity-80">
-                            <!-- Header Tiket -->
                             <div class="p-5 border-b border-slate-200 dark:border-slate-800">
                                 <div class="flex justify-between items-start">
                                     <div>
@@ -416,7 +685,6 @@
                                 </div>
                             </div>
                             
-                            <!-- Detail Tiket -->
                             <div class="p-5">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                                     <div class="flex items-center gap-3">
@@ -439,6 +707,84 @@
                                     </div>
                                 </div>
                                 
+                                <!-- Additional Info -->
+                                <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4">
+                                    <span>Metode: Virtual Account</span>
+                                    <span>Dipesan: 8 Okt 2024</span>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                        <span class="material-symbols-outlined text-base">receipt</span>
+                                        Lihat Nota
+                                    </button>
+                                    <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                        <span class="material-symbols-outlined text-base">redo</span>
+                                        Pesan Ulang
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tiket 5: Kadaluarsa -->
+                    <div class="ticket-card card-appear" data-status="expired" data-destination="museum-10-nov" data-date="2024-09-20" data-price="10000" data-count="2" data-payment="ewallet" data-upcoming="false">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden opacity-70">
+                            <div class="p-5 border-b border-slate-200 dark:border-slate-800">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200">
+                                                <span class="material-symbols-outlined text-xs mr-1">hourglass_empty</span>
+                                                Kadaluarsa
+                                            </span>
+                                            <span class="text-xs text-slate-500 dark:text-slate-400">#M10N20240920001</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Museum 10 November</h3>
+                                    </div>
+                                    <span class="material-symbols-outlined text-slate-400">block</span>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-gray-500">calendar_today</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Tanggal Tiket</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">Jum, 20 Sep 2024</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-gray-500">schedule</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Kadaluarsa Pada</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">20 Sep, 17:00 WIB</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-gray-500">group</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Jumlah Tiket</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">2 Orang</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-gray-500">payments</span>
+                                        <div>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">Total Bayar</p>
+                                            <p class="font-medium text-slate-800 dark:text-slate-200">Rp 10.000</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Additional Info -->
+                                <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4">
+                                    <span>Metode: E-Wallet</span>
+                                    <span>Dipesan: 18 Sep 2024</span>
+                                </div>
+                                
                                 <!-- Action Buttons -->
                                 <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
                                     <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
@@ -459,11 +805,19 @@
                 <div id="empty-state" class="hidden text-center py-12">
                     <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 mb-4">confirmation_number</span>
                     <h3 class="text-xl font-bold text-slate-600 dark:text-slate-400 mb-2">Tidak ada tiket</h3>
-                    <p class="text-slate-500 dark:text-slate-500 mb-6">Anda belum memiliki tiket dengan status ini</p>
+                    <p class="text-slate-500 dark:text-slate-500 mb-6" id="empty-state-message">Anda belum memiliki tiket dengan status ini</p>
                     <a href="destinasi.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
                         <span class="material-symbols-outlined">explore</span>
                         Jelajahi Destinasi
                     </a>
+                </div>
+                
+                <!-- Load More Button -->
+                <div id="load-more-container" class="hidden mt-8 text-center">
+                    <button id="load-more-btn" class="px-6 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors font-medium">
+                        <span class="material-symbols-outlined align-middle mr-2">expand_more</span>
+                        Muat Lebih Banyak
+                    </button>
                 </div>
             </div>
         </main>
@@ -510,57 +864,800 @@
     </div>
 
     <script>
-        // Filter Toggle
-        document.getElementById('filter-btn').addEventListener('click', function() {
-            const filterOptions = document.getElementById('filter-options');
-            filterOptions.classList.toggle('hidden');
-            
-            if (!filterOptions.classList.contains('hidden')) {
-                filterOptions.scrollIntoView({ behavior: 'smooth' });
+        // Data untuk tiket (simulasi database)
+        const ticketData = [
+            {
+                id: 'KBZ20241028001',
+                status: 'active',
+                destination: 'kebun-binatang',
+                name: 'Kebun Binatang Surabaya',
+                date: '2024-10-28',
+                displayDate: 'Sab, 28 Okt 2024',
+                time: '08.00 - 17.00 WIB',
+                count: 2,
+                price: 35000,
+                payment: 'va',
+                orderDate: '2024-10-25',
+                usedAt: null,
+                cancelled: false,
+                expired: false,
+                upcoming: false
+            },
+            {
+                id: 'TPH20241015001',
+                status: 'used',
+                destination: 'tugu-pahlawan',
+                name: 'Tugu Pahlawan',
+                date: '2024-10-15',
+                displayDate: 'Sen, 15 Okt 2024',
+                time: '08.00 - 16.00 WIB',
+                count: 1,
+                price: 15000,
+                payment: 'ewallet',
+                orderDate: '2024-10-12',
+                usedAt: '15 Okt, 10:30 WIB',
+                cancelled: false,
+                expired: false,
+                upcoming: false
+            },
+            {
+                id: 'SNZ20241105001',
+                status: 'upcoming',
+                destination: 'night-zoo',
+                name: 'Surabaya Night Zoo',
+                date: '2024-11-05',
+                displayDate: 'Sel, 5 Nov 2024',
+                time: '18.00 - 22.00 WIB',
+                count: 4,
+                price: 200000,
+                payment: 'card',
+                orderDate: '2024-10-30',
+                usedAt: null,
+                cancelled: false,
+                expired: false,
+                upcoming: true
+            },
+            {
+                id: 'MKS20241010001',
+                status: 'cancelled',
+                destination: 'monkasel',
+                name: 'Monumen Kapal Selam',
+                date: '2024-10-10',
+                displayDate: 'Rab, 10 Okt 2024',
+                time: '08.00 - 17.00 WIB',
+                count: 1,
+                price: 20000,
+                payment: 'va',
+                orderDate: '2024-10-08',
+                usedAt: null,
+                cancelled: true,
+                expired: false,
+                upcoming: false
+            },
+            {
+                id: 'M10N20240920001',
+                status: 'expired',
+                destination: 'museum-10-nov',
+                name: 'Museum 10 November',
+                date: '2024-09-20',
+                displayDate: 'Jum, 20 Sep 2024',
+                time: '08.00 - 17.00 WIB',
+                count: 2,
+                price: 10000,
+                payment: 'ewallet',
+                orderDate: '2024-09-18',
+                usedAt: null,
+                cancelled: false,
+                expired: true,
+                upcoming: false
             }
+        ];
+
+        // State untuk filter
+        let activeFilters = {
+            status: [],
+            destination: [],
+            dateFrom: '',
+            dateTo: '',
+            priceMin: '',
+            priceMax: '',
+            ticketCount: '',
+            paymentMethod: '',
+            sortBy: 'date-desc'
+        };
+
+        // State untuk pagination
+        let visibleTickets = 5;
+        const ticketsPerLoad = 5;
+
+        // DOM Elements
+        const filterBtn = document.getElementById('filter-btn');
+        const closeFilterBtn = document.getElementById('close-filter');
+        const resetFiltersBtn = document.getElementById('reset-filters');
+        const applyFiltersBtn = document.getElementById('apply-filters');
+        const filterOptions = document.getElementById('filter-options');
+        const ticketContainer = document.getElementById('ticket-container');
+        const emptyState = document.getElementById('empty-state');
+        const emptyStateMessage = document.getElementById('empty-state-message');
+        const filterTags = document.getElementById('filter-tags');
+        const visibleCount = document.getElementById('visible-count');
+        const totalCount = document.getElementById('total-count');
+        const filterCount = document.getElementById('filter-count');
+        const selectedFiltersCount = document.getElementById('selected-filters-count');
+        const loadMoreContainer = document.getElementById('load-more-container');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const activeFiltersBadge = document.getElementById('active-filters');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTickets();
+            updateTicketCounter();
+            setupEventListeners();
+            setupMobileMenu();
         });
-        
-        // Tab Navigation
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.addEventListener('click', function() {
-                // Update active tab
-                document.querySelectorAll('.tab-button').forEach(btn => {
-                    btn.classList.remove('active', 'border-primary', 'text-primary');
-                    btn.classList.add('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+
+        function initializeTickets() {
+            // Update total count
+            totalCount.textContent = ticketData.length;
+            
+            // Check if we need load more button
+            if (ticketData.length > visibleTickets) {
+                loadMoreContainer.classList.remove('hidden');
+            }
+            
+            // Initial render
+            renderTickets();
+        }
+
+        function setupEventListeners() {
+            // Filter toggle
+            filterBtn.addEventListener('click', toggleFilter);
+            closeFilterBtn.addEventListener('click', toggleFilter);
+            
+            // Reset filters
+            resetFiltersBtn.addEventListener('click', resetFilters);
+            
+            // Apply filters
+            applyFiltersBtn.addEventListener('click', applyFilters);
+            
+            // Filter chips
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    const checkbox = this.previousElementSibling;
+                    checkbox.checked = !checkbox.checked;
+                    this.classList.toggle('active');
+                    updateFilterCount();
+                });
+            });
+            
+            // Tab navigation
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active tab
+                    document.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.classList.remove('active', 'border-primary', 'text-primary');
+                        btn.classList.add('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+                    });
+                    
+                    this.classList.add('active', 'border-primary', 'text-primary');
+                    this.classList.remove('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+                    
+                    // Filter by tab
+                    const tab = this.dataset.tab;
+                    filterByTab(tab);
+                });
+            });
+            
+            // Load more button
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', loadMoreTickets);
+            }
+            
+            // Input changes for date and price
+            document.getElementById('date-from').addEventListener('change', updateFilterCount);
+            document.getElementById('date-to').addEventListener('change', updateFilterCount);
+            document.getElementById('price-min').addEventListener('input', updateFilterCount);
+            document.getElementById('price-max').addEventListener('input', updateFilterCount);
+            document.getElementById('ticket-count').addEventListener('change', updateFilterCount);
+            document.getElementById('payment-method').addEventListener('change', updateFilterCount);
+            document.getElementById('sort-by').addEventListener('change', updateFilterCount);
+        }
+
+        function setupMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    const icon = mobileMenuButton.querySelector('.material-symbols-outlined');
+                    icon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
                 });
                 
-                this.classList.add('active', 'border-primary', 'text-primary');
-                this.classList.remove('border-transparent', 'text-slate-500', 'dark:text-slate-400');
-                
-                // Filter tickets
-                const tab = this.dataset.tab;
-                filterTickets(tab);
+                // Close mobile menu ketika klik link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        mobileMenuButton.querySelector('.material-symbols-outlined').textContent = 'menu';
+                    });
+                });
+            }
+        }
+
+        function toggleFilter() {
+            if (filterOptions.classList.contains('hidden')) {
+                filterOptions.classList.remove('hidden');
+                filterOptions.classList.add('slide-down');
+                filterBtn.querySelector('.material-symbols-outlined').textContent = 'filter_list_off';
+            } else {
+                filterOptions.classList.add('hidden');
+                filterOptions.classList.remove('slide-down');
+                filterBtn.querySelector('.material-symbols-outlined').textContent = 'filter_list';
+            }
+        }
+
+        function resetFilters() {
+            // Reset checkboxes
+            document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
             });
-        });
-        
-        // Filter Tickets Function
-        function filterTickets(status) {
-            const tickets = document.querySelectorAll('.ticket-card');
-            let visibleCount = 0;
             
-            tickets.forEach(ticket => {
-                if (status === 'all' || ticket.dataset.status === status) {
-                    ticket.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    ticket.classList.add('hidden');
+            // Reset filter chips
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            
+            // Reset inputs
+            document.getElementById('date-from').value = '';
+            document.getElementById('date-to').value = '';
+            document.getElementById('price-min').value = '';
+            document.getElementById('price-max').value = '';
+            document.getElementById('ticket-count').value = '';
+            document.getElementById('payment-method').value = '';
+            document.getElementById('sort-by').value = 'date-desc';
+            
+            // Reset active filters
+            activeFilters = {
+                status: [],
+                destination: [],
+                dateFrom: '',
+                dateTo: '',
+                priceMin: '',
+                priceMax: '',
+                ticketCount: '',
+                paymentMethod: '',
+                sortBy: 'date-desc'
+            };
+            
+            // Update UI
+            updateFilterCount();
+            updateFilterTags();
+            renderTickets();
+            
+            // Reset tab to "all"
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active', 'border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+            });
+            document.querySelector('.tab-button[data-tab="all"]').classList.add('active', 'border-primary', 'text-primary');
+            document.querySelector('.tab-button[data-tab="all"]').classList.remove('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+        }
+
+        function applyFilters() {
+            // Collect filter values
+            activeFilters.status = Array.from(document.querySelectorAll('.filter-checkbox[data-filter="status"]:checked'))
+                .map(cb => cb.value);
+            
+            activeFilters.destination = Array.from(document.querySelectorAll('.filter-checkbox[data-filter="destination"]:checked'))
+                .map(cb => cb.value);
+            
+            activeFilters.dateFrom = document.getElementById('date-from').value;
+            activeFilters.dateTo = document.getElementById('date-to').value;
+            activeFilters.priceMin = document.getElementById('price-min').value;
+            activeFilters.priceMax = document.getElementById('price-max').value;
+            activeFilters.ticketCount = document.getElementById('ticket-count').value;
+            activeFilters.paymentMethod = document.getElementById('payment-method').value;
+            activeFilters.sortBy = document.getElementById('sort-by').value;
+            
+            // Update UI
+            updateFilterCount();
+            updateFilterTags();
+            renderTickets();
+            
+            // Close filter panel
+            toggleFilter();
+        }
+
+        function filterByTab(tab) {
+            // Reset other filters but keep tab filter
+            activeFilters.status = tab === 'all' ? [] : [tab];
+            activeFilters.destination = [];
+            activeFilters.dateFrom = '';
+            activeFilters.dateTo = '';
+            activeFilters.priceMin = '';
+            activeFilters.priceMax = '';
+            activeFilters.ticketCount = '';
+            activeFilters.paymentMethod = '';
+            
+            // Update UI
+            updateFilterCount();
+            updateFilterTags();
+            renderTickets();
+        }
+
+        function updateFilterCount() {
+            let count = 0;
+            
+            // Count checked checkboxes
+            count += document.querySelectorAll('.filter-checkbox:checked').length;
+            
+            // Count date filters
+            if (document.getElementById('date-from').value) count++;
+            if (document.getElementById('date-to').value) count++;
+            
+            // Count price filters
+            if (document.getElementById('price-min').value) count++;
+            if (document.getElementById('price-max').value) count++;
+            
+            // Count dropdown filters
+            if (document.getElementById('ticket-count').value) count++;
+            if (document.getElementById('payment-method').value) count++;
+            
+            // Update filter count badge
+            filterCount.textContent = count;
+            if (count > 0) {
+                filterCount.classList.remove('hidden');
+                activeFiltersBadge.classList.remove('hidden');
+            } else {
+                filterCount.classList.add('hidden');
+                activeFiltersBadge.classList.add('hidden');
+            }
+            
+            // Update selected filters count
+            selectedFiltersCount.textContent = `${count} filter aktif`;
+        }
+
+        function updateFilterTags() {
+            const filterTagsContainer = document.querySelector('#filter-tags .flex');
+            filterTagsContainer.innerHTML = '';
+            
+            let hasTags = false;
+            
+            // Status tags
+            activeFilters.status.forEach(status => {
+                const tag = createFilterTag(status, 'status');
+                filterTagsContainer.appendChild(tag);
+                hasTags = true;
+            });
+            
+            // Destination tags
+            activeFilters.destination.forEach(dest => {
+                const tag = createFilterTag(dest, 'destination');
+                filterTagsContainer.appendChild(tag);
+                hasTags = true;
+            });
+            
+            // Date tags
+            if (activeFilters.dateFrom || activeFilters.dateTo) {
+                const dateText = `${activeFilters.dateFrom || 'Semua'} - ${activeFilters.dateTo || 'Semua'}`;
+                const tag = createFilterTag(dateText, 'date');
+                filterTagsContainer.appendChild(tag);
+                hasTags = true;
+            }
+            
+            // Price tags
+            if (activeFilters.priceMin || activeFilters.priceMax) {
+                const priceText = `Rp ${activeFilters.priceMin || '0'} - Rp ${activeFilters.priceMax || '∞'}`;
+                const tag = createFilterTag(priceText, 'price');
+                filterTagsContainer.appendChild(tag);
+                hasTags = true;
+            }
+            
+            // Ticket count tag
+            if (activeFilters.ticketCount) {
+                const countText = getTicketCountText(activeFilters.ticketCount);
+                const tag = createFilterTag(countText, 'count');
+                filterTagsContainer.appendChild(tag);
+                hasTags = true;
+            }
+            
+            // Payment method tag
+            if (activeFilters.paymentMethod) {
+                const paymentText = getPaymentMethodText(activeFilters.paymentMethod);
+                const tag = createFilterTag(paymentText, 'payment');
+                filterTagsContainer.appendChild(tag);
+                hasTags = true;
+            }
+            
+            // Show/hide filter tags container
+            if (hasTags) {
+                filterTags.classList.remove('hidden');
+            } else {
+                filterTags.classList.add('hidden');
+            }
+        }
+
+        function createFilterTag(text, type) {
+            const tag = document.createElement('div');
+            tag.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20';
+            
+            const iconMap = {
+                status: 'label',
+                destination: 'location_on',
+                date: 'calendar_today',
+                price: 'payments',
+                count: 'group',
+                payment: 'credit_card'
+            };
+            
+            tag.innerHTML = `
+                <span class="material-symbols-outlined text-xs">${iconMap[type] || 'tag'}</span>
+                <span>${text}</span>
+                <button class="ml-1 text-primary/70 hover:text-primary" onclick="removeFilterTag('${type}', '${text}')">
+                    <span class="material-symbols-outlined text-xs">close</span>
+                </button>
+            `;
+            
+            return tag;
+        }
+
+        function removeFilterTag(type, text) {
+            switch(type) {
+                case 'status':
+                    activeFilters.status = activeFilters.status.filter(s => s !== text.toLowerCase());
+                    document.querySelector(`.filter-checkbox[value="${text.toLowerCase()}"]`).checked = false;
+                    document.querySelector(`.filter-chip[data-value="${text.toLowerCase()}"]`).classList.remove('active');
+                    break;
+                case 'destination':
+                    activeFilters.destination = activeFilters.destination.filter(d => d !== text.toLowerCase());
+                    document.querySelector(`.filter-checkbox[value="${text.toLowerCase()}"]`).checked = false;
+                    document.querySelector(`.filter-chip[data-value="${text.toLowerCase()}"]`).classList.remove('active');
+                    break;
+                case 'date':
+                    activeFilters.dateFrom = '';
+                    activeFilters.dateTo = '';
+                    document.getElementById('date-from').value = '';
+                    document.getElementById('date-to').value = '';
+                    break;
+                case 'price':
+                    activeFilters.priceMin = '';
+                    activeFilters.priceMax = '';
+                    document.getElementById('price-min').value = '';
+                    document.getElementById('price-max').value = '';
+                    break;
+                case 'count':
+                    activeFilters.ticketCount = '';
+                    document.getElementById('ticket-count').value = '';
+                    break;
+                case 'payment':
+                    activeFilters.paymentMethod = '';
+                    document.getElementById('payment-method').value = '';
+                    break;
+            }
+            
+            updateFilterCount();
+            updateFilterTags();
+            renderTickets();
+        }
+
+        function getTicketCountText(value) {
+            switch(value) {
+                case '1': return '1 Orang';
+                case '2': return '2 Orang';
+                case '3-5': return '3-5 Orang';
+                case '5+': return '5+ Orang';
+                default: return value;
+            }
+        }
+
+        function getPaymentMethodText(value) {
+            switch(value) {
+                case 'va': return 'Virtual Account';
+                case 'ewallet': return 'E-Wallet';
+                case 'card': return 'Kartu Kredit/Debit';
+                default: return value;
+            }
+        }
+
+        function renderTickets() {
+            // Filter tickets
+            let filteredTickets = ticketData.filter(ticket => {
+                // Status filter
+                if (activeFilters.status.length > 0 && !activeFilters.status.includes(ticket.status)) {
+                    return false;
+                }
+                
+                // Destination filter
+                if (activeFilters.destination.length > 0 && !activeFilters.destination.includes(ticket.destination)) {
+                    return false;
+                }
+                
+                // Date filter
+                if (activeFilters.dateFrom && ticket.date < activeFilters.dateFrom) {
+                    return false;
+                }
+                if (activeFilters.dateTo && ticket.date > activeFilters.dateTo) {
+                    return false;
+                }
+                
+                // Price filter
+                if (activeFilters.priceMin && ticket.price < parseInt(activeFilters.priceMin)) {
+                    return false;
+                }
+                if (activeFilters.priceMax && ticket.price > parseInt(activeFilters.priceMax)) {
+                    return false;
+                }
+                
+                // Ticket count filter
+                if (activeFilters.ticketCount) {
+                    const count = parseInt(ticket.count);
+                    switch(activeFilters.ticketCount) {
+                        case '1':
+                            if (count !== 1) return false;
+                            break;
+                        case '2':
+                            if (count !== 2) return false;
+                            break;
+                        case '3-5':
+                            if (count < 3 || count > 5) return false;
+                            break;
+                        case '5+':
+                            if (count <= 5) return false;
+                            break;
+                    }
+                }
+                
+                // Payment method filter
+                if (activeFilters.paymentMethod && ticket.payment !== activeFilters.paymentMethod) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            // Sort tickets
+            filteredTickets.sort((a, b) => {
+                switch(activeFilters.sortBy) {
+                    case 'date-desc':
+                        return new Date(b.date) - new Date(a.date);
+                    case 'date-asc':
+                        return new Date(a.date) - new Date(b.date);
+                    case 'price-desc':
+                        return b.price - a.price;
+                    case 'price-asc':
+                        return a.price - b.price;
+                    case 'name-asc':
+                        return a.name.localeCompare(b.name);
+                    case 'name-desc':
+                        return b.name.localeCompare(a.name);
+                    default:
+                        return 0;
                 }
             });
             
+            // Limit to visible tickets
+            const displayTickets = filteredTickets.slice(0, visibleTickets);
+            
+            // Clear container
+            ticketContainer.innerHTML = '';
+            
+            // Render tickets
+            displayTickets.forEach(ticket => {
+                const ticketElement = createTicketElement(ticket);
+                ticketContainer.appendChild(ticketElement);
+            });
+            
+            // Update counter
+            visibleCount.textContent = displayTickets.length;
+            
             // Show/hide empty state
-            const emptyState = document.getElementById('empty-state');
-            if (visibleCount === 0) {
+            if (displayTickets.length === 0) {
                 emptyState.classList.remove('hidden');
+                emptyStateMessage.textContent = activeFilters.status.length > 0 || 
+                    activeFilters.destination.length > 0 || 
+                    activeFilters.dateFrom || 
+                    activeFilters.dateTo || 
+                    activeFilters.priceMin || 
+                    activeFilters.priceMax || 
+                    activeFilters.ticketCount || 
+                    activeFilters.paymentMethod ?
+                    'Tidak ada tiket yang sesuai dengan filter yang dipilih' :
+                    'Anda belum memiliki tiket dengan status ini';
             } else {
                 emptyState.classList.add('hidden');
             }
+            
+            // Show/hide load more button
+            if (filteredTickets.length > visibleTickets) {
+                loadMoreContainer.classList.remove('hidden');
+            } else {
+                loadMoreContainer.classList.add('hidden');
+            }
         }
-        
+
+        function createTicketElement(ticket) {
+            const div = document.createElement('div');
+            div.className = 'ticket-card card-appear';
+            div.dataset.status = ticket.status;
+            div.dataset.destination = ticket.destination;
+            div.dataset.date = ticket.date;
+            div.dataset.price = ticket.price;
+            div.dataset.count = ticket.count;
+            div.dataset.payment = ticket.payment;
+            div.dataset.upcoming = ticket.upcoming;
+            
+            // Status badge colors
+            const statusConfig = {
+                active: { bg: 'green', icon: 'check_circle', text: 'Aktif' },
+                used: { bg: 'blue', icon: 'done_all', text: 'Sudah Digunakan' },
+                upcoming: { bg: 'yellow', icon: 'schedule', text: 'Akan Datang' },
+                cancelled: { bg: 'red', icon: 'cancel', text: 'Dibatalkan' },
+                expired: { bg: 'gray', icon: 'hourglass_empty', text: 'Kadaluarsa' }
+            };
+            
+            const status = statusConfig[ticket.status];
+            
+            div.innerHTML = `
+                <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 overflow-hidden ${ticket.status === 'cancelled' || ticket.status === 'expired' ? 'opacity-80' : ''}">
+                    <div class="p-5 border-b border-slate-200 dark:border-slate-800">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-${status.bg}-100 text-${status.bg}-800 dark:bg-${status.bg}-900 dark:text-${status.bg}-200 ${ticket.status === 'upcoming' ? 'pulse-animation' : ''}">
+                                        <span class="material-symbols-outlined text-xs mr-1">${status.icon}</span>
+                                        ${status.text}
+                                    </span>
+                                    <span class="text-xs text-slate-500 dark:text-slate-400">${ticket.id}</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">${ticket.name}</h3>
+                            </div>
+                            <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors" onclick="showQRCode('${ticket.id}')">
+                                <span class="material-symbols-outlined">${ticket.status === 'used' ? 'history' : ticket.status === 'cancelled' || ticket.status === 'expired' ? 'block' : 'qr_code_scanner'}</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-${status.bg}-500">calendar_today</span>
+                                <div>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">${ticket.status === 'cancelled' ? 'Tanggal Dibatalkan' : ticket.status === 'expired' ? 'Tanggal Tiket' : 'Tanggal Kunjungan'}</p>
+                                    <p class="font-medium text-slate-800 dark:text-slate-200">${ticket.displayDate}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-${status.bg}-500">schedule</span>
+                                <div>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">${ticket.status === 'used' ? 'Digunakan Pada' : ticket.status === 'expired' ? 'Kadaluarsa Pada' : 'Waktu Masuk'}</p>
+                                    <p class="font-medium text-slate-800 dark:text-slate-200">${ticket.status === 'used' ? ticket.usedAt : ticket.time}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-${status.bg}-500">group</span>
+                                <div>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">Jumlah Tiket</p>
+                                    <p class="font-medium text-slate-800 dark:text-slate-200">${ticket.count} Orang</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-${status.bg}-500">payments</span>
+                                <div>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">${ticket.status === 'cancelled' ? 'Dana Dikembalikan' : 'Total Bayar'}</p>
+                                    <p class="font-medium text-slate-800 dark:text-slate-200">Rp ${ticket.price.toLocaleString()}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        ${ticket.status === 'cancelled' ? `
+                            <div class="col-span-2 mb-4">
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Alasan Pembatalan</p>
+                                <p class="text-sm text-slate-700 dark:text-slate-300">Perubahan jadwal perjalanan</p>
+                            </div>
+                        ` : ''}
+                        
+                        ${ticket.status === 'upcoming' ? `
+                            <div class="mb-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-yellow-600 dark:text-yellow-400">notifications_active</span>
+                                    <p class="text-sm font-medium text-yellow-800 dark:text-yellow-300">Mulai dalam: 
+                                        <span class="font-bold">5 hari 12 jam</span>
+                                    </p>
+                                </div>
+                            </div>
+                        ` : ''}
+                        
+                        <!-- Additional Info -->
+                        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4">
+                            <span>Metode: ${getPaymentMethodText(ticket.payment)}</span>
+                            <span>Dipesan: ${formatDate(ticket.orderDate)}</span>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
+                            ${getActionButtons(ticket)}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return div;
+        }
+
+        function getActionButtons(ticket) {
+            switch(ticket.status) {
+                case 'active':
+                    return `
+                        <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors" onclick="showQRCode('${ticket.id}')">
+                            <span class="material-symbols-outlined text-base">qr_code_scanner</span>
+                            Tampilkan QR
+                        </button>
+                        <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                            <span class="material-symbols-outlined text-base">download</span>
+                            Unduh Tiket
+                        </button>
+                        <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 text-sm font-medium hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors" onclick="cancelTicket('${ticket.id}')">
+                            <span class="material-symbols-outlined text-base">close</span>
+                            Batalkan
+                        </button>
+                    `;
+                case 'used':
+                    return `
+                        <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors" onclick="showReceipt('${ticket.id}')">
+                            <span class="material-symbols-outlined text-base">receipt</span>
+                            Lihat Nota
+                        </button>
+                        <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                            <span class="material-symbols-outlined text-base">star</span>
+                            Beri Ulasan
+                        </button>
+                    `;
+                case 'upcoming':
+                    return `
+                        <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-yellow-500 text-white text-sm font-medium hover:bg-yellow-600 transition-colors" onclick="remindMe('${ticket.id}')">
+                            <span class="material-symbols-outlined text-base">notifications</span>
+                            Ingatkan Saya
+                        </button>
+                        <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                            <span class="material-symbols-outlined text-base">share</span>
+                            Bagikan
+                        </button>
+                    `;
+                case 'cancelled':
+                case 'expired':
+                    return `
+                        <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                            <span class="material-symbols-outlined text-base">receipt</span>
+                            Lihat Nota
+                        </button>
+                        <button class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                            <span class="material-symbols-outlined text-base">redo</span>
+                            Pesan Ulang
+                        </button>
+                    `;
+                default:
+                    return '';
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { day: 'numeric', month: 'short', year: 'numeric' };
+            return date.toLocaleDateString('id-ID', options);
+        }
+
+        function updateTicketCounter() {
+            const visibleTickets = document.querySelectorAll('.ticket-card:not(.hidden)').length;
+            const totalTickets = ticketData.length;
+            visibleCount.textContent = visibleTickets;
+            totalCount.textContent = totalTickets;
+        }
+
+        function loadMoreTickets() {
+            visibleTickets += ticketsPerLoad;
+            renderTickets();
+        }
+
         // QR Code Modal
         function showQRCode(ticketId) {
             const modal = document.getElementById('qr-modal');
@@ -570,7 +1667,9 @@
             const expiryDates = {
                 'KBZ20241028001': '28 Okt 2024, 17:00 WIB',
                 'TPH20241015001': 'Sudah digunakan',
-                'SNZ20241105001': '5 Nov 2024, 22:00 WIB'
+                'SNZ20241105001': '5 Nov 2024, 22:00 WIB',
+                'MKS20241010001': 'Sudah dibatalkan',
+                'M10N20240920001': 'Sudah kadaluarsa'
             };
             
             document.getElementById('qr-valid-until').textContent = expiryDates[ticketId] || 'Tidak diketahui';
@@ -578,63 +1677,49 @@
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeQRCode() {
             const modal = document.getElementById('qr-modal');
             modal.classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
-        
+
         // Close modal when clicking outside
         document.getElementById('qr-modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeQRCode();
             }
         });
-        
+
         // Cancel Ticket Function
         function cancelTicket(ticketId) {
             if (confirm('Apakah Anda yakin ingin membatalkan tiket ini? Dana akan dikembalikan dalam 1-3 hari kerja.')) {
-                // Simulate API call
-                const ticket = document.querySelector(`[data-status="active"]`);
-                if (ticket) {
-                    ticket.querySelector('.bg-green-100').classList.replace('bg-green-100', 'bg-red-100');
-                    ticket.querySelector('.text-green-800').classList.replace('text-green-800', 'text-red-800');
-                    ticket.querySelector('.dark\\:bg-green-900').classList.replace('dark:bg-green-900', 'dark:bg-red-900');
-                    ticket.querySelector('.dark\\:text-green-200').classList.replace('dark:text-green-200', 'dark:text-red-200');
-                    ticket.querySelector('span.material-symbols-outlined').textContent = 'cancel';
-                    ticket.querySelector('span.material-symbols-outlined').nextSibling.textContent = ' Dibatalkan';
+                // Find and update ticket in data
+                const ticketIndex = ticketData.findIndex(t => t.id === ticketId);
+                if (ticketIndex !== -1) {
+                    ticketData[ticketIndex].status = 'cancelled';
+                    ticketData[ticketIndex].cancelled = true;
                     
-                    // Update status
-                    ticket.dataset.status = 'cancelled';
+                    // Re-render tickets
+                    renderTickets();
                     
                     alert(`Tiket ${ticketId} berhasil dibatalkan. Dana akan dikembalikan.`);
                 }
             }
         }
-        
+
         // Remind Me Function
         function remindMe(ticketId) {
             alert(`Pengingat untuk tiket ${ticketId} telah diatur. Kami akan mengingatkan Anda 1 hari sebelum kunjungan.`);
         }
-        
+
         // Show Receipt Function
         function showReceipt(ticketId) {
             alert(`Nota untuk tiket ${ticketId} akan ditampilkan di sini. Fitur ini dalam pengembangan.`);
         }
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set default active tab
-            filterTickets('all');
-            
-            // Simulate loading
-            setTimeout(() => {
-                document.querySelectorAll('.ticket-card').forEach(card => {
-                    card.style.opacity = '1';
-                });
-            }, 100);
-        });
+
+        // Global functions for filter tag removal
+        window.removeFilterTag = removeFilterTag;
     </script>
 </body>
 </html>

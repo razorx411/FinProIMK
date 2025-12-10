@@ -39,6 +39,49 @@
     
     <!-- Styles -->
     <style>
+            .search-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 50;
+    }
+    
+    .dark .search-dropdown {
+        background: #1f2937;
+    }
+    
+    .search-result-item {
+        padding: 12px 16px;
+        border-bottom: 1px solid #e5e7eb;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    
+    .search-result-item:hover {
+        background-color: #f9fafb;
+    }
+    
+    .dark .search-result-item {
+        border-bottom-color: #374151;
+    }
+    
+    .dark .search-result-item:hover {
+        background-color: #374151;
+    }
+    
+    .category-card {
+        transition: all 0.3s ease;
+    }
+    
+    .category-card:hover {
+        transform: translateY(-5px);
+    }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -168,14 +211,6 @@
 /* ===========================
    Data
    =========================== */
-const wisataData = [
-    { name: "Kebun Binatang Surabaya", lokasi: "Jl. Setail No.1, Surabaya", price: 15000, rating: 4.5, ulasan: 1234, img: "gambar/kbs.jpg", tag: ["Keluarga","Edukasi"] },
-    { name: "Monumen Kapal Selam", lokasi: "Jl. Pemuda No.39, Surabaya", price: 15000, rating: 4.7, ulasan: 2450, img: "gambar/monkasel.png", tag: ["Sejarah","Edukasi"] },
-    { name: "Museum 10 November", lokasi: "Jl. Pahlawan, Surabaya", price: 5000, rating: 4.8, ulasan: 3112, img: "gambar/museumnovember.jpg", tag: ["Sejarah"] },
-    { name: "Pantai Kenjeran", lokasi: "Bulak, Surabaya", price: 15000, rating: 4.3, ulasan: 987, img: "gambar/kenjeran.jpg", tag: ["Outdoor","Keluarga"] },
-    { name: "Museum Pendidikan", lokasi: "Genteng, Surabaya", price: 10000, rating: 4.9, ulasan: 4582, img: "gambar/museumpendidikan.jpg", tag: ["Edukasi"] },
-    { name: "Wisata Perahu Kalimas", lokasi: "Ketabang Kali, Surabaya", price: 7000, rating: 4.4, ulasan: 890, img: "gambar/perahu.jpg", tag: ["Outdoor"] }
-];
 
 /* ===========================
    Helper: render cards into #results
@@ -325,5 +360,209 @@ document.addEventListener("DOMContentLoaded", () => {
             renderCards(currentFiltered);
         });
     });
+});
+
+// Fungsi untuk membaca parameter URL
+function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        kategori: params.get('kategori'),
+        search: params.get('search')
+    };
+}
+
+// Update wisataData dengan kategori
+const wisataData = [
+    { 
+        name: "Kebun Binatang Surabaya", 
+        lokasi: "Jl. Setail No.1, Surabaya", 
+        price: 15000, 
+        rating: 4.5, 
+        ulasan: 1234, 
+        img: "gambar/kbs.jpg", 
+        tag: ["Keluarga", "Edukasi"],
+        kategori: ["keluarga", "alam"]
+    },
+    { 
+        name: "Monumen Kapal Selam", 
+        lokasi: "Jl. Pemuda No.39, Surabaya", 
+        price: 15000, 
+        rating: 4.7, 
+        ulasan: 2450, 
+        img: "gambar/monkasel.png", 
+        tag: ["Sejarah", "Edukasi"],
+        kategori: ["museum", "sejarah"]
+    },
+    { 
+        name: "Museum 10 November", 
+        lokasi: "Jl. Pahlawan, Surabaya", 
+        price: 5000, 
+        rating: 4.8, 
+        ulasan: 3112, 
+        img: "gambar/museumnovember.jpg", 
+        tag: ["Sejarah"],
+        kategori: ["museum", "sejarah"]
+    },
+    { 
+        name: "Pantai Kenjeran", 
+        lokasi: "Bulak, Surabaya", 
+        price: 15000, 
+        rating: 4.3, 
+        ulasan: 987, 
+        img: "gambar/kenjeran.jpg", 
+        tag: ["Outdoor", "Keluarga"],
+        kategori: ["alam", "keluarga"]
+    },
+    { 
+        name: "Museum Pendidikan", 
+        lokasi: "Genteng, Surabaya", 
+        price: 10000, 
+        rating: 4.9, 
+        ulasan: 4582, 
+        img: "gambar/museumpendidikan.jpg", 
+        tag: ["Edukasi"],
+        kategori: ["museum", "edukasi"]
+    },
+    { 
+        name: "Wisata Perahu Kalimas", 
+        lokasi: "Ketabang Kali, Surabaya", 
+        price: 7000, 
+        rating: 4.4, 
+        ulasan: 890, 
+        img: "gambar/perahu.jpg", 
+        tag: ["Outdoor"],
+        kategori: ["alam", "keluarga"]
+    }
+];
+
+// Fungsi filter berdasarkan parameter URL
+function filterByUrlParams() {
+    const params = getUrlParams();
+    let filteredData = [...wisataData];
+    
+    if (params.kategori) {
+        filteredData = filteredData.filter(item => 
+            item.kategori.includes(params.kategori.toLowerCase())
+        );
+    }
+    
+    if (params.search) {
+        const searchTerm = params.search.toLowerCase();
+        filteredData = filteredData.filter(item => 
+            item.name.toLowerCase().includes(searchTerm) ||
+            item.lokasi.toLowerCase().includes(searchTerm) ||
+            item.tag.some(tag => tag.toLowerCase().includes(searchTerm))
+        );
+    }
+    
+    return filteredData;
+}
+
+// Update renderCards untuk menerima data
+function renderCards(data) {
+    const container = document.getElementById("results");
+    if (!container) return;
+
+    container.classList.add("fade-out");
+
+    setTimeout(() => {
+        container.innerHTML = "";
+
+        if (data.length === 0) {
+            container.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <span class="material-symbols-outlined text-6xl text-gray-400">search_off</span>
+                    <h3 class="text-xl font-bold mt-4">Destinasi tidak ditemukan</h3>
+                    <p class="text-gray-500 mt-2">Coba cari dengan kata kunci lain atau kategori berbeda</p>
+                </div>
+            `;
+        } else {
+            data.forEach(item => {
+                const card = document.createElement("a");
+                card.href = `pesanTiket.html?wisata=${encodeURIComponent(item.name.toLowerCase().replace(/\s+/g, '-'))}`;
+                card.className = "block bg-white dark:bg-gray-900 shadow-md rounded-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 fade-in cursor-pointer";
+                card.style.opacity = "0";
+                card.style.transform = "scale(0.95)";
+
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${item.img}" alt="${item.name}" class="w-full h-48 object-cover" />
+                        <div class="absolute top-3 right-3 bg-white dark:bg-gray-800 rounded-full px-3 py-1 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+                            <span class="font-bold">${item.rating}</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">${item.name}</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">${item.lokasi}</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <div>
+                                <p class="text-green-600 dark:text-green-400 font-bold">Rp ${item.price.toLocaleString()}</p>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">${item.ulasan} ulasan</p>
+                            </div>
+                            <div class="flex gap-2">
+                                ${item.tag.map(tag => `<span class="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs rounded">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+
+                setTimeout(() => {
+                    card.style.opacity = "1";
+                    card.style.transform = "scale(1)";
+                }, 20);
+            });
+        }
+
+        setTimeout(() => {
+            container.classList.remove("fade-out");
+            container.classList.add("fade-in");
+        }, 50);
+    }, 120);
+}
+
+// Update filterCardsAndRender untuk include URL params
+function filterCardsAndRender() {
+    const selectedTags = [...document.querySelectorAll(".tagFilter:checked")].map(el => el.value);
+    const ratingMin = document.getElementById("ratingFilter") ? document.getElementById("ratingFilter").value : "";
+    const priceMax = document.getElementById("priceFilter") ? parseInt(document.getElementById("priceFilter").value) : Infinity;
+
+    // Start with URL filtered data
+    let filtered = filterByUrlParams();
+    
+    // Apply other filters
+    filtered = filtered.filter(item => {
+        const tagMatch = selectedTags.length === 0 || selectedTags.some(t => item.tag.includes(t));
+        const ratingMatch = ratingMin === "" || item.rating >= parseFloat(ratingMin);
+        const priceMatch = item.price <= priceMax;
+        return tagMatch && ratingMatch && priceMatch;
+    });
+
+    // Apply active sort
+    const activeSort = document.querySelector(".sort-btn.active")?.dataset.sort || null;
+    if (activeSort === "price") filtered.sort((a,b)=> a.price - b.price);
+    if (activeSort === "ulasan") filtered.sort((a,b)=> b.ulasan - a.ulasan);
+    if (activeSort === "rating") filtered.sort((a,b)=> b.rating - a.rating);
+
+    renderCards(filtered);
+}
+
+// Update init function
+document.addEventListener("DOMContentLoaded", () => {
+    // Initial render with URL params
+    filterCardsAndRender();
+    
+    // ... rest of your existing init code ...
+    
+    // Display search query if exists
+    const params = getUrlParams();
+    if (params.search) {
+        const resultsHeader = document.querySelector('h1.text-3xl');
+        if (resultsHeader) {
+            resultsHeader.textContent = `Hasil pencarian: "${params.search}"`;
+        }
+    }
 });
 </script>

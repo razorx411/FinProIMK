@@ -94,27 +94,10 @@ class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/
                                 <span class="material-symbols-outlined text-gray-400">search</span>
                                 <input class="w-full border-0 bg-transparent pl-2 text-gray-800 placeholder-gray-500 focus:ring-0 dark:text-gray-200 dark:placeholder-gray-400" placeholder="Destinasi atau Aktivitas" type="text" />
                             </label>
-                            
-                            <div class="hidden h-8 w-px bg-gray-200 dark:bg-gray-700 md:block"></div>
-                            
-                            <!-- Date Selection -->
-                            <label class="col-span-12 flex h-14 w-full items-center px-4 md:col-span-3">
-                                <span class="material-symbols-outlined text-gray-400">calendar_today</span>
-                                <input class="w-full border-0 bg-transparent pl-2 text-gray-800 placeholder-gray-500 focus:ring-0 dark:text-gray-200 dark:placeholder-gray-400" onblur="(this.type='text')" onfocus="(this.type='date')" placeholder="Pilih Tanggal" type="text" />
-                            </label>
-                            
-                            <div class="hidden h-8 w-px bg-gray-200 dark:bg-gray-700 md:block"></div>
-                            
-                            <!-- People Count -->
-                            <label class="col-span-12 flex h-14 w-full items-center px-4 md:col-span-2">
-                                <span class="material-symbols-outlined text-gray-400">group</span>
-                                <input class="w-full border-0 bg-transparent pl-2 text-gray-800 placeholder-gray-500 focus:ring-0 dark:text-gray-200 dark:placeholder-gray-400" min="1" placeholder="Jml" type="number" />
-                            </label>
-                            
                             <!-- Search Button -->
-                            <button class="col-span-12 flex h-12 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary text-base font-bold text-white hover:bg-primary/90 md:col-span-1">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
+                            <button 
+                class="absolute right-9 h-12 w-12 flex items-center justify-center rounded-md bg-primary text-white hover:bg-primary/90">
+                <span class="material-symbols-outlined">search</span></button>
                         </div>
                     </div>
                 </div>
@@ -190,41 +173,40 @@ class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/
                         <div class="mr-4 w-4 flex-shrink-0 snap-center sm:mr-0 sm:w-0"></div>
                     </div>
                 </section>
-
                 <!-- Categories Section -->
-                <section class="mt-10 lg:mt-16">
-                    <h2 class="px-4 pb-4 pt-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Jelajahi Berdasarkan Kategori</h2>
-                    
-                    <div class="grid grid-cols-2 gap-4 px-4 sm:grid-cols-2 md:grid-cols-4">
-                        <!-- Museum Category -->
-                        <div class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
-                            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCRcqvna4Xf7mFqJxaCZKlIegaPPD9UVgVSyDidCzbJlCz6gwpnGRzqd6MjLiVsemMnznXZ6CifIxXgPZo05bRVnCpgq60akR-uy4HFB7hnCoQHFqWTbrxpG4H1Fj6dx1RCMlonXfa018zELJK45qaKw2cgxVl5oZiOFVNyx67WHeoeMNpK3kj7xSGofOP8o5bc6mznKM615FPOOypc8QJyuKd6Yed8pHLlyjdJw4cx1sJB8LMZ3jKXu_IbpQS7caMhHvHiPAS7qM')"></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <h3 class="relative p-4 text-lg font-bold text-white">Museum</h3>
-                        </div>
-                        
-                        <!-- Nature Category -->
-                        <div class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
-                            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCRcqvna4Xf7mFqJxaCZKlIegaPPD9UVgVSyDidCzbJlCz6gwpnGRzqd6MjLiVsemMnznXZ6CifIxXgPZo05bRVnCpgq60akR-uy4HFB7hnCoQHFqWTbrxpG4H1Fj6dx1RCMlonXfa018zELJK45qaKw2cgxVl5oZiOFVNyx67WHeoeMNpK3kj7xSGofOP8o5bc6mznKM615FPOOypc8QJyuKd6Yed8pHLlyjdJw4cx1sJB8LMZ3jKXu_IbpQS7caMhHvHiPAS7qM')"></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <h3 class="relative p-4 text-lg font-bold text-white">Alam</h3>
-                        </div>
-                        
-                        <!-- Culinary Category -->
-                        <div class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
-                            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCRcqvna4Xf7mFqJxaCZKlIegaPPD9UVgVSyDidCzbJlCz6gwpnGRzqd6MjLiVsemMnznXZ6CifIxXgPZo05bRVnCpgq60akR-uy4HFB7hnCoQHFqWTbrxpG4H1Fj6dx1RCMlonXfa018zELJK45qaKw2cgxVl5oZiOFVNyx67WHeoeMNpK3kj7xSGofOP8o5bc6mznKM615FPOOypc8QJyuKd6Yed8pHLlyjdJw4cx1sJB8LMZ3jKXu_IbpQS7caMhHvHiPAS7qM')"></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <h3 class="relative p-4 text-lg font-bold text-white">Kuliner</h3>
-                        </div>
-                        
-                        <!-- Family Category -->
-                        <div class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
-                            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCRcqvna4Xf7mFqJxaCZKlIegaPPD9UVgVSyDidCzbJlCz6gwpnGRzqd6MjLiVsemMnznXZ6CifIxXgPZo05bRVnCpgq60akR-uy4HFB7hnCoQHFqWTbrxpG4H1Fj6dx1RCMlonXfa018zELJK45qaKw2cgxVl5oZiOFVNyx67WHeoeMNpK3kj7xSGofOP8o5bc6mznKM615FPOOypc8QJyuKd6Yed8pHLlyjdJw4cx1sJB8LMZ3jKXu_IbpQS7caMhHvHiPAS7qM')"></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <h3 class="relative p-4 text-lg font-bold text-white">Keluarga</h3>
-                        </div>
-                    </div>
-                </section>
+<section class="mt-10 lg:mt-16">
+    <h2 class="px-4 pb-4 pt-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Jelajahi Berdasarkan Kategori</h2>
+    
+    <div class="grid grid-cols-2 gap-4 px-4 sm:grid-cols-2 md:grid-cols-4">
+        <!-- Museum Category -->
+        <a href="destinasi.html?kategori=museum" class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
+            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?q=80&w=1000&auto=format&fit=crop')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <h3 class="relative p-4 text-lg font-bold text-white">Museum</h3>
+        </a>
+        
+        <!-- Nature Category -->
+        <a href="destinasi.html?kategori=alam" class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
+            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=1000&auto=format&fit=crop')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <h3 class="relative p-4 text-lg font-bold text-white">Alam</h3>
+        </a>
+        
+        <!-- Culinary Category -->
+        <a href="destinasi.html?kategori=kuliner" class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
+            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1000&auto=format&fit=crop')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <h3 class="relative p-4 text-lg font-bold text-white">Kuliner</h3>
+        </a>
+        
+        <!-- Family Category -->
+        <a href="destinasi.html?kategori=keluarga" class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
+            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1000&auto=format&fit=crop')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <h3 class="relative p-4 text-lg font-bold text-white">Keluarga</h3>
+        </a>
+    </div>
+</section>
 
                 <!-- Why Choose Us Section -->
                 <section class="mt-10 rounded-xl bg-white p-8 dark:bg-gray-900/50 lg:mt-16">
@@ -315,5 +297,89 @@ class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/
             </div>
         </footer>
     </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const wisataData = [
+        { name: "Kebun Binatang Surabaya", harga: 25000, url: "pesanTiket.html?wisata=kbs" },
+        { name: "Museum 10 November", harga: 5000, url: "pesanTiket.html?wisata=museum10nov" },
+        { name: "Museum Pendidikan", harga: 10000, url: "pesanTiket.html?wisata=museumpendidikan" },
+        { name: "Taman Hiburan Pantai Kenjeran", harga: 15000, url: "pesanTiket.html?wisata=kenjeran" },
+        { name: "Monumen Kapal Selam", harga: 15000, url: "pesanTiket.html?wisata=monkasel" },
+        { name: "Wisata Perahu Kalimas", harga: 7000, url: "pesanTiket.html?wisata=kalimas" }
+    ];
+
+    const searchInput = document.querySelector('input[placeholder="Destinasi atau Aktivitas"]');
+    const searchResults = document.createElement('div');
+    searchResults.className = 'absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-900 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto hidden';
+    
+    // Insert dropdown after search container
+    searchInput.parentElement.parentElement.appendChild(searchResults);
+
+    searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase().trim();
+        searchResults.innerHTML = '';
+        
+        if (query.length < 2) {
+            searchResults.classList.add('hidden');
+            return;
+        }
+        
+        const filtered = wisataData.filter(item => 
+            item.name.toLowerCase().includes(query)
+        );
+        
+        if (filtered.length > 0) {
+            filtered.forEach(item => {
+                const resultItem = document.createElement('a');
+                resultItem.href = item.url;
+                resultItem.className = 'flex items-center justify-between p-4 hover:bg-gray-100 dark:hover:bg-gray-800 border-b border-gray-100 dark:border-gray-800 cursor-pointer';
+                resultItem.innerHTML = `
+                    <div>
+                        <div class="font-medium text-gray-900 dark:text-white">${item.name}</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Mulai dari Rp ${item.harga.toLocaleString()}</div>
+                    </div>
+                    <span class="material-symbols-outlined text-gray-400">chevron_right</span>
+                `;
+                searchResults.appendChild(resultItem);
+            });
+            searchResults.classList.remove('hidden');
+        } else {
+            const noResult = document.createElement('div');
+            noResult.className = 'p-4 text-gray-500 dark:text-gray-400 text-center';
+            noResult.textContent = 'Tidak ditemukan destinasi';
+            searchResults.appendChild(noResult);
+            searchResults.classList.remove('hidden');
+        }
+    });
+
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            searchResults.classList.add('hidden');
+        }
+    });
+
+    // Handle search button click
+    document.querySelector('button.bg-primary').addEventListener('click', function() {
+        const query = searchInput.value.trim();
+        if (query) {
+            // Redirect to search results page with query parameter
+            window.location.href = `destinasi.html?search=${encodeURIComponent(query)}`;
+        }
+    });
+
+    // Handle Enter key
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const query = searchInput.value.trim();
+            if (query) {
+                window.location.href = `destinasi.html?search=${encodeURIComponent(query)}`;
+            }
+        }
+    });
+});
+</script>
+
 </body>
 </html>

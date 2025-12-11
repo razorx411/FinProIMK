@@ -3,89 +3,239 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Admin Dashboard - SPA</title>
+<title>Admin Dashboard - Tiket Wisata Surabaya</title>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
 tailwind.config = {
   theme: {
     extend: {
-      colors: { brand: '#10b981' },
-      fontFamily: { display: ['Inter','sans-serif'] }
+      colors: { 
+        brand: '#10b981',
+        'brand-dark': '#059669'
+      },
+      fontFamily: { 
+        display: ['Inter','sans-serif'],
+        sans: ['Inter','sans-serif']
+      }
     }
   }
 }
 </script>
+
+<style>
+  body { visibility: hidden; opacity: 0; }
+  body.loaded { visibility: visible; opacity: 1; transition: opacity 0.3s ease; }
+</style>
 </head>
 
-<body class="min-h-screen bg-gray-50 text-slate-800 font-display">
-<div class="flex">
+<body class="min-h-screen bg-gray-50 text-slate-800 font-display antialiased">
+
+<!-- Mobile Overlay -->
+<div id="mobileOverlay" class="mobile-overlay"></div>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" class="loading-overlay">
+  <div class="bg-white p-6 rounded-lg shadow-xl">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<!-- Logout Confirmation Modal -->
+<div id="logoutModal" class="logout-modal">
+  <div class="bg-white rounded-lg p-6 max-w-sm mx-4 shadow-xl">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-2xl">
+        ⚠️
+      </div>
+      <div>
+        <h3 class="font-bold text-lg">Konfirmasi Logout</h3>
+        <p class="text-sm text-gray-600">Anda yakin ingin keluar?</p>
+      </div>
+    </div>
+    <div class="flex gap-3 justify-end">
+      <button id="cancelLogout" class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 font-medium">
+        Batal
+      </button>
+      <button id="confirmLogout" class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 font-medium">
+        Ya, Logout
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="flex min-h-screen">
 
 <!-- SIDEBAR -->
-<aside id="sidebar"
-       class="sidebar shrink-0 bg-white border-r border-gray-200 transition-all duration-300">
-  <div class="h-screen flex flex-col">
+<aside id="sidebar" class="sidebar bg-white border-r border-gray-200">
+  <div class="h-full flex flex-col">
 
     <!-- HEADER -->
-    <div id="sidebar-header" class="flex items-center gap-3 p-4 relative">
-      <div class="sidebar-logo w-10 h-10 rounded-md bg-brand flex items-center justify-center text-white font-bold">
-        TW
+    <div class="flex items-center justify-between p-4 border-b border-gray-200">
+      <div class="flex items-center gap-3">
+        <div class="sidebar-logo w-10 h-10 rounded-lg bg-brand flex items-center justify-center text-white font-bold text-lg shadow-sm">
+          S
+        </div>
+        <div class="sidebar-label">
+          <div class="font-bold text-gray-900">Wisata Surabaya</div>
+          <div class="text-xs text-gray-500">Admin Panel</div>
+        </div>
       </div>
-
-      <div class="sidebar-label">
-        <div class="font-bold">Tiket Wisata</div>
-        <div class="text-xs text-gray-500">Admin Panel</div>
-      </div>
+      <button id="toggleSidebarDesktop" class="desktop-toggle p-2 hover:bg-gray-100 rounded-lg transition" title="Collapse Sidebar">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+        </svg>
+      </button>
     </div>
 
     <!-- MENU -->
-    <nav class="flex-1 p-2 space-y-1">
-      <a class="nav-item" data-page="dashboard"><span class="nav-icon">🏠</span><span class="nav-text">Dashboard</span></a>
-      <a class="nav-item" data-page="pemesanan"><span class="nav-icon">🎫</span><span class="nav-text">Manage Ticket</span></a>
-      <a class="nav-item" data-page="destinasi"><span class="nav-icon">📍</span><span class="nav-text">Destinasi</span></a>
-      <a class="nav-item" data-page="promosi"><span class="nav-icon">📣</span><span class="nav-text">Promosi</span></a>
-      <a class="nav-item" data-page="reports"><span class="nav-icon">📊</span><span class="nav-text">Reports</span></a>
+    <nav class="flex-1 p-3 space-y-1 overflow-y-auto">
+      <a class="nav-item active" href="#" data-page="dashboard">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a class="nav-item" href="#" data-page="pemesanan">
+        <span class="nav-icon-wrapper">
+          <span class="nav-icon">🎫</span>
+          <span class="notification-badge">12</span>
+        </span>
+        <span class="nav-text">Pemesanan</span>
+      </a>
+      <a class="nav-item" href="#" data-page="destinasi">
+        <span class="nav-icon">📍</span>
+        <span class="nav-text">Destinasi</span>
+      </a>
+      <a class="nav-item" href="#" data-page="promosi">
+        <span class="nav-icon-wrapper">
+          <span class="nav-icon">📣</span>
+          <span class="notification-badge">3</span>
+        </span>
+        <span class="nav-text">Promosi</span>
+      </a>
+      <a class="nav-item" href="#" data-page="reports">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Laporan</span>
+      </a>
+      
+      <div class="pt-4 pb-2">
+        <div class="sidebar-label px-3 pb-2">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Pengaturan</span>
+        </div>
+      </div>
+      
+      <a class="nav-item" href="#" data-page="settings">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-text">Pengaturan</span>
+      </a>
     </nav>
 
     <!-- PROFILE -->
-    <div class="profile-section p-3 border-t">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-full bg-gray-200"></div>
-        <div class="sidebar-label">
-          <div class="text-sm font-medium">Admin</div>
-          <div class="text-xs text-gray-500">admin@tiket.com</div>
+    <div class="profile-section p-3 border-t border-gray-200">
+      <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand to-brand-dark flex items-center justify-center text-white font-semibold">
+          A
+        </div>
+        <div class="sidebar-label flex-1">
+          <div class="text-sm font-semibold text-gray-900">Admin Surabaya</div>
+          <div class="text-xs text-gray-500">admin@wisatasby.com</div>
         </div>
       </div>
     </div>
 
     <!-- LOGOUT -->
-    <a href="../htmlPage/index.html"><div class="logout-container p-3 border-t">
-      <button class="w-full flex items-center gap-3 p-2 rounded hover:bg-red-50 text-red-600" title="Logout">
+    <div class="logout-container p-3 border-t border-gray-200">
+      <button id="logoutBtn" type="button" class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-red-50 text-red-600 font-medium transition">
         <span class="nav-icon">🚪</span>
         <span class="nav-text">Logout</span>
       </button>
-    </div></a>
+    </div>
 
   </div>
 </aside>
 
-<!-- CONTENT -->
-<main class="flex-1 p-6">
-  <div id="main-container" class="max-w-7xl mx-auto"></div>
+<!-- MAIN CONTENT -->
+<main class="flex-1 flex flex-col min-h-screen">
+  
+  <!-- Top Bar - Mobile Only -->
+  <div id="mobileTopbar" class="mobile-topbar bg-white border-b border-gray-200 p-4 flex items-center justify-between sticky top-0 z-20">
+    <button id="mobileMenuBtn" class="p-2 hover:bg-gray-100 rounded-lg touch-target">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+    <div class="font-bold text-lg text-gray-900 truncate-mobile">Wisata Surabaya</div>
+    <div class="w-10"></div>
+  </div>
+
+  <!-- Breadcrumb & Page Content -->
+  <div class="flex-1 p-4 md:p-6">
+    <div class="max-w-7xl mx-auto w-full">
+      
+      <!-- Breadcrumb -->
+      <div class="mb-4 md:mb-6">
+        <nav class="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
+          <a href="#" class="text-gray-500 hover:text-gray-700 px-1 py-0.5" id="homeBreadcrumb">Home</a>
+          <span class="text-gray-400">/</span>
+          <span id="breadcrumb" class="font-semibold text-gray-900 px-1 py-0.5 truncate max-w-[150px] md:max-w-none">
+            Dashboard
+          </span>
+        </nav>
+      </div>
+
+      <!-- Main Container -->
+      <div id="main-container" class="w-full overflow-x-hidden">
+        <!-- Initial loading content -->
+        <div class="animate-pulse space-y-4">
+          <div class="h-6 bg-gray-200 rounded w-1/3 md:w-1/4"></div>
+          <div class="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-4 md:gap-4">
+            <div class="h-24 md:h-32 bg-gray-200 rounded"></div>
+            <div class="h-24 md:h-32 bg-gray-200 rounded"></div>
+            <div class="h-24 md:h-32 bg-gray-200 rounded"></div>
+            <div class="h-24 md:h-32 bg-gray-200 rounded"></div>
+          </div>
+          <div class="h-64 md:h-96 bg-gray-200 rounded"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </main>
 
 </div>
 
-<!-- Page JS -->
+<!-- JS Files -->
+<script src="js/sidebar.js"></script>
 <script src="js/dashboard.js"></script>
 <script src="js/pemesanan.js"></script>
 <script src="js/destinasi.js"></script>
 <script src="js/promosi.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/settings.js"></script>
 <script src="js/app.js"></script>
+
+<script>
+  // Mark body as loaded when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('loaded');
+    
+    // Prevent breadcrumb home link from refreshing
+    const homeBreadcrumb = document.getElementById('homeBreadcrumb');
+    if (homeBreadcrumb) {
+      homeBreadcrumb.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dashboardBtn = document.querySelector('[data-page="dashboard"]');
+        if (dashboardBtn) {
+          dashboardBtn.click();
+        }
+      });
+    }
+  });
+</script>
 
 </body>
 </html>

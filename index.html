@@ -1,98 +1,816 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Surabaya - Redirect</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halaman Beranda & Pencarian - Tiket Wisata Surabaya</title>
+    <!-- External Resources -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 100, 0, 0.1);
-            max-width: 500px;
+        /* Animasi hamburger menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
         }
         
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #2e7d32;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+        .mobile-menu.open {
+            max-height: 500px;
+            transition: max-height 0.3s ease-in;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* Search dropdown styling */
+        .search-dropdown {
+            max-height: 350px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #c1c1c1 #f1f1f1;
         }
         
-        h1 {
-            color: #2e7d32;
-            margin-bottom: 10px;
+        .search-dropdown::-webkit-scrollbar {
+            width: 6px;
         }
         
-        p {
-            color: #666;
-            margin-bottom: 20px;
+        .search-dropdown::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
         }
         
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: #2e7d32;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background 0.3s;
+        .search-dropdown::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
         }
         
-        .btn:hover {
-            background: #1b5e20;
+        .search-dropdown::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Dark mode scrollbar */
+        .dark .search-dropdown::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        
+        .dark .search-dropdown::-webkit-scrollbar-thumb {
+            background: #4a5568;
+        }
+        
+        .dark .search-dropdown::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+        
+        /* Active state for search results */
+        .search-result-item:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .dark .search-result-item:hover {
+            background-color: #374151;
+        }
+        
+        /* Animation for search results */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.2s ease-out;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .search-dropdown {
+                max-height: 300px;
+            }
+            
+            .search-result-item {
+                padding: 12px;
+            }
         }
     </style>
+    
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#10B981",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101a22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
 </head>
-<body>
-    <div class="container">
-        <div class="loader"></div>
-        <h1>Travel Surabaya</h1>
-        <p>Mengarahkan Anda ke halaman utama...</p>
-        <p>Jika tidak otomatis redirect, klik tombol di bawah:</p>
-        <a href="htmlPage/index.html" class="btn">Masuk ke Website</a>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+    <div class="relative flex min-h-screen w-full flex-col">
         
-        <div style="margin-top: 30px; font-size: 14px; color: #888;">
-            <p>Atau akses langsung:</p>
-            <p>
-                <a href="auth/login.html" style="color: #2e7d32; text-decoration: none;">Login</a> • 
-                <a href="AdminPage/index.html" style="color: #2e7d32; text-decoration: none;">Admin</a>
-            </p>
-        </div>
+        <!-- Header -->
+        <header id="navbar"
+            class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80 transition-transform duration-300 transform -translate-y-0">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+
+                <!-- Logo -->
+                <a href="index.html"> 
+                    <img src="gambar/logoo.png" width="150" height="50" alt="Logo">
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="destinasi.html">Destinasi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="promosi.html">Promosi</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="tiket-saya.html">Tiket Saya</a>
+                </nav>
+
+                <!-- Right section -->
+                <div class="flex items-center gap-4">
+                    <!-- Link Bantuan (Desktop) -->
+                    <a class="hidden md:block text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
+
+                    <!-- TOMBOL LOGIN (Desktop) -->
+                    <a href="auth/login.html" 
+                       class="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
+                        <span class="material-symbols-outlined text-sm">login</span>
+                        <span class="text-sm font-medium">Login</span>
+                    </a>
+
+                    <!-- HAMBURGER MENU BUTTON -->
+                    <button id="mobile-menu-button" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="mobile-menu md:hidden bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-800/50">
+                <div class="px-4 py-3 space-y-1">
+                    <a href="destinasi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">location_on</span>
+                        <span class="font-medium">Destinasi</span>
+                    </a>
+                    
+                    <a href="promosi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">local_offer</span>
+                        <span class="font-medium">Promosi</span>
+                    </a>
+                    
+                    <a href="tiket-saya.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">confirmation_number</span>
+                        <span class="font-medium">Tiket Saya</span>
+                    </a>
+                    
+                    <!-- TAMBAHKAN INI: Item Login di Mobile Menu -->
+                    <a href="auth/login.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">login</span>
+                        <span class="font-medium">Login</span>
+                    </a>
+                    
+                    <a href="bantuan.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        <span class="material-symbols-outlined text-gray-400">help</span>
+                        <span class="font-medium">Bantuan</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Hero Section - GIF Background -->
+            <section class="relative flex min-h-[560px] w-full items-center justify-center bg-cover bg-center py-16 text-center text-white" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('gambar/lv_0_20251209070901.gif');">
+                <div class="container mx-auto max-w-4xl px-4">
+                    <h1 class="text-4xl font-black leading-tight tracking-tight md:text-6xl">Jelajahi Pesona Surabaya</h1>
+                    <p class="mt-4 text-lg font-light text-gray-200 md:text-xl">Temukan dan pesan atraksi serta tur terbaik di Kota Pahlawan.</p>
+                    
+                    <!-- Search Form -->
+                    <div class="mt-10 rounded-xl bg-white/10 p-4 backdrop-blur-md">
+                        <div class="relative grid grid-cols-1 items-center gap-4 rounded-lg bg-white dark:bg-gray-900 md:grid-cols-12 md:p-2">
+                            <!-- Destination Search -->
+                            <label class="col-span-12 flex h-14 w-full items-center px-4 md:col-span-5">
+                                <span class="material-symbols-outlined text-gray-400">search</span>
+                                <input 
+                                    id="search-input"
+                                    class="w-full border-0 bg-transparent pl-2 text-gray-800 placeholder-gray-500 focus:ring-0 dark:text-gray-200 dark:placeholder-gray-400" 
+                                    placeholder="Cari wisata di Surabaya..." 
+                                    type="text" 
+                                    autocomplete="off"
+                                />
+                            </label>
+                            <!-- Search Button -->
+                            <button 
+                                id="search-button"
+                                class="absolute right-1 h-12 w-12 flex items-center justify-center rounded-md bg-primary text-white hover:bg-primary/90">
+                                <span class="material-symbols-outlined">search</span>
+                            </button>
+                            
+                            <!-- Search Results Dropdown -->
+                            <div id="search-results" class="search-dropdown absolute top-full left-0 right-0 mt-1 z-50 hidden rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900 fade-in">
+                                <!-- Search results will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Content Container -->
+            <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
+                
+                <!-- Popular Offers Section -->
+                <section>
+                    <h2 class="px-4 pb-4 pt-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Penawaran Populer</h2>
+                    
+                    <div class="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                        <div class="ml-4 w-4 flex-shrink-0 snap-center sm:ml-0 sm:w-0"></div>
+                        
+                        <!-- Surabaya Zoo -->
+                        <div class="flex h-full w-72 flex-shrink-0 snap-center flex-col overflow-hidden rounded-xl border border-gray-200/80 bg-white shadow-sm dark:border-gray-800/80 dark:bg-gray-900/50">
+                            <div class="aspect-video w-full bg-cover bg-center" data-alt="Surabaya Zoo entrance with lush greenery" style="background-image: url('gambar/kbs.jpg');"></div>
+                            <div class="flex flex-1 flex-col justify-between p-4">
+                                <div>
+                                    <p class="font-medium text-gray-900 dark:text-white">Tiket Kebun Binatang Surabaya</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Mulai dari Rp 25.000</p>
+                                </div>
+                                <a href="pesanTiket.html?wisata=kbs" class="mt-4 flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary/20 text-sm font-bold text-primary hover:bg-primary/30 dark:bg-primary/30 dark:hover:bg-primary/40">
+                                    <span class="truncate">Lihat Penawaran</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Museum 10 November -->
+                        <div class="flex h-full w-72 flex-shrink-0 snap-center flex-col overflow-hidden rounded-xl border border-gray-200/80 bg-white shadow-sm dark:border-gray-800/80 dark:bg-gray-900/50">
+                            <div class="aspect-video w-full bg-cover bg-center" data-alt="Suramadu Bridge illuminated at night with city lights in background" style="background-image: url('gambar/museumnovember.jpg');"></div>
+                            <div class="flex flex-1 flex-col justify-between p-4">
+                                <div>
+                                    <p class="font-medium text-gray-900 dark:text-white"> Museum 10 November</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Mulai dari Rp 5.000</p>
+                                </div>
+                                <a href="pesanTiket.html?wisata=museum10nov" class="mt-4 flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary/20 text-sm font-bold text-primary hover:bg-primary/30 dark:bg-primary/30 dark:hover:bg-primary/40">
+                                    <span class="truncate">Lihat Detail</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Museum Pendidikan -->
+                        <div class="flex h-full w-72 flex-shrink-0 snap-center flex-col overflow-hidden rounded-xl border border-gray-200/80 bg-white shadow-sm dark:border-gray-800/80 dark:bg-gray-900/50">
+                            <div class="aspect-video w-full bg-cover bg-center" data-alt="Colonial-style architecture of the House of Sampoerna Museum" style="background-image: url('gambar/museumpendidikan.jpg');"></div>
+                            <div class="flex flex-1 flex-col justify-between p-4">
+                                <div>
+                                    <p class="font-medium text-gray-900 dark:text-white">Museum Pendidikan</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Mulai dari Rp 10.000</p>
+                                </div>
+                                <a href="pesanTiket.html?wisata=museumpendidikan" class="mt-4 flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary/20 text-sm font-bold text-primary hover:bg-primary/30 dark:bg-primary/30 dark:hover:bg-primary/40">
+                                    <span class="truncate">Lihat Detail</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Taman Hiburan Pantai Kenjeran -->
+                        <div class="flex h-full w-72 flex-shrink-0 snap-center flex-col overflow-hidden rounded-xl border border-gray-200/80 bg-white shadow-sm dark:border-gray-800/80 dark:bg-gray-900/50">
+                            <div class="aspect-video w-full bg-cover bg-center" data-alt="Exciting water slides at Ciputra Waterpark on a sunny day" style="background-image: url('gambar/kenjeran.jpg');"></div>
+                            <div class="flex flex-1 flex-col justify-between p-4">
+                                <div>
+                                    <p class="font-medium text-gray-900 dark:text-white">Taman Hiburan Pantai Kenjeran</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Mulai dari Rp 15.000</p>
+                                </div>
+                                <a href="pesanTiket.html?wisata=kenjeran" class="mt-4 flex h-10 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary/20 text-sm font-bold text-primary hover:bg-primary/30 dark:bg-primary/30 dark:hover:bg-primary/40">
+                                    <span class="truncate">Lihat Detail</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="mr-4 w-4 flex-shrink-0 snap-center sm:mr-0 sm:w-0"></div>
+                    </div>
+                </section>
+                
+                <!-- Categories Section -->
+                <section class="mt-10 lg:mt-16">
+                    <h2 class="px-4 pb-4 pt-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Jelajahi Berdasarkan Kategori</h2>
+                    
+                    <div class="grid grid-cols-2 gap-4 px-4 sm:grid-cols-2 md:grid-cols-4">
+                        <!-- Museum Category -->
+                        <a href="destinasi.html?kategori=museum" class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
+                            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?q=80&w=1000&auto=format&fit=crop')"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <h3 class="relative p-4 text-lg font-bold text-white">Museum</h3>
+                        </a>
+                        
+                        <!-- Nature Category -->
+                        <a href="destinasi.html?kategori=alam" class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
+                            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=1000&auto=format&fit=crop')"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <h3 class="relative p-4 text-lg font-bold text-white">Alam</h3>
+                        </a>
+                        
+                        <!-- Culinary Category -->
+                        <a href="destinasi.html?kategori=kuliner" class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
+                            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1000&auto=format&fit=crop')"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <h3 class="relative p-4 text-lg font-bold text-white">Kuliner</h3>
+                        </a>
+                        
+                        <!-- Family Category -->
+                        <a href="destinasi.html?kategori=keluarga" class="group relative flex h-40 items-end justify-start overflow-hidden rounded-xl">
+                            <div class="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1000&auto=format&fit=crop')"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <h3 class="relative p-4 text-lg font-bold text-white">Keluarga</h3>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Why Choose Us Section -->
+                <section class="mt-10 rounded-xl bg-white p-8 dark:bg-gray-900/50 lg:mt-16">
+                    <h2 class="text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mengapa Memilih Kami?</h2>
+                    
+                    <div class="mt-8 grid grid-cols-1 gap-8 text-center md:grid-cols-3">
+                        <!-- Best Price -->
+                        <div class="flex flex-col items-center">
+                            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/20 text-primary">
+                                <span class="material-symbols-outlined !text-3xl">local_offer</span>
+                            </div>
+                            <h3 class="mt-4 text-lg font-bold text-gray-900 dark:text-white">Harga Terbaik</h3>
+                            <p class="mt-1 text-gray-600 dark:text-gray-400">Kami menawarkan harga kompetitif untuk semua tiket dan tur.</p>
+                        </div>
+                        
+                        <!-- Easy Booking -->
+                        <div class="flex flex-col items-center">
+                            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/20 text-primary">
+                                <span class="material-symbols-outlined !text-3xl">credit_card</span>
+                            </div>
+                            <h3 class="mt-4 text-lg font-bold text-gray-900 dark:text-white">Pemesanan Mudah</h3>
+                            <p class="mt-1 text-gray-600 dark:text-gray-400">Pesan tiket Anda hanya dengan beberapa klik melalui platform aman kami.</p>
+                        </div>
+                        
+                        <!-- 24/7 Support -->
+                        <div class="flex flex-col items-center">
+                            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/20 text-primary">
+                                <span class="material-symbols-outlined !text-3xl">support_agent</span>
+                            </div>
+                            <h3 class="mt-4 text-lg font-bold text-gray-900 dark:text-white">Dukungan 24/7</h3>
+                            <p class="mt-1 text-gray-600 dark:text-gray-400">Tim dukungan pelanggan kami siap membantu Anda kapan saja.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-auto border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900/50">
+            <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+                    <!-- Perusahaan -->
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Perusahaan</h4>
+                        <ul class="mt-4 space-y-2 text-sm">
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="about.html">Tentang Kami</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Pers</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Dukungan -->
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Dukungan</h4>
+                        <ul class="mt-4 space-y-2 text-sm">
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html">Pusat Bantuan</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#kontak">Hubungi Kami</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="bantuan.html#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Hukum -->
+                    <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white">Hukum</h4>
+                        <ul class="mt-4 space-y-2 text-sm">
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#ketentuan">Ketentuan Layanan</a></li>
+                            <li><a class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors" href="terms.html#privasi">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Brand -->
+                    <div>
+                        <a href="index.html" class="flex items-center gap-4 text-gray-900 dark:text-white">
+                            <img src="gambar/logoo.png" width="120" height="40" alt="Logo Tiket Wisata Surabaya">
+                        </a>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Platform pemesanan tiket wisata Surabaya terpercaya.</p>
+                    </div>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500 dark:border-gray-800 dark:text-gray-400">
+                    <p>© 2025 IMK-D Kelompok 2</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script>
-        // Redirect otomatis setelah 2 detik
-        setTimeout(function() {
-            window.location.href = "htmlPage/index.html";
-        }, 2000);
-        
-        // Redirect langsung jika user klik tombol
-        document.querySelector('.btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = "htmlPage/index.html";
+        // Data wisata yang bisa dicari
+        const wisataData = [
+            { 
+                id: "kbs",
+                name: "Kebun Binatang Surabaya", 
+                harga: 25000, 
+                url: "pesanTiket.html?wisata=kbs",
+                description: "Kebun binatang terbesar di Surabaya",
+                image: "gambar/kbs.jpg"
+            },
+            { 
+                id: "museum10nov",
+                name: "Museum 10 November", 
+                harga: 5000, 
+                url: "pesanTiket.html?wisata=museum10nov",
+                description: "Museum sejarah perjuangan Surabaya",
+                image: "gambar/museumnovember.jpg"
+            },
+            { 
+                id: "museumpendidikan",
+                name: "Museum Pendidikan", 
+                harga: 10000, 
+                url: "pesanTiket.html?wisata=museumpendidikan",
+                description: "Museum sejarah pendidikan Indonesia",
+                image: "gambar/museumpendidikan.jpg"
+            },
+            { 
+                id: "kenjeran",
+                name: "Taman Hiburan Pantai Kenjeran", 
+                harga: 15000, 
+                url: "pesanTiket.html?wisata=kenjeran",
+                description: "Pantai wisata dengan berbagai wahana",
+                image: "gambar/kenjeran.jpg"
+            },
+            { 
+                id: "monkasel",
+                name: "Monumen Kapal Selam", 
+                harga: 15000, 
+                url: "pesanTiket.html?wisata=monkasel",
+                description: "Museum kapal selam bersejarah",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop"
+            },
+            { 
+                id: "kalimas",
+                name: "Wisata Perahu Kalimas", 
+                harga: 7000, 
+                url: "pesanTiket.html?wisata=kalimas",
+                description: "Wisata sungai dengan perahu tradisional",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop"
+            },
+            { 
+                id: "tugu_pahlawan",
+                name: "Tugu Pahlawan", 
+                harga: 0, 
+                url: "pesanTiket.html?wisata=tugu_pahlawan",
+                description: "Monumen bersejarah Kota Surabaya",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop"
+            },
+            { 
+                id: "house_sampoerna",
+                name: "House of Sampoerna", 
+                harga: 0, 
+                url: "pesanTiket.html?wisata=house_sampoerna",
+                description: "Museum dan galeri sejarah rokok Sampoerna",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop"
+            }
+        ];
+
+        // DOM Elements
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const searchResults = document.getElementById('search-results');
+
+        // Script untuk hamburger menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    const icon = mobileMenuButton.querySelector('.material-symbols-outlined');
+                    icon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+                });
+                
+                // Close mobile menu ketika klik link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        mobileMenuButton.querySelector('.material-symbols-outlined').textContent = 'menu';
+                    });
+                });
+            }
+
+            // Close search dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target) && !searchButton.contains(e.target)) {
+                    searchResults.classList.add('hidden');
+                }
+            });
+
+            // Handle search input focus - TAMPILKAN SEMUA HASIL SAAT KLIK/FOCUS
+            searchInput.addEventListener('focus', function() {
+                showAllResults();
+            });
+
+            // Handle search input - TAMPILKAN SEMUA HASIL SAAT INPUT DIMULAI
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase().trim();
+                showSearchResults(query);
+            });
+
+            // Handle search button click
+            searchButton.addEventListener('click', function() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    // Cari apakah ada hasil yang cocok
+                    const filtered = wisataData.filter(item => 
+                        item.name.toLowerCase().includes(query.toLowerCase()) ||
+                        item.description.toLowerCase().includes(query.toLowerCase())
+                    );
+                    
+                    if (filtered.length > 0) {
+                        // Redirect ke hasil pertama yang cocok
+                        window.location.href = filtered[0].url;
+                    } else {
+                        // Jika tidak ditemukan, redirect ke destinasi dengan search query
+                        window.location.href = `destinasi.html?search=${encodeURIComponent(query)}`;
+                    }
+                } else {
+                    // Jika kosong, tetap tampilkan semua hasil
+                    showAllResults();
+                }
+            });
+
+            // Handle Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        // Cari apakah ada hasil yang cocok
+                        const filtered = wisataData.filter(item => 
+                            item.name.toLowerCase().includes(query.toLowerCase()) ||
+                            item.description.toLowerCase().includes(query.toLowerCase())
+                        );
+                        
+                        if (filtered.length > 0) {
+                            // Redirect ke hasil pertama yang cocok
+                            window.location.href = filtered[0].url;
+                        } else {
+                            // Jika tidak ditemukan, redirect ke destinasi dengan search query
+                            window.location.href = `destinasi.html?search=${encodeURIComponent(query)}`;
+                        }
+                    }
+                }
+            });
+
+            // Tampilkan semua hasil saat pertama kali load halaman jika search box sudah fokus
+            if (document.activeElement === searchInput) {
+                showAllResults();
+            }
         });
+
+        // Function to show ALL results (no filtering)
+        function showAllResults() {
+            searchResults.innerHTML = '';
+            
+            // Show header for all results
+            const headerItem = document.createElement('div');
+            headerItem.className = 'p-3 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800';
+            headerItem.innerHTML = `
+                <div class="font-medium text-gray-900 dark:text-white">Semua Destinasi Wisata Surabaya</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">${wisataData.length} destinasi tersedia</div>
+            `;
+            searchResults.appendChild(headerItem);
+            
+            wisataData.forEach(item => {
+                const resultItem = document.createElement('a');
+                resultItem.href = item.url;
+                resultItem.className = 'search-result-item flex items-center gap-3 p-4 border-b border-gray-100 dark:border-gray-800 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors';
+                resultItem.innerHTML = `
+                    <div class="flex-shrink-0">
+                        <div class="h-12 w-12 rounded-lg bg-cover bg-center" style="background-image: url('${item.image}')"></div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-medium text-gray-900 dark:text-white truncate">${item.name}</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400 truncate">${item.description}</div>
+                        <div class="text-sm font-medium text-primary">${item.harga === 0 ? 'Gratis' : 'Rp ' + item.harga.toLocaleString()}</div>
+                    </div>
+                    <span class="material-symbols-outlined text-gray-400 flex-shrink-0">chevron_right</span>
+                `;
+                
+                // Add click handler to close dropdown
+                resultItem.addEventListener('click', function() {
+                    searchResults.classList.add('hidden');
+                    searchInput.value = item.name; // Optional: set input value to selected item
+                });
+                
+                searchResults.appendChild(resultItem);
+            });
+            
+            // Add "View all destinations" option
+            const viewAllItem = document.createElement('a');
+            viewAllItem.href = `destinasi.html`;
+            viewAllItem.className = 'flex items-center justify-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 text-center text-sm font-medium text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors rounded-b-lg';
+            viewAllItem.innerHTML = `
+                <span>Lihat semua destinasi di Surabaya</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            `;
+            
+            viewAllItem.addEventListener('click', function() {
+                searchResults.classList.add('hidden');
+            });
+            
+            searchResults.appendChild(viewAllItem);
+            searchResults.classList.remove('hidden');
+        }
+
+        // Function to show filtered search results
+        function showSearchResults(query) {
+            searchResults.innerHTML = '';
+            
+            // If query is empty, show all results
+            if (query.length === 0) {
+                showAllResults();
+                return;
+            }
+            
+            const filtered = wisataData.filter(item => 
+                item.name.toLowerCase().includes(query.toLowerCase()) ||
+                item.description.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (filtered.length > 0) {
+                // Show header with search info
+                const headerItem = document.createElement('div');
+                headerItem.className = 'p-3 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800';
+                headerItem.innerHTML = `
+                    <div class="font-medium text-gray-900 dark:text-white">Hasil pencarian untuk "${query}"</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">${filtered.length} destinasi ditemukan</div>
+                `;
+                searchResults.appendChild(headerItem);
+                
+                filtered.forEach(item => {
+                    const resultItem = document.createElement('a');
+                    resultItem.href = item.url;
+                    resultItem.className = 'search-result-item flex items-center gap-3 p-4 border-b border-gray-100 dark:border-gray-800 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors';
+                    resultItem.innerHTML = `
+                        <div class="flex-shrink-0">
+                            <div class="h-12 w-12 rounded-lg bg-cover bg-center" style="background-image: url('${item.image}')"></div>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-medium text-gray-900 dark:text-white truncate">${item.name}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 truncate">${item.description}</div>
+                            <div class="text-sm font-medium text-primary">${item.harga === 0 ? 'Gratis' : 'Rp ' + item.harga.toLocaleString()}</div>
+                        </div>
+                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0">chevron_right</span>
+                    `;
+                    
+                    // Add click handler to close dropdown
+                    resultItem.addEventListener('click', function() {
+                        searchResults.classList.add('hidden');
+                        searchInput.value = item.name;
+                    });
+                    
+                    searchResults.appendChild(resultItem);
+                });
+                
+                // Add "View all results" option
+                const viewAllItem = document.createElement('a');
+                viewAllItem.href = `destinasi.html?search=${encodeURIComponent(query)}`;
+                viewAllItem.className = 'flex items-center justify-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 text-center text-sm font-medium text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors rounded-b-lg';
+                viewAllItem.innerHTML = `
+                    <span>Lihat semua hasil untuk "${query}"</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                `;
+                
+                viewAllItem.addEventListener('click', function() {
+                    searchResults.classList.add('hidden');
+                });
+                
+                searchResults.appendChild(viewAllItem);
+                searchResults.classList.remove('hidden');
+            } else {
+                const noResult = document.createElement('div');
+                noResult.className = 'p-4 text-gray-500 dark:text-gray-400 text-center';
+                noResult.innerHTML = `
+                    <p>Tidak ditemukan destinasi untuk "${query}"</p>
+                    <p class="text-sm mt-2">Coba kata kunci lain atau lihat semua destinasi</p>
+                `;
+                searchResults.appendChild(noResult);
+                
+                // Add link to all destinations
+                const viewAllDestinations = document.createElement('a');
+                viewAllDestinations.href = 'destinasi.html';
+                viewAllDestinations.className = 'flex items-center justify-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 text-center text-sm font-medium text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors rounded-b-lg';
+                viewAllDestinations.innerHTML = `
+                    <span>Lihat semua destinasi</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                `;
+                
+                viewAllDestinations.addEventListener('click', function() {
+                    searchResults.classList.add('hidden');
+                });
+                
+                searchResults.appendChild(viewAllDestinations);
+                searchResults.classList.remove('hidden');
+            }
+        }
+
+        function checkLoginStatus() {
+            const userRole = localStorage.getItem('userRole');
+            const userName = localStorage.getItem('userName');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            
+            // Temukan tombol login di desktop
+            const desktopLoginBtn = document.querySelector('a[href="../auth/login.html"]:not(.mobile-menu a)');
+            // Temukan tombol login di mobile menu
+            const mobileLoginBtn = document.querySelector('#mobile-menu a[href="../auth/login.html"]');
+            
+            if (isLoggedIn && userRole === 'user') {
+                // Ubah tombol desktop menjadi dropdown user
+                if (desktopLoginBtn) {
+                    desktopLoginBtn.outerHTML = `
+                        <div class="hidden md:flex items-center gap-2 relative group">
+                            <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-100 dark:bg-green-900/30 text-primary hover:bg-green-200 dark:hover:bg-green-800/50 transition-colors">
+                                <span class="material-symbols-outlined text-sm">account_circle</span>
+                                <span class="text-sm font-medium">${userName || 'User'}</span>
+                            </button>
+                            <div class="absolute top-full right-0 mt-2 w-48 rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                <a href="tiket-saya.html" class="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
+                                    <span class="material-symbols-outlined text-sm">confirmation_number</span>
+                                    <span>Tiket Saya</span>
+                                </a>
+                                <button onclick="logout()" class="flex items-center gap-2 w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-800 text-red-500">
+                                    <span class="material-symbols-outlined text-sm">logout</span>
+                                    <span>Logout</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // Ubah tombol mobile
+                if (mobileLoginBtn) {
+                    mobileLoginBtn.innerHTML = `
+                        <span class="material-symbols-outlined text-gray-400">account_circle</span>
+                        <span class="font-medium">${userName || 'User'}</span>
+                    `;
+                    mobileLoginBtn.href = "tiket-saya.html";
+                    
+                    // Tambahkan item logout di mobile menu
+                    const logoutItem = document.createElement('a');
+                    logoutItem.className = 'flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-red-500';
+                    logoutItem.innerHTML = `
+                        <span class="material-symbols-outlined text-red-400">logout</span>
+                        <span class="font-medium">Logout</span>
+                    `;
+                    logoutItem.onclick = function(e) {
+                        e.preventDefault();
+                        logout();
+                    };
+                    
+                    // Sisipkan setelah item login
+                    mobileLoginBtn.parentNode.insertBefore(logoutItem, mobileLoginBtn.nextSibling);
+                }
+            }
+        }
+        
+        // Fungsi logout
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('loginTime');
+                
+                // Redirect ke halaman ini lagi (refresh)
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // Panggil fungsi cek login saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+        });
+        // ===== END FUNGSI LOGIN =====
     </script>
 </body>
 </html>

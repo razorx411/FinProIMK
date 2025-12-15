@@ -1,9 +1,32 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/htmlPage/index.html" },
-    { "source": "/auth/:path*", "destination": "/auth/:path*" },
-    { "source": "/AdminPage/:path*", "destination": "/AdminPage/:path*" }
+    { 
+      "source": "/", 
+      "destination": "/htmlPage/index.html" 
+    },
+    { 
+      "source": "/auth/(.*)", 
+      "destination": "/auth/$1" 
+    },
+    { 
+      "source": "/AdminPage/(.*)", 
+      "destination": "/AdminPage/$1" 
+    },
+    { 
+      "source": "/htmlPage/(.*)", 
+      "destination": "/htmlPage/$1" 
+    }
   ],
-  "cleanUrls": false,
-  "trailingSlash": false
+  "redirects": [
+    {
+      "source": "/login",
+      "destination": "/auth/login.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin",
+      "destination": "/AdminPage/index.html", 
+      "permanent": false
+    }
+  ]
 }

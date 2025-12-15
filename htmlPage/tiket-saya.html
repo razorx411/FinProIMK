@@ -141,7 +141,7 @@
             // Jika belum login atau bukan user biasa
             if (!isLoggedIn || userRole !== 'user') {
                 alert('Anda harus login sebagai user untuk mengakses halaman ini!');
-                window.location.href = '../auth/login.html';
+                window.location.href = '/auth/login.html';
             }
         });
     </script>
@@ -167,7 +167,7 @@
                     <a class="hidden md:block text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
 
                     <!-- TOMBOL LOGIN DESKTOP -->
-                    <a href="../auth/login.html" class="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
+                    <a href="/auth/login.html" class="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
                         <i class="fas fa-sign-in-alt"></i>
                         <span class="text-sm font-medium">Login</span>
                     </a>
@@ -198,7 +198,7 @@
                     </a>
 
                     <!-- TAMBAHKAN ITEM LOGIN DI SINI -->
-                    <a href="../auth/login.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                    <a href="/auth/login.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
                         <span class="material-symbols-outlined text-gray-400">login</span>
                         <span class="font-medium">Login</span>
                     </a>
@@ -1754,9 +1754,9 @@
             const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
             
             // Temukan tombol login di desktop
-            const desktopLoginBtn = document.querySelector('a[href="../auth/login.html"]:not(.mobile-menu a)');
+            const desktopLoginBtn = document.querySelector('a[href="/auth/login.html"]:not(.mobile-menu a)');
             // Temukan tombol login di mobile menu
-            const mobileLoginBtn = document.querySelector('#mobile-menu a[href="../auth/login.html"]');
+            const mobileLoginBtn = document.querySelector('#mobile-menu a[href="/auth/login.html"]');
             
             if (isLoggedIn && userRole === 'user') {
                 // Ubah tombol desktop menjadi dropdown user

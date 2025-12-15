@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/htmlPage/index.html" },
+    { "source": "/auth/:path*", "destination": "/auth/:path*" },
+    { "source": "/AdminPage/:path*", "destination": "/AdminPage/:path*" }
+  ],
+  "cleanUrls": false,
+  "trailingSlash": false
+}

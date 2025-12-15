@@ -1,28 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Redirecting to Travel Surabaya</title>
-    <script>
-        // Redirect dengan priority:
-        // 1. Coba direct ke htmlPage
-        // 2. Fallback ke root redirect
-        const userPath = window.location.pathname;
-        
-        if (userPath === '/' || userPath === '/index.html') {
-            window.location.href = '/htmlPage/index.html';
-        } else if (userPath.startsWith('/auth/')) {
-            // Biarkan auth routes
-            return;
-        } else if (userPath.startsWith('/AdminPage/')) {
-            // Biarkan admin routes
-            return;
-        } else {
-            // Untuk lainnya, coba di htmlPage
-            window.location.href = '/htmlPage' + userPath;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Surabaya - Redirect</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
         }
-    </script>
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 100, 0, 0.1);
+            max-width: 500px;
+        }
+        
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2e7d32;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        h1 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #1b5e20;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting... <a href="/htmlPage/index.html">Click here</a></p>
+    <div class="container">
+        <div class="loader"></div>
+        <h1>Travel Surabaya</h1>
+        <p>Mengarahkan Anda ke halaman utama...</p>
+        <p>Jika tidak otomatis redirect, klik tombol di bawah:</p>
+        <a href="htmlPage/index.html" class="btn">Masuk ke Website</a>
+        
+        <div style="margin-top: 30px; font-size: 14px; color: #888;">
+            <p>Atau akses langsung:</p>
+            <p>
+                <a href="auth/login.html" style="color: #2e7d32; text-decoration: none;">Login</a> • 
+                <a href="AdminPage/index.html" style="color: #2e7d32; text-decoration: none;">Admin</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Redirect otomatis setelah 2 detik
+        setTimeout(function() {
+            window.location.href = "htmlPage/index.html";
+        }, 2000);
+        
+        // Redirect langsung jika user klik tombol
+        document.querySelector('.btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = "htmlPage/index.html";
+        });
+    </script>
 </body>
 </html>

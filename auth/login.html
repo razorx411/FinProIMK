@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Travel System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../AdminPage/css/style.css">
+    <style>
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        /* CONTAINER UTAMA */
+        .login-wrapper {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 100, 0, 0.1);
+        }
+        
+        /* SISI KIRI - ILUSTRASI */
+        .login-illustration {
+            flex: 1;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .illustration-icon {
+            font-size: 120px;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .illustration-text h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .illustration-text p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        /* SISI KANAN - FORM LOGIN */
+        .login-form-container {
+            flex: 1;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .form-header {
+            margin-bottom: 40px;
+        }
+        
+        .form-header h1 {
+            color: #1b5e20;
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .form-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* FORM STYLING */
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #2e7d32;
+            font-size: 18px;
+        }
+        
+        .input-with-icon input {
+            width: 100%;
+            padding: 15px 15px 15px 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+        
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: #2e7d32;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+        
+        /* TOMBOL LOGIN */
+        .login-btn {
+            background: linear-gradient(to right, #2e7d32, #4caf50);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .login-btn:hover {
+            background: linear-gradient(to right, #1b5e20, #2e7d32);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(46, 125, 50, 0.3);
+        }
+        
+        .login-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* DEMO ACCOUNTS */
+        .demo-accounts {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f9f0;
+            border-radius: 10px;
+            border-left: 4px solid #2e7d32;
+        }
+        
+        .demo-accounts h3 {
+            color: #1b5e20;
+            margin-bottom: 10px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .demo-account {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #e0f2e1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .demo-account:last-child {
+            margin-bottom: 0;
+        }
+        
+        .demo-account i {
+            color: #2e7d32;
+            font-size: 18px;
+        }
+        
+        .demo-account span {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .demo-account .credentials {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* FOOTER LINK */
+        .form-footer {
+            margin-top: 25px;
+            text-align: center;
+            color: #666;
+        }
+        
+        .form-footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        
+        .form-footer a:hover {
+            color: #1b5e20;
+            text-decoration: underline;
+        }
+        
+        /* ERROR MESSAGE */
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #c62828;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .error-message.show {
+            display: flex;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .login-wrapper {
+                flex-direction: column;
+                max-width: 500px;
+            }
+            
+            .login-illustration {
+                padding: 30px;
+            }
+            
+            .illustration-icon {
+                font-size: 80px;
+            }
+            
+            .login-form-container {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .login-form-container {
+                padding: 30px 20px;
+            }
+            
+            .form-header h1 {
+                font-size: 26px;
+            }
+        }
+
+        /* ALREADY LOGGED IN STATE */
+        .already-logged-in {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .already-logged-in p {
+            color: #2e7d32;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .action-buttons button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-dashboard {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .btn-dashboard:hover {
+            background: #1b5e20;
+        }
+
+        .btn-logout {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-logout:hover {
+            background: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <!-- SISI KIRI: ILUSTRASI -->
+        <div class="login-illustration">
+            <div class="illustration-icon">
+                <i class="fas fa-plane-departure"></i>
+            </div>
+            <div class="illustration-text">
+                <h2>Selamat Datang Kembali</h2>
+                <p>Masuk ke akun Anda untuk mengelola perjalanan, memesan tiket, atau mengakses dashboard administrator.</p>
+            </div>
+        </div>
+        
+        <!-- SISI KANAN: FORM LOGIN -->
+        <div class="login-form-container">
+            <!-- Form Header - Akan diupdate oleh JavaScript jika sudah login -->
+            <div class="form-header">
+                <h1 id="loginTitle">Masuk ke Akun</h1>
+                <p id="loginSubtitle">Silakan masuk menggunakan email dan password Anda</p>
+            </div>
+            
+            <!-- Container untuk form login ATAU info sudah login -->
+            <div id="loginContent">
+                <!-- Form login akan dimuat di sini oleh JavaScript -->
+            </div>
+            
+            <!-- FOOTER LINK -->
+            <div class="form-footer">
+                <a href="../htmlPage/index.html">
+                    <i class="fas fa-arrow-left"></i>
+                    Kembali ke Homepage
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk cek apakah user sudah login
+        function checkIfLoggedIn() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userName = localStorage.getItem('userName');
+            const userRole = localStorage.getItem('userRole');
+            
+            const loginContent = document.getElementById('loginContent');
+            const loginTitle = document.getElementById('loginTitle');
+            const loginSubtitle = document.getElementById('loginSubtitle');
+            
+            if (isLoggedIn && userName) {
+                // User sudah login, tampilkan info
+                loginTitle.textContent = `Halo, ${userName}!`;
+                loginSubtitle.textContent = `Anda sudah login sebagai ${userRole === 'admin' ? 'Administrator' : 'Pengguna'}`;
+                
+                loginContent.innerHTML = `
+                    <div class="already-logged-in">
+                        <p>
+                            <i class="fas fa-check-circle"></i>
+                            Anda sudah login
+                        </p>
+                        <div class="action-buttons">
+                            <button onclick="goToDashboard()" class="btn-dashboard">
+                                <i class="fas fa-tachometer-alt"></i>
+                                ${userRole === 'admin' ? 'Dashboard Admin' : 'Dashboard User'}
+                            </button>
+                            <button onclick="logout()" class="btn-logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Sembunyikan demo accounts jika ada
+                const demoAccounts = document.querySelector('.demo-accounts');
+                if (demoAccounts) {
+                    demoAccounts.style.display = 'none';
+                }
+                
+                return true;
+            }
+            
+            // Jika belum login, tampilkan form login
+            showLoginForm();
+            return false;
+        }
+        
+        // Fungsi untuk menampilkan form login
+        function showLoginForm() {
+            const loginContent = document.getElementById('loginContent');
+            
+            loginContent.innerHTML = `
+                <!-- ERROR MESSAGE -->
+                <div id="errorMessage" class="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="errorText">Email atau password salah!</span>
+                </div>
+                
+                <!-- LOGIN FORM -->
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Alamat Email</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" placeholder="contoh: user@email.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" placeholder="Masukkan password" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Masuk ke Sistem
+                    </button>
+                </form>
+                
+                <!-- DEMO ACCOUNTS -->
+                <div class="demo-accounts">
+                    <h3><i class="fas fa-key"></i> Akun Demo (Untuk Testing)</h3>
+                    <div class="demo-account">
+                        <i class="fas fa-user-shield"></i>
+                        <div>
+                            <span>Administrator</span>
+                            <div class="credentials">admin@travel.com / admin123</div>
+                        </div>
+                    </div>
+                    <div class="demo-account">
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <span>Pengguna Biasa</span>
+                            <div class="credentials">user@example.com / user123</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Tambahkan event listener untuk form login
+            setupLoginForm();
+        }
+        
+        // Setup form login
+        function setupLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value;
+                    const errorElement = document.getElementById('errorMessage');
+                    const errorText = document.getElementById('errorText');
+                    
+                    // Reset error message
+                    errorElement.classList.remove('show');
+                    
+                    // VALIDASI SEDERHANA
+                    if (!email || !password) {
+                        errorText.textContent = 'Email dan password harus diisi!';
+                        errorElement.classList.add('show');
+                        return;
+                    }
+                    
+                    if (!email.includes('@')) {
+                        errorText.textContent = 'Format email tidak valid!';
+                        errorElement.classList.add('show');
+                        return;
+                    }
+                    
+                    // SIMULASI DATABASE USER
+                    const users = [
+                        {
+                            email: 'admin@travel.com',
+                            password: 'admin123',
+                            name: 'Administrator',
+                            role: 'admin'
+                        },
+                        {
+                            email: 'user@example.com',
+                            password: 'user123',
+                            name: 'Budi Santoso',
+                            role: 'user'
+                        },
+                        {
+                            email: 'guest@test.com',
+                            password: 'guest123',
+                            name: 'Guest User',
+                            role: 'user'
+                        }
+                    ];
+                    
+                    // Cari user berdasarkan email & password
+                    const user = users.find(u => 
+                        u.email === email && u.password === password
+                    );
+                    
+                    if (user) {
+                        // ANIMASI TOMBOL LOADING
+                        const submitBtn = document.querySelector('.login-btn');
+                        const originalText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+                        submitBtn.disabled = true;
+                        
+                        // SIMPAN KE LOCALSTORAGE
+                        localStorage.setItem('userRole', user.role);
+                        localStorage.setItem('userEmail', user.email);
+                        localStorage.setItem('userName', user.name);
+                        localStorage.setItem('isLoggedIn', 'true');
+                        localStorage.setItem('loginTime', new Date().toISOString());
+                        
+                        // DELAY UNTUK EFEK LOADING
+                        setTimeout(() => {
+                            // REDIRECT BERDASARKAN ROLE
+                            if (user.role === 'admin') {
+                                window.location.href = '../AdminPage/index.html';
+                            } else {
+                                window.location.href = '../htmlPage/index.html';
+                            }
+                        }, 1000);
+                        
+                    } else {
+                        errorText.textContent = 'Email atau password salah!';
+                        errorElement.classList.add('show');
+                        
+                        // Animasi shake untuk error
+                        document.getElementById('loginForm').style.animation = 'none';
+                        setTimeout(() => {
+                            document.getElementById('loginForm').style.animation = 'shake 0.5s';
+                        }, 10);
+                    }
+                });
+            }
+            
+            // Auto-focus ke input email
+            const emailInput = document.getElementById('email');
+            if (emailInput) {
+                emailInput.focus();
+            }
+            
+            // Enter key support
+            const passwordInput = document.getElementById('password');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+                    }
+                });
+            }
+        }
+        
+        // Fungsi untuk pergi ke dashboard berdasarkan role
+        function goToDashboard() {
+            const userRole = localStorage.getItem('userRole');
+            if (userRole === 'admin') {
+                window.location.href = '../AdminPage/index.html';
+            } else {
+                window.location.href = '../htmlPage/index.html';
+            }
+        }
+        
+        // Fungsi logout
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                // Hapus semua data session
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('loginTime');
+                
+                // Redirect ke halaman login (refresh)
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // Cek status login saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tambahkan animasi shake CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Cek apakah user sudah login
+            checkIfLoggedIn();
+        });
+    </script>
+</body>
+</html>

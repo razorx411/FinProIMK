@@ -34,6 +34,19 @@ tailwind.config = {
 </head>
 
 <body class="min-h-screen bg-gray-50 text-slate-800 font-display antialiased">
+  <script>
+        // CEK APAKAH ADMIN SUDAH LOGIN
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userRole = localStorage.getItem('userRole');
+            
+            // Jika belum login atau bukan admin
+            if (!isLoggedIn || userRole !== 'admin') {
+                alert('Anda harus login sebagai admin untuk mengakses dashboard!');
+                window.location.href = '../auth/login.html';
+            }
+        });
+    </script>
 
 <!-- Mobile Overlay -->
 <div id="mobileOverlay" class="mobile-overlay"></div>

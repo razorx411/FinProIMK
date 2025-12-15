@@ -11,7 +11,8 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class", 
@@ -77,17 +78,23 @@
 
                     <!-- Right section -->
                     <div class="flex items-center gap-4">
-                        <!-- Link Bantuan (Desktop) -->
+                        <!-- Link Bantuan hanya di Desktop -->
                         <a class="hidden md:block text-sm font-medium hover:text-primary dark:hover:text-primary" href="bantuan.html">Bantuan</a>
-                        
-                        <!-- HAMBURGER MENU BUTTON -->
+
+                        <!-- TOMBOL LOGIN DESKTOP -->
+                        <a href="../auth/login.html" class="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span class="text-sm font-medium">Login</span>
+                        </a>
+
+                        <!-- Hamburger Menu Button (Mobile) -->
                         <button id="mobile-menu-button" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-gray-800/60 text-gray-900 dark:text-white hover:bg-gray-300/50 dark:hover:bg-gray-700/60">
                             <span class="material-symbols-outlined">menu</span>
                         </button>
                     </div>
                 </div>
                 
-                <!-- Mobile Menu Dropdown -->
+                <!-- Mobile Menu Dropdown (TAMBAHAN BARU) -->
                 <div id="mobile-menu" class="mobile-menu md:hidden bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-800/50">
                     <div class="px-4 py-3 space-y-1">
                         <a href="destinasi.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
@@ -103,6 +110,12 @@
                         <a href="tiket-saya.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
                             <span class="material-symbols-outlined text-gray-400">confirmation_number</span>
                             <span class="font-medium">Tiket Saya</span>
+                        </a>
+                        
+                        <!-- TAMBAHKAN ITEM LOGIN DI SINI -->
+                        <a href="../auth/login.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+                            <span class="material-symbols-outlined text-gray-400">login</span>
+                            <span class="font-medium">Login</span>
                         </a>
                         
                         <a href="bantuan.html" class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
@@ -427,6 +440,85 @@
                 });
             });
         });
+
+        function checkLoginStatus() {
+            const userRole = localStorage.getItem('userRole');
+            const userName = localStorage.getItem('userName');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            
+            // Temukan tombol login di desktop
+            const desktopLoginBtn = document.querySelector('a[href="../auth/login.html"]:not(.mobile-menu a)');
+            // Temukan tombol login di mobile menu
+            const mobileLoginBtn = document.querySelector('#mobile-menu a[href="../auth/login.html"]');
+            
+            if (isLoggedIn && userRole === 'user') {
+                // Ubah tombol desktop menjadi dropdown user
+                if (desktopLoginBtn) {
+                    desktopLoginBtn.outerHTML = `
+                        <div class="hidden md:flex items-center gap-2 relative group">
+                            <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-100 dark:bg-green-900/30 text-primary hover:bg-green-200 dark:hover:bg-green-800/50 transition-colors">
+                                <span class="material-symbols-outlined text-sm">account_circle</span>
+                                <span class="text-sm font-medium">${userName || 'User'}</span>
+                            </button>
+                            <div class="absolute top-full right-0 mt-2 w-48 rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                <a href="tiket-saya.html" class="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
+                                    <span class="material-symbols-outlined text-sm">confirmation_number</span>
+                                    <span>Tiket Saya</span>
+                                </a>
+                                <button onclick="logout()" class="flex items-center gap-2 w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-800 text-red-500">
+                                    <span class="material-symbols-outlined text-sm">logout</span>
+                                    <span>Logout</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // Ubah tombol mobile
+                if (mobileLoginBtn) {
+                    mobileLoginBtn.innerHTML = `
+                        <span class="material-symbols-outlined text-gray-400">account_circle</span>
+                        <span class="font-medium">${userName || 'User'}</span>
+                    `;
+                    mobileLoginBtn.href = "tiket-saya.html";
+                    
+                    // Tambahkan item logout di mobile menu
+                    const logoutItem = document.createElement('a');
+                    logoutItem.className = 'flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-red-500';
+                    logoutItem.innerHTML = `
+                        <span class="material-symbols-outlined text-red-400">logout</span>
+                        <span class="font-medium">Logout</span>
+                    `;
+                    logoutItem.onclick = function(e) {
+                        e.preventDefault();
+                        logout();
+                    };
+                    
+                    // Sisipkan setelah item login
+                    mobileLoginBtn.parentNode.insertBefore(logoutItem, mobileLoginBtn.nextSibling);
+                }
+            }
+        }
+        
+        // Fungsi logout
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('loginTime');
+                
+                // Redirect ke halaman ini lagi (refresh)
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // Panggil fungsi cek login saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+        });
+        // ===== END FUNGSI LOGIN =====
     </script>
 </body>
 </html>

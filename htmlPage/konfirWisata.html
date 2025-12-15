@@ -72,6 +72,19 @@
     </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200">
+    <script>
+        // CEK APAKAH USER SUDAH LOGIN
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userRole = localStorage.getItem('userRole');
+            
+            // Jika belum login atau bukan user biasa
+            if (!isLoggedIn || userRole !== 'user') {
+                alert('Anda harus login sebagai user untuk mengakses halaman ini!');
+                window.location.href = '../auth/login.html';
+            }
+        });
+    </script>
     <div class="relative flex min-h-screen w-full flex-col">
         <!-- NAVBAR YANG SUDAH DIGANTI -->
         <header id="navbar" class="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-background-light/80 backdrop-blur-sm dark:border-gray-800/50 dark:bg-background-dark/80 transition-transform duration-300 transform -translate-y-0">

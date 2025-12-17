@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/htmlPage/index.html" },
+    { "source": "/auth/(.*)", "destination": "/auth/$1" },
+    { "source": "/AdminPage/(.*)", "destination": "/AdminPage/$1" },
+    { "source": "/htmlPage/(.*)", "destination": "/htmlPage/$1" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}
